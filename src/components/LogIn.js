@@ -11,6 +11,7 @@ const LogIn = ({ login }) => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
+  // eslint-disable-next-line no-unused-vars
   const [cookie, setCookie] = useCookies(['jwt_token']);
 
   const navigate = useNavigate();
