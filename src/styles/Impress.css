@@ -1,0 +1,28 @@
+.Impress {
+  color: white;
+  background-color: gray;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  width: 100%;
+  margin: 50px 0 0 0;
+}
+
+.Impress p {
+  margin: 0;
+}
+
+.Impress a {
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.Impress span {
+  color: rgb(243, 119, 119);
+  font-size: 1.1em;
+}
+
+.Impress a:hover {
+  text-decoration: underline;
+}
