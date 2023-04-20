@@ -1,6 +1,6 @@
 .Impress {
-  color: white;
-  background-color: gray;
+  color: var(--darker-text-color);
+  background-color: var(--lighter-background-color);
   height: 50px;
   text-align: center;
   line-height: 50px;
@@ -13,7 +13,7 @@
 }
 
 .Impress a {
-  color: white;
+  color: var(--darker-text-color);
   text-decoration: none;
   font-weight: 400;
 }
