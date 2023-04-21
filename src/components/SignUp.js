@@ -51,52 +51,62 @@ const SignUp = () => {
   return (
     <div className="SignUp">
       <form onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
-        <label htmlFor="firstName">First Name</label>
-        <input
-          name="firstName"
-          value={lastName}
-          id="firstName"
-          placeholder="first name"
-          type="text"
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          name="lastName"
-          value={lastName}
-          id="lastName"
-          placeholder="last name"
-          type="text"
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          value={email}
-          id="email"
-          placeholder="email"
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          value={password}
-          id="password"
-          placeholder="password"
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <label htmlFor="passwordConfirm">Confirm Password</label>
-        <input
-          name="passwordConfirm"
-          value={passwordCheck}
-          id="passwordConfirm"
-          placeholder="confirm password"
-          type="password"
-          onChange={(e) => setPasswordCheck(e.target.value)}
-        />
+        <h2>Sign Up</h2>
+        <div className="formGroup">
+          <label htmlFor="firstName">First Name</label>
+          <input
+            name="firstName"
+            value={lastName}
+            id="firstName"
+            placeholder="first name"
+            type="text"
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
+        <div className="formGroup">
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            name="lastName"
+            value={lastName}
+            id="lastName"
+            placeholder="last name"
+            type="text"
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
+        <div className="formGroup">
+          <label htmlFor="email">Email</label>
+          <input
+            name="email"
+            value={email}
+            id="email"
+            placeholder="email"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="formGroup">
+          <label htmlFor="password">Password</label>
+          <input
+            name="password"
+            value={password}
+            id="password"
+            placeholder="password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="formGroup">
+          <label htmlFor="passwordConfirm">Confirm Password</label>
+          <input
+            name="passwordConfirm"
+            value={passwordCheck}
+            id="passwordConfirm"
+            placeholder="confirm password"
+            type="password"
+            onChange={(e) => setPasswordCheck(e.target.value)}
+          />
+        </div>
         <div className="messages">
           {errors.map((error, index) => {
             return (
@@ -107,6 +117,13 @@ const SignUp = () => {
           })}
         </div>
         <button type="submit">Create</button>
+        <button
+          type="button"
+          className="secondoryBtn"
+          onClick={() => navigate('/login')}
+        >
+          Log In
+        </button>
       </form>
     </div>
   );

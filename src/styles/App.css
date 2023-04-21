@@ -2,7 +2,7 @@
   .Home,
   .LogIn,
   .SignUp {
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 125px);
   }
 }
 
@@ -10,7 +10,7 @@
   .Home,
   .LogIn,
   .SignUp {
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 125px);
   }
 }
 
@@ -34,7 +34,7 @@ form {
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 5px;
 }
 
 form h2 {
@@ -50,7 +50,7 @@ form h2 {
 .formGroup input {
   color-scheme: dark;
   border-radius: 10px;
-  height: 35px;
+  height: 30px;
   padding: 0 10px;
   background-color: var(--form-background-color);
   color: var(--text-color);

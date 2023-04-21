@@ -1,0 +1,10 @@
+.SignUp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.SignUp form {
+  width: 280px;
+}
