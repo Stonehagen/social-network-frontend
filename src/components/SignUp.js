@@ -56,7 +56,7 @@ const SignUp = () => {
           <label htmlFor="firstName">First Name</label>
           <input
             name="firstName"
-            value={lastName}
+            value={firstName}
             id="firstName"
             placeholder="first name"
             type="text"
