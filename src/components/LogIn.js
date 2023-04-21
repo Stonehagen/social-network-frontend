@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/LogIn.css';
 
 import { setAuthToken } from '../methods/setAuthToken';
- 
+
 const LogIn = ({ login }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -61,25 +61,28 @@ const LogIn = ({ login }) => {
     <div className="LogIn">
       <form onSubmit={handleSubmit}>
         <h1>Log In</h1>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          value={email}
-          id="email"
-          placeholder="email"
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          value={password}
-          id="password"
-          placeholder="password"
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Log In</button>
+        <div className="formGroup">
+          <label htmlFor="email">Email</label>
+          <input
+            name="email"
+            value={email}
+            id="email"
+            placeholder="email"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="formGroup">
+          <label htmlFor="password">Password</label>
+          <input
+            name="password"
+            value={password}
+            id="password"
+            placeholder="password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
         <div className="messages">
           {errors.map((error, index) => {
             return (
@@ -89,6 +92,7 @@ const LogIn = ({ login }) => {
             );
           })}
         </div>
+        <button type="submit">Log In</button>
       </form>
     </div>
   );

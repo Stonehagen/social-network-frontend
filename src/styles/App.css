@@ -1,11 +1,15 @@
 @media (min-width: 800px) {
-  .Home {
+  .Home,
+  .LogIn,
+  .SignUp {
     min-height: calc(100vh - 100px);
   }
 }
 
 @media (max-width: 799px) {
-  .Home {
+  .Home,
+  .LogIn,
+  .SignUp {
     min-height: calc(100vh - 100px);
   }
 }
@@ -16,4 +20,71 @@
   align-items: center;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+form {
+  background-color: var(--lighter-background-color);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+form h1 {
+  margin: 0 0 10px 0;
+  font-weight: 100;
+}
+
+.formGroup label {
+  font-weight: 100;
+  color: var(--darker-text-color);
+}
+
+.formGroup input {
+  color-scheme: dark;
+  font-size: 1em;
+  border-radius: 10px;
+  height: 30px;
+  padding: 0 10px;
+  background-color: var(--form-background-color);
+  color: var(--text-color);
+  border: none;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow:0 0 0 50px var(--form-background-color) inset; /* Change the color to your own background color */
+  -webkit-text-fill-color: var(--text-color);
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 50px var(--form-background-color) inset;/*your box-shadow*/
+  -webkit-text-fill-color: #333;
+} 
+
+form button {
+  font-size: 1em;
+  border-radius: 10px;
+  height: 40px;
+  padding: 0 10px;
+  color: var(--background-color);
+  background-color: var(--text-color);
+  border: none;
+}
+
+form button:hover {
+  color: var(--text-color);
+  background-color: var(--highlight-color);
+  cursor: pointer;
+}
+
+form .errorMessage {
+  color: var(--error-color);
+  font-weight: 100;
 }

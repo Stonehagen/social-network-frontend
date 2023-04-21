@@ -2,14 +2,16 @@
 
 :root {
   --color1: #211e27;
-  --color2: #312c37;
+  --color2: #2b283d;
   --color3: #f4f2f7;
   --color4: #ddd8e3;
-  --color5: #8357a4;
+  --color5: #d0ad5c;
+  --color6: #47445e;
 
   --text-color: var(--color3);
   --darker-text-color: var(--color4);
   --lighter-background-color: var(--color2);
+  --form-background-color: var(--color6);
   --background-color: var(--color1);
   --highlight-color: var(--color5);
   --error-color: rgb(214, 126, 96);
