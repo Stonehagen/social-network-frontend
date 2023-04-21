@@ -60,7 +60,7 @@ const LogIn = ({ login }) => {
   return (
     <div className="LogIn">
       <form onSubmit={handleSubmit}>
-        <h1>Log In</h1>
+        <h2>Log In</h2>
         <div className="formGroup">
           <label htmlFor="email">Email</label>
           <input
@@ -93,6 +93,13 @@ const LogIn = ({ login }) => {
           })}
         </div>
         <button type="submit">Log In</button>
+        <button
+          type="button"
+          className="secondoryBtn"
+          onClick={() => navigate('/signup')}
+        >
+          Sign Up
+        </button>
       </form>
     </div>
   );

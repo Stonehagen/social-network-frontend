@@ -34,10 +34,10 @@ form {
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 2px;
 }
 
-form h1 {
+form h2 {
   margin: 0 0 10px 0;
   font-weight: 100;
 }
@@ -49,9 +49,8 @@ form h1 {
 
 .formGroup input {
   color-scheme: dark;
-  font-size: 1em;
   border-radius: 10px;
-  height: 30px;
+  height: 35px;
   padding: 0 10px;
   background-color: var(--form-background-color);
   color: var(--text-color);
@@ -70,8 +69,8 @@ input:-webkit-autofill:focus {
 
 form button {
   font-size: 1em;
-  border-radius: 10px;
-  height: 40px;
+  border-radius: 20px;
+  height: 35px;
   padding: 0 10px;
   color: var(--background-color);
   background-color: var(--text-color);
@@ -87,4 +86,9 @@ form button:hover {
 form .errorMessage {
   color: var(--error-color);
   font-weight: 100;
+}
+
+.secondoryBtn {
+  color: var(--text-color);
+  background-color: var(--form-background-color);
 }
