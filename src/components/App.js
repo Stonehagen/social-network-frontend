@@ -12,6 +12,7 @@ import Header from './Header';
 import Impress from './Impress';
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
   const [cookies, removeCookie] = useCookies(['jwt_token']);
   const token =
@@ -23,7 +24,7 @@ const App = () => {
   const login = (email, id) => {
     setUser({
       email,
-      id
+      id,
     });
   };
 
@@ -34,6 +35,7 @@ const App = () => {
   };
 
   useEffect(() => {
+    console.log('1')
     if (!user && token) {
       axios
         .get(`${process.env.REACT_APP_BACKENDSERVER}/session`, {
@@ -43,26 +45,37 @@ const App = () => {
         })
         .then((res) => {
           if (res.data.error) {
+            setLoading(false);
             return res.data.error;
           } else {
             setUser({
               email: res.data.email,
               id: res.data._id,
             });
+            setLoading(false);
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
     }
-  });
+  }, []);
+
+  if (loading) {
+    return <div className="App">Loading...</div>;
+  }
 
   return (
     <BrowserRouter basename="/">
       <Header user={user} logout={logout} />
       <div className="Main">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<LogIn login={login} />} />
+          <Route path="/" element={<Home user={user} />} />
+          <Route path="/signup" element={<SignUp user={user} />} />
+          <Route path="/login" element={<LogIn user={user} login={login} />} />
         </Routes>
         <Impress />
       </div>

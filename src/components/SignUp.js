@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/SignUp.css';
 
-const SignUp = () => {
+const SignUp = ({ user }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -47,6 +47,12 @@ const SignUp = () => {
         }
       });
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  });
 
   return (
     <div className="SignUp">

@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LogIn.css';
 
 import { setAuthToken } from '../methods/setAuthToken';
 
-const LogIn = ({ login }) => {
+const LogIn = ({ user, login }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
@@ -56,6 +56,12 @@ const LogIn = ({ login }) => {
         }
       });
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  });
 
   return (
     <div className="LogIn">
