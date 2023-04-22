@@ -20,10 +20,10 @@ const App = () => {
     setAuthToken(token);
   }
 
-  const login = (email, name) => {
+  const login = (email, id) => {
     setUser({
       email,
-      name,
+      id
     });
   };
 
@@ -47,7 +47,6 @@ const App = () => {
           } else {
             setUser({
               email: res.data.email,
-              name: res.data.name,
               id: res.data._id,
             });
           }

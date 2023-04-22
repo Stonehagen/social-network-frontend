@@ -44,7 +44,7 @@ const LogIn = ({ login }) => {
         } else {
           saveJWTinCookie(res.data.token);
           setAuthToken(res.data.token);
-          login(res.data.user.email, res.data.user.name);
+          login(res.data.user.email, res.data.user._id);
         }
       })
       .then(() => navigate('/'))
