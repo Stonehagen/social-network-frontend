@@ -2,15 +2,27 @@ import { useEffect, useState } from 'react';
 import '../styles/ProfileDetail.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import CameraIcon from '../img/camera.svg';
 
 const ProfileDetail = ({ user }) => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [edit, setEdit] = useState(false);
+  const [status, setStatus] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const [photo, setPhoto] = useState('');
+  const [preview, setPreview] = useState(null);
 
   const navigate = useNavigate();
 
+  const cancelChanges = () => {
+    setEdit(false);
+    setPreview(null);
+  };
+
   const handlePhoto = (e) => {
     setPhoto(e.target.files[0]);
+    setPreview(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleSubmit = (e) => {
@@ -18,12 +30,38 @@ const ProfileDetail = ({ user }) => {
     const formData = new FormData();
     formData.append('photo', photo);
 
+    if (preview) {
+      axios
+        .post(
+          `${process.env.REACT_APP_BACKENDSERVER}/profile/picture`,
+          formData,
+        )
+        .then((res) => {
+          if (res.data.error) {
+            return res.data.error;
+          }
+        })
+        .catch((err) => console.log(err));
+    }
     axios
-      .post(`${process.env.REACT_APP_BACKENDSERVER}/profile/picture`, formData)
+      .put(
+        `${process.env.REACT_APP_BACKENDSERVER}/profile`,
+        {
+          firstName,
+          lastName,
+          status,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
       .then((res) => {
         if (res.data.error) {
           return res.data.error;
         }
+        navigate('/');
       })
       .catch((err) => console.log(err));
   };
@@ -43,6 +81,9 @@ const ProfileDetail = ({ user }) => {
           return res.data.error;
         } else {
           setUserProfile(res.data.profile);
+          setStatus(res.data.profile.status);
+          setFirstName(res.data.profile.firstName);
+          setLastName(res.data.profile.lastName);
         }
       })
       .catch((err) => console.log(err));
@@ -55,33 +96,96 @@ const ProfileDetail = ({ user }) => {
 
   return (
     <div className="ProfileDetail">
-      <div>
+      {edit ? (
         <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <label className="changePictureLabel" htmlFor="photoInput">
+            <img
+              className="profilePic"
+              src={
+                preview
+                  ? preview
+                  : userProfile.photo
+                  ? `${process.env.REACT_APP_BACKENDSERVER}/images/${userProfile.photo}`
+                  : `${process.env.REACT_APP_BACKENDSERVER}/img/profile.jpg`
+              }
+              alt=""
+            />
+            <img className="Camerabutton" src={CameraIcon} alt="" />
+          </label>
           <input
+            id="photoInput"
+            hidden={true}
             type="file"
             accept=".png, .jpg, .jpeg"
             name="photo"
             onChange={handlePhoto}
           />
-          <button type="submit">Add Photo</button>
+          <div className="formGroup">
+            <label htmlFor="firstName">First Name</label>
+            <input
+              name="firstName"
+              value={firstName}
+              id="firstName"
+              placeholder="first name"
+              type="text"
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              name="lastName"
+              value={lastName}
+              id="lastName"
+              placeholder="last name"
+              type="text"
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label htmlFor="status">Status</label>
+            <input
+              className="statusInput"
+              type="text"
+              id="status"
+              name="status"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            />
+          </div>
+          <button type="submit">Save</button>
+          <button
+            type="button"
+            className="secondoryBtn"
+            onClick={() => cancelChanges()}
+          >
+            Cancel
+          </button>
         </form>
-      </div>
-      <div>
-        <img
-          src={
-            userProfile.photo
-              ? `${process.env.REACT_APP_BACKENDSERVER}/images/${userProfile.photo}`
-              : `${process.env.REACT_APP_BACKENDSERVER}/img/profile.jpg`
-          }
-          alt=""
-        />
-      </div>
-      <div>
-        <h4>{`${userProfile.firstName} ${userProfile.lastName}`}</h4>
-      </div>
-      <div>
-        <p>Here we have a status Mockup!</p>
-      </div>
+      ) : (
+        <>
+          <div>
+            <img
+              className="profilePic"
+              src={
+                userProfile.photo
+                  ? `${process.env.REACT_APP_BACKENDSERVER}/images/${userProfile.photo}`
+                  : `${process.env.REACT_APP_BACKENDSERVER}/img/profile.jpg`
+              }
+              alt=""
+            />
+          </div>
+          <div>
+            <h4>{`${userProfile.firstName} ${userProfile.lastName}`}</h4>
+          </div>
+          <div>
+            <p>{`${userProfile.status}`}</p>
+          </div>
+          <button onClick={() => setEdit(true)} className="secondoryBtn">
+            Edit Profile
+          </button>
+        </>
+      )}
     </div>
   );
 };

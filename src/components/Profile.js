@@ -19,7 +19,7 @@ const Profile = ({ userProfile }) => {
         <h4>{`${userProfile.firstName} ${userProfile.lastName}`}</h4>
       </div>
       <div>
-        <p>Here we have a status Mockup!</p>
+        <p>{`${userProfile.status}`}</p>
       </div>
       <Link to='/profile'>My Profile</Link>
     </div>

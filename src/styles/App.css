@@ -1,4 +1,13 @@
-@media (min-width: 800px) {
+@media (min-width: 1200px) {
+  .Home,
+  .LogIn,
+  .SignUp {
+    min-height: calc(100vh - 125px);
+  }
+}
+
+
+@media (min-width: 800px) and (max-width: 1199px) {
   .Home,
   .LogIn,
   .SignUp {
