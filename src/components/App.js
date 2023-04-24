@@ -10,6 +10,7 @@ import SignUp from './SignUp';
 import Home from './Home';
 import Header from './Header';
 import Impress from './Impress';
+import ProfileDetail from './ProfileDetail';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -29,13 +30,12 @@ const App = () => {
   };
 
   const logout = () => {
-    setUser();
+    setUser(null);
     setAuthToken();
     removeCookie('jwt_token');
   };
 
   useEffect(() => {
-    console.log('1')
     if (!user && token) {
       axios
         .get(`${process.env.REACT_APP_BACKENDSERVER}/session`, {
@@ -62,7 +62,7 @@ const App = () => {
     } else {
       setLoading(false);
     }
-  }, []);
+  }, [user, token]);
 
   if (loading) {
     return <div className="App">Loading...</div>;
@@ -74,6 +74,7 @@ const App = () => {
       <div className="Main">
         <Routes>
           <Route path="/" element={<Home user={user} />} />
+          <Route path="/profile" element={<ProfileDetail user={user} />} />
           <Route path="/signup" element={<SignUp user={user} />} />
           <Route path="/login" element={<LogIn user={user} login={login} />} />
         </Routes>
