@@ -168,11 +168,7 @@ const ProfileDetail = ({ user }) => {
             <div>
               <img
                 className="profilePic"
-                src={
-                  userProfile.photo
-                    ? `${process.env.REACT_APP_BACKENDSERVER}/images/${userProfile.photo}`
-                    : `${process.env.REACT_APP_BACKENDSERVER}/img/profile.jpg`
-                }
+                src={`${process.env.REACT_APP_BACKENDSERVER}/images/${userProfile.photo}`}
                 alt=""
               />
             </div>

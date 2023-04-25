@@ -27,11 +27,7 @@ const Header = ({ user, logout, profilePicture }) => {
           <img
             onClick={handleOpenMenu}
             className="profilePicture"
-            src={
-              profilePicture
-                ? `${process.env.REACT_APP_BACKENDSERVER}/images/${profilePicture}`
-                : `${process.env.REACT_APP_BACKENDSERVER}/img/profile.jpg`
-            }
+            src={`${process.env.REACT_APP_BACKENDSERVER}/images/${profilePicture}`}
             alt=""
           />
           <div className="HeaderMenu">
