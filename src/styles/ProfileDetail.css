@@ -37,9 +37,9 @@
 }
 
 .ProfileDetail .Camerabutton {
-  background-color: var(--lighter-background-color);
+  background-color: var(--form-background-color);
   border-radius: 23px;
-  padding: 4px 6px;
+  padding: 4px;
   margin: -40px -130px 0 0;
 }
 

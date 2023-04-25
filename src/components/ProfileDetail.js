@@ -95,97 +95,99 @@ const ProfileDetail = ({ user }) => {
   }
 
   return (
-    <div className="ProfileDetail">
-      {edit ? (
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-          <label className="changePictureLabel" htmlFor="photoInput">
-            <img
-              className="profilePic"
-              src={
-                preview
-                  ? preview
-                  : userProfile.photo
-                  ? `${process.env.REACT_APP_BACKENDSERVER}/images/${userProfile.photo}`
-                  : `${process.env.REACT_APP_BACKENDSERVER}/img/profile.jpg`
-              }
-              alt=""
-            />
-            <img className="Camerabutton" src={CameraIcon} alt="" />
-          </label>
-          <input
-            id="photoInput"
-            hidden={true}
-            type="file"
-            accept=".png, .jpg, .jpeg"
-            name="photo"
-            onChange={handlePhoto}
-          />
-          <div className="formGroup">
-            <label htmlFor="firstName">First Name</label>
+    <div className="MainContainer">
+      <div className="ProfileDetail">
+        {edit ? (
+          <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <label className="changePictureLabel" htmlFor="photoInput">
+              <img
+                className="profilePic"
+                src={
+                  preview
+                    ? preview
+                    : userProfile.photo
+                    ? `${process.env.REACT_APP_BACKENDSERVER}/images/${userProfile.photo}`
+                    : `${process.env.REACT_APP_BACKENDSERVER}/img/profile.jpg`
+                }
+                alt=""
+              />
+              <img className="Camerabutton" src={CameraIcon} alt="" />
+            </label>
             <input
-              name="firstName"
-              value={firstName}
-              id="firstName"
-              placeholder="first name"
-              type="text"
-              onChange={(e) => setFirstName(e.target.value)}
+              id="photoInput"
+              hidden={true}
+              type="file"
+              accept=".png, .jpg, .jpeg"
+              name="photo"
+              onChange={handlePhoto}
             />
-          </div>
-          <div className="formGroup">
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              name="lastName"
-              value={lastName}
-              id="lastName"
-              placeholder="last name"
-              type="text"
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </div>
-          <div className="formGroup">
-            <label htmlFor="status">Status</label>
-            <input
-              className="statusInput"
-              type="text"
-              id="status"
-              name="status"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-            />
-          </div>
-          <button type="submit">Save</button>
-          <button
-            type="button"
-            className="secondoryBtn"
-            onClick={() => cancelChanges()}
-          >
-            Cancel
-          </button>
-        </form>
-      ) : (
-        <>
-          <div>
-            <img
-              className="profilePic"
-              src={
-                userProfile.photo
-                  ? `${process.env.REACT_APP_BACKENDSERVER}/images/${userProfile.photo}`
-                  : `${process.env.REACT_APP_BACKENDSERVER}/img/profile.jpg`
-              }
-              alt=""
-            />
-          </div>
-          <div>
-            <h4>{`${userProfile.firstName} ${userProfile.lastName}`}</h4>
-          </div>
-          <div>
-            <p>{`${userProfile.status}`}</p>
-          </div>
-          <button onClick={() => setEdit(true)} className="secondoryBtn">
-            Edit Profile
-          </button>
-        </>
-      )}
+            <div className="formGroup">
+              <label htmlFor="firstName">First Name</label>
+              <input
+                name="firstName"
+                value={firstName}
+                id="firstName"
+                placeholder="first name"
+                type="text"
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div className="formGroup">
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                name="lastName"
+                value={lastName}
+                id="lastName"
+                placeholder="last name"
+                type="text"
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+            <div className="formGroup">
+              <label htmlFor="status">Status</label>
+              <input
+                className="statusInput"
+                type="text"
+                id="status"
+                name="status"
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+              />
+            </div>
+            <button type="submit">Save</button>
+            <button
+              type="button"
+              className="secondoryBtn"
+              onClick={() => cancelChanges()}
+            >
+              Cancel
+            </button>
+          </form>
+        ) : (
+          <>
+            <div>
+              <img
+                className="profilePic"
+                src={
+                  userProfile.photo
+                    ? `${process.env.REACT_APP_BACKENDSERVER}/images/${userProfile.photo}`
+                    : `${process.env.REACT_APP_BACKENDSERVER}/img/profile.jpg`
+                }
+                alt=""
+              />
+            </div>
+            <div>
+              <h4>{`${userProfile.firstName} ${userProfile.lastName}`}</h4>
+            </div>
+            <div>
+              <p>{`${userProfile.status}`}</p>
+            </div>
+            <button onClick={() => setEdit(true)} className="secondoryBtn">
+              Edit Profile
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 };

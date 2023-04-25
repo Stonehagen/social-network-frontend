@@ -1,7 +1,8 @@
 @media (min-width: 1200px) {
   .Home,
   .LogIn,
-  .SignUp {
+  .SignUp,
+  .MainContainer {
     min-height: calc(100vh - 125px);
   }
 }
@@ -10,7 +11,8 @@
 @media (min-width: 800px) and (max-width: 1199px) {
   .Home,
   .LogIn,
-  .SignUp {
+  .SignUp,
+  .MainContainer {
     min-height: calc(100vh - 125px);
   }
 }
@@ -18,7 +20,8 @@
 @media (max-width: 799px) {
   .Home,
   .LogIn,
-  .SignUp {
+  .SignUp,
+  .MainContainer {
     min-height: calc(100vh - 125px);
   }
 }
@@ -30,6 +33,12 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+.MainContainer {
+  display: flex;
+  align-items: center;
+}
+
 
 form {
   background-color: var(--lighter-background-color);
