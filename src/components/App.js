@@ -13,6 +13,7 @@ import Impress from './Impress';
 import ProfileDetail from './ProfileDetail';
 
 const App = () => {
+  const [profilePicture, setProfilePicture] = useState(null);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
   const [cookies, removeCookie] = useCookies(['jwt_token']);
@@ -70,10 +71,13 @@ const App = () => {
 
   return (
     <BrowserRouter basename="/">
-      <Header user={user} logout={logout} />
+      <Header user={user} logout={logout} profilePicture={profilePicture} />
       <div className="Main">
         <Routes>
-          <Route path="/" element={<Home user={user} />} />
+          <Route
+            path="/"
+            element={<Home user={user} setProfilePicture={setProfilePicture} />}
+          />
           <Route path="/profile" element={<ProfileDetail user={user} />} />
           <Route path="/signup" element={<SignUp user={user} />} />
           <Route path="/login" element={<LogIn user={user} login={login} />} />

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Profile from './Profile';
 import axios from 'axios';
 
-const Home = ({ user }) => {
+const Home = ({ user, setProfilePicture }) => {
   const [userProfile, setUserProfile] = useState(null);
   const navigate = useNavigate();
 
@@ -23,10 +23,11 @@ const Home = ({ user }) => {
           return res.data.error;
         } else {
           setUserProfile(res.data.profile);
+          setProfilePicture(res.data.profile.photo);
         }
       })
       .catch((err) => console.log(err));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
