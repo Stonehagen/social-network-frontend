@@ -13,6 +13,7 @@ const Header = ({ user, logout, profilePicture }) => {
 
   const loggingOut = () => {
     logout();
+    setOpenMenu(false);
     navigate('/login');
   };
   return (
@@ -36,7 +37,7 @@ const Header = ({ user, logout, profilePicture }) => {
           <div className="HeaderMenu">
             {openMenu ? (
               <ul>
-                <li onClick={() => loggingOut()}>LOGOUT</li>
+                <li onClick={loggingOut}>LOGOUT</li>
               </ul>
             ) : null}
           </div>
