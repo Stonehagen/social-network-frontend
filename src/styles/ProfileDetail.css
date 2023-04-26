@@ -80,3 +80,7 @@
 .ProfileDetail .formGroup input {
   width: 260px;
 }
+
+.ProfileDetail form .errorMessage {
+    color: var(--error-color);
+}

@@ -133,3 +133,10 @@
 }
 
 
+.CreatePost form .errorMessage {
+  margin: -10px 0;
+}
+
+.CreatePost form .messages {
+  margin-right: 2px;
+}

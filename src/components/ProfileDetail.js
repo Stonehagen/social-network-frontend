@@ -12,6 +12,7 @@ const ProfileDetail = ({ user }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [photo, setPhoto] = useState('');
   const [preview, setPreview] = useState(null);
+  const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
 
@@ -41,7 +42,13 @@ const ProfileDetail = ({ user }) => {
             return res.data.error;
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          if (err.response.data.error) {
+            setErrors(err.response.data.error);
+          } else {
+            console.log(err);
+          }
+        });
     }
     axios
       .put(
@@ -63,7 +70,13 @@ const ProfileDetail = ({ user }) => {
         }
         navigate('/');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.data.error) {
+          setErrors(err.response.data.error);
+        } else {
+          console.log(err);
+        }
+      });
   };
 
   useEffect(() => {
@@ -153,6 +166,15 @@ const ProfileDetail = ({ user }) => {
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
               />
+            </div>
+            <div className="messages">
+              {errors.map((error, index) => {
+                return (
+                  <p className="errorMessage" key={index}>
+                    {error.msg}
+                  </p>
+                );
+              })}
             </div>
             <button type="submit">Save</button>
             <button
