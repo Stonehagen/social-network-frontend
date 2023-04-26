@@ -13,7 +13,7 @@
 }
 
 @media (min-width: 800px) and (max-width: 1199px) {
-  .CreatePost{
+  .CreatePost {
     width: 100%;
   }
   .CreatePost img {
@@ -27,11 +27,10 @@
   .CreatePost form div:last-of-type {
     gap: 40px;
   }
-
 }
 
 @media (min-width: 600px) and (max-width: 799px) {
-  .CreatePost{
+  .CreatePost {
     width: 100%;
   }
   .CreatePost img {
@@ -48,7 +47,7 @@
 }
 
 @media (max-width: 599px) {
-  .CreatePost{
+  .CreatePost {
     width: 100%;
   }
   .CreatePost img {
@@ -101,7 +100,6 @@
   width: 100px;
 }
 
-
 .CreatePost .privateToggle button:first-of-type {
   border-radius: 20px 0 0 20px;
 }
@@ -132,6 +130,9 @@
   color: var(--background-color);
 }
 
+.CreatePost .privateToggle .active:hover {
+  cursor: default;
+}
 
 .CreatePost form .errorMessage {
   margin: -10px 0;

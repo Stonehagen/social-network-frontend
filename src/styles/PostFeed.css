@@ -1,0 +1,57 @@
+.PostFeed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Post {
+  background-color: var(--lighter-background-color);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.Post form {
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 0;
+}
+
+.Post form button {
+  width: 100px;
+  background-color: var(--form-background-color);
+  color: var(--text-color);
+}
+
+.Post form button:hover {
+  width: 100px;
+  background-color: var(--highlight-color);
+}
+
+.Post .PostTop {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.Post .PostTop img {
+  width: 50px;
+  border-radius: 25px;
+}
+
+.Post .PostTop h4 {
+  font-size: 1em;
+  margin: 0;
+}
+
+.Post .PostTop .timestamp {
+  color: var(--form-background-color);
+  font-weight: 200;
+  font-size: 0.8em;
+  margin: 2px 0 0 0;
+}
+
+.Post .postText {
+  font-weight: 200;
+}

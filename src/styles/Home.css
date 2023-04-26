@@ -57,3 +57,9 @@
   width: 100%;
   gap: 20px;
 }
+
+.middleDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}
