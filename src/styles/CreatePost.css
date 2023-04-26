@@ -1,8 +1,14 @@
 @media (min-width: 1200px) {
   .CreatePost img {
-    margin-top: 15px;
     width: 50px;
     border-radius: 25px;
+  }
+  .CreatePost form div:first-of-type {
+    gap: 20px;
+  }
+
+  .CreatePost form div:last-of-type {
+    gap: 40px;
   }
 }
 
@@ -11,9 +17,15 @@
     width: 100%;
   }
   .CreatePost img {
-    margin-top: 15px;
     width: 50px;
     border-radius: 25px;
+  }
+  .CreatePost form div:first-of-type {
+    gap: 20px;
+  }
+
+  .CreatePost form div:last-of-type {
+    gap: 40px;
   }
 
 }
@@ -26,6 +38,13 @@
     width: 80px;
     border-radius: 40px;
   }
+  .CreatePost form div:first-of-type {
+    gap: 20px;
+  }
+
+  .CreatePost form div:last-of-type {
+    gap: 40px;
+  }
 }
 
 @media (max-width: 599px) {
@@ -33,9 +52,12 @@
     width: 100%;
   }
   .CreatePost img {
-    margin-top: 15px;
     width: 50px;
     border-radius: 25px;
+  }
+
+  .CreatePost form div {
+    gap: 20px;
   }
 }
 
@@ -72,8 +94,42 @@
 .CreatePost form div {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .CreatePost button {
   width: 100px;
 }
+
+
+.CreatePost .privateToggle button:first-of-type {
+  border-radius: 20px 0 0 20px;
+}
+
+.CreatePost .privateToggle button:last-of-type {
+  border-radius: 0 20px 20px 0;
+}
+
+.CreatePost .privateToggle button {
+  width: 80px;
+}
+
+.CreatePost .privateToggle .inactive {
+  border: 1px solid var(--form-background-color);
+  background-color: transparent;
+  color: var(--darker-text-color);
+}
+
+.CreatePost .privateToggle .inactive:hover {
+  border: 1px solid var(--darker-text-color);
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+.CreatePost .privateToggle .active {
+  border: none;
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+
