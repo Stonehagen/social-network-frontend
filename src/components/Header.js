@@ -16,6 +16,11 @@ const Header = ({ user, logout, profilePicture }) => {
     setOpenMenu(false);
     navigate('/login');
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="Header">
       <div>
@@ -23,7 +28,10 @@ const Header = ({ user, logout, profilePicture }) => {
         <h3 onClick={() => navigate('/')}>CORNECT.ME</h3>
       </div>
       {user ? (
-        <div>
+        <div className="headerRight">
+          <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="search..."></input>
+          </form>
           <img
             onClick={handleOpenMenu}
             className="profilePicture"
