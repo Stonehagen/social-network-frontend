@@ -24,7 +24,7 @@ const Header = ({ user, logout, profilePicture }) => {
   return (
     <div className="Header">
       <div>
-        <img src={CornLogo} alt="Corn Logo" />
+        <img onClick={() => navigate('/')} src={CornLogo} alt="Corn Logo" />
         <h3 onClick={() => navigate('/')}>CORNECT.ME</h3>
       </div>
       {user ? (
