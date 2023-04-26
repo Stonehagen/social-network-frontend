@@ -7,13 +7,16 @@
   }
 }
 
-
 @media (min-width: 800px) and (max-width: 1199px) {
   .Home,
   .LogIn,
   .SignUp,
   .MainContainer {
     min-height: calc(100vh - 125px);
+  }
+
+  .rightDiv {
+    display: hidden;
   }
 }
 
@@ -23,6 +26,10 @@
   .SignUp,
   .MainContainer {
     min-height: calc(100vh - 125px);
+  }
+
+  .rightDiv {
+    display: hidden;
   }
 }
 
@@ -38,7 +45,6 @@
   display: flex;
   align-items: center;
 }
-
 
 form {
   background-color: var(--lighter-background-color);
@@ -65,6 +71,16 @@ form h2 {
   color: var(--darker-text-color);
 }
 
+textarea {
+  color-scheme: dark;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: var(--form-background-color);
+  color: var(--text-color);
+  border: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+
 .formGroup input {
   color-scheme: dark;
   border-radius: 10px;
@@ -76,14 +92,14 @@ form h2 {
 }
 
 input:-webkit-autofill {
-  -webkit-box-shadow:0 0 0 50px var(--form-background-color) inset; /* Change the color to your own background color */
+  -webkit-box-shadow: 0 0 0 50px var(--form-background-color) inset; /* Change the color to your own background color */
   -webkit-text-fill-color: var(--text-color);
 }
 
 input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 50px var(--form-background-color) inset;/*your box-shadow*/
+  -webkit-box-shadow: 0 0 0 50px var(--form-background-color) inset; /*your box-shadow*/
   -webkit-text-fill-color: #333;
-} 
+}
 
 form button {
   font-size: 1em;

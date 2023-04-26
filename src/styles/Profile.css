@@ -1,18 +1,52 @@
+@media (min-width: 800px) {
+  .Profile {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .Profile img {
+    width: 80px;
+    border-radius: 40px;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 799px) {
+  .Profile {
+    gap: 50px;
+  }
+  .Profile img {
+    width: 120px;
+    border-radius: 60px;
+  }
+}
+
+@media (max-width: 499px) {
+  .Profile img {
+    width: 80px;
+    border-radius: 40px;
+  }
+  .Profile {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
 .Profile {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: var(--lighter-background-color);
   border-radius: 20px;
   padding: 20px;
-  gap: 10px;
-  width: 280px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-.Profile img {
-  width: 80px;
-  border-radius: 40px;
+.ProfileTextDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .Profile h4 {

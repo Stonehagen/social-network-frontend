@@ -3,6 +3,7 @@ import '../styles/Home.css';
 import { useNavigate } from 'react-router-dom';
 import Profile from './Profile';
 import axios from 'axios';
+import CreatePost from './CreatePost';
 
 const Home = ({ user, setProfilePicture }) => {
   const [userProfile, setUserProfile] = useState(null);
@@ -32,9 +33,11 @@ const Home = ({ user, setProfilePicture }) => {
 
   return (
     <div className="Home">
-      <div>{userProfile ? <Profile userProfile={userProfile} /> : null}</div>
-      <div></div>
-      <div></div>
+      <div className='leftDiv'>{userProfile ? <Profile userProfile={userProfile} /> : null}</div>
+      <div className='middleDiv'>
+        {userProfile ? <CreatePost profilePicture={userProfile.photo} /> : null}
+      </div>
+      <div className='rightDiv'></div>
     </div>
   );
 };
