@@ -39,7 +39,9 @@ const ProfileDetail = ({ user }) => {
         )
         .then((res) => {
           if (res.data.error) {
-            return res.data.error;
+            setErrors(res.data.error);
+          } else {
+            setErrors([]);
           }
         })
         .catch((err) => {
@@ -66,7 +68,9 @@ const ProfileDetail = ({ user }) => {
       )
       .then((res) => {
         if (res.data.error) {
-          return res.data.error;
+          setErrors(res.data.error);
+        } else {
+          setErrors([]);
         }
         navigate('/');
       })
@@ -91,15 +95,22 @@ const ProfileDetail = ({ user }) => {
       })
       .then((res) => {
         if (res.data.error) {
-          return res.data.error;
+          setErrors(res.data.error);
         } else {
+          setErrors([]);
           setUserProfile(res.data.profile);
           setStatus(res.data.profile.status);
           setFirstName(res.data.profile.firstName);
           setLastName(res.data.profile.lastName);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.data.error) {
+          setErrors(err.response.data.error);
+        } else {
+          console.log(err);
+        }
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

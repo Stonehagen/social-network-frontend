@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/PostFeed.css';
 import heart from '../img/heart.svg';
 import heartFill from '../img/heartFill.svg';
 import comment from '../img/comment.svg';
 import commentFill from '../img/commentFill.svg';
+import clock from '../img/clock.svg';
 
 const PostFeed = ({ userProfile }) => {
   const [postFeed, setPostFeed] = useState([]);
@@ -51,7 +51,7 @@ const PostFeed = ({ userProfile }) => {
               />
               <div className="postContent">
                 <h4>{`${post.author.firstName} ${post.author.lastName}`}</h4>
-                <p className="timestamp">{`${postTime}`}</p>
+                <p className="timestamp"><img src={clock} alt="" />{` ${postTime}`}</p>
                 <p className="postText">{post.text}</p>
               </div>
             </div>

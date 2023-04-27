@@ -28,9 +28,9 @@ const NewUsers = () => {
     <div className="NewUsers">
       <h3>Do you know them?</h3>
       <div>
-        {profiles.map((profile) => {
+        {profiles.map((profile, index) => {
           return (
-            <div className="profilePreview">
+            <div className="profilePreview" key={index}>
               <img
                 src={`${process.env.REACT_APP_BACKENDSERVER}/images/${profile.photo}`}
                 alt=""
