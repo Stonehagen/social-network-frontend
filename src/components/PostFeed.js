@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/PostFeed.css';
 import heart from '../img/heart.svg';
 import heartFill from '../img/heartFill.svg';
@@ -9,6 +10,8 @@ import clock from '../img/clock.svg';
 
 const PostFeed = ({ userProfile }) => {
   const [postFeed, setPostFeed] = useState([]);
+
+  const navigate = useNavigate();
 
   const timeFormat = (timest) => {
     return new Intl.DateTimeFormat('en-US', {
@@ -46,12 +49,19 @@ const PostFeed = ({ userProfile }) => {
           <div className="Post" key={index}>
             <div className="PostTop">
               <img
+              className='PostImage'
+                onClick={() => navigate(`/profile/${post.author._id}`)}
                 src={`${process.env.REACT_APP_BACKENDSERVER}/images/${post.author.photo}`}
                 alt=""
               />
               <div className="postContent">
-                <h4>{`${post.author.firstName} ${post.author.lastName}`}</h4>
-                <p className="timestamp"><img src={clock} alt="" />{` ${postTime}`}</p>
+                <h4
+                  onClick={() => navigate(`/profile/${post.author._id}`)}
+                >{`${post.author.firstName} ${post.author.lastName}`}</h4>
+                <p className="timestamp">
+                  <img src={clock} alt="" />
+                  {` ${postTime}`}
+                </p>
                 <p className="postText">{post.text}</p>
               </div>
             </div>

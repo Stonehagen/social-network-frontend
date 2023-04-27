@@ -105,3 +105,12 @@
   width: 16px;
   margin-top: 2px;
 }
+
+.Post .PostTop h4:hover {
+  cursor: pointer;
+}
+
+
+.Post .PostTop .PostImage:hover {
+  cursor: pointer;
+}

@@ -1,7 +1,11 @@
-import { useEffect, useState } from 'react';
-import '../styles/ProfileDetail.css';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import '../styles/ProfileDetail.css';
+import message from '../img/message.svg';
+import messageFill from '../img/messageFill.svg';
+import friend from '../img/friend.svg';
+import friendFill from '../img/friendFill.svg';
 
 const ProfileDetail = ({ user }) => {
   const [userProfile, setUserProfile] = useState(null);
@@ -55,6 +59,24 @@ const ProfileDetail = ({ user }) => {
           ) : null}
         </div>
       </div>
+      {userProfile.user === user.id ? null : (
+        <div className="ProfileMenu">
+          <form>
+            <button
+              onMouseOver={(e) => (e.currentTarget.children[0].src = friendFill)}
+              onMouseOut={(e) => (e.currentTarget.children[0].src = friend)}
+            >
+              <img src={friend} alt="" />
+              Add Friend
+            </button>
+            <button
+              onMouseOver={(e) => (e.currentTarget.children[0].src = messageFill)}
+              onMouseOut={(e) => (e.currentTarget.children[0].src = message)}
+            >
+              <img src={message} alt="" />Message</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

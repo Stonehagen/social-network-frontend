@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import '../styles/NewUsers.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NewUsers = () => {
   const [profiles, setProfiles] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -32,11 +34,14 @@ const NewUsers = () => {
           return (
             <div className="profilePreview" key={index}>
               <img
+                onClick={() => navigate(`/profile/${profile._id}`)}
                 src={`${process.env.REACT_APP_BACKENDSERVER}/images/${profile.photo}`}
                 alt=""
               />
               <div className="profilePreviewText">
-                <h4>{`${profile.firstName} ${profile.lastName}`}</h4>
+                <h4
+                  onClick={() => navigate(`/profile/${profile._id}`)}
+                >{`${profile.firstName} ${profile.lastName}`}</h4>
                 <p>{profile.status}</p>
               </div>
               <Link to={`/profile/${profile._id}`}>Profile</Link>

@@ -45,10 +45,11 @@
 
 .MainContainer {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   box-sizing: border-box;
-  justify-content: center;
+  gap: 20px;
 }
 
 form {

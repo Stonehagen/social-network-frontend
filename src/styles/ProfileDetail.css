@@ -10,6 +10,10 @@
   .ProfileDetail h4 {
     font-size: 2em;
   }
+
+  .ProfileMenu form {
+    justify-content: flex-end;
+  }
 }
 
 @media (min-width: 800px) and (max-width: 1199px) {
@@ -23,6 +27,9 @@
 
   .ProfileDetail h4 {
     font-size: 2em;
+  }
+  .ProfileMenu form {
+    justify-content: flex-end;
   }
 }
 
@@ -38,6 +45,9 @@
   .ProfileDetail h4 {
     font-size: 1.5em;
   }
+  .ProfileMenu form {
+    justify-content: flex-end;
+  }
 }
 
 @media (max-width: 599px) {
@@ -52,6 +62,9 @@
 
   .ProfileDetail h4 {
     font-size: 1.5em;
+  }
+  .ProfileMenu form {
+    justify-content: center;
   }
 }
 
@@ -105,4 +118,41 @@
   color: var(--text-color);
   background-color: var(--highlight-color);
   cursor: pointer;
+}
+
+.ProfileMenu {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ProfileMenu form {
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  padding: 0;
+  gap: 20px;
+}
+
+.ProfileMenu form button {
+  width: 130px;
+  background-color: var(--form-background-color);
+  color: var(--darker-text-color);
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ProfileMenu form button:hover {
+  background-color: var(--highlight-color);
+  color: var(--text-color);
+}
+
+.ProfileMenu form button:first-of-type img {
+  width: 22px;
+}
+
+.ProfileMenu form button:last-of-type img {
+  width: 18px;
 }
