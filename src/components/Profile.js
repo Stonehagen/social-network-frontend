@@ -17,7 +17,7 @@ const Profile = ({ userProfile }) => {
         <div>
           <p>{`${userProfile.status}`}</p>
         </div>
-        <Link to="/profile">My Profile</Link>
+        <Link to={`/profile/${userProfile._id}`}>My Profile</Link>
       </div>
     </div>
   );

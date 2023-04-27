@@ -1,25 +1,83 @@
+@media (min-width: 1200px) {
+  .ProfileDetail img {
+    width: 200px;
+    border-radius: 100px;
+  }
+  .ProfileDetail {
+    gap: 100px;
+  }
+
+  .ProfileDetail h4 {
+    font-size: 2em;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1199px) {
+  .ProfileDetail img {
+    width: 200px;
+    border-radius: 100px;
+  }
+  .ProfileDetail {
+    gap: 50px;
+  }
+
+  .ProfileDetail h4 {
+    font-size: 2em;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 799px) {
+  .ProfileDetail img {
+    width: 120px;
+    border-radius: 60px;
+  }
+  .ProfileDetail {
+    gap: 40px;
+  }
+
+  .ProfileDetail h4 {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 599px) {
+  .ProfileDetail {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .ProfileDetail img {
+    width: 120px;
+    border-radius: 60px;
+  }
+
+  .ProfileDetail h4 {
+    font-size: 1.5em;
+  }
+}
+
 .ProfileDetail {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: var(--lighter-background-color);
   border-radius: 20px;
   padding: 20px;
-  gap: 10px;
-  width: 280px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
 }
 
-.ProfileDetail .profilePic {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 100px;
+
+.ProfileDetailTextDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .ProfileDetail h4 {
   margin: 0;
-  font-size: 1.5em;
 }
 
 .ProfileDetail p {
@@ -28,59 +86,23 @@
   color: var(--darker-text-color);
 }
 
-.ProfileDetail .changePictureLabel {
-  align-self: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 50%;
-  border: 5px solid var(--form-background-color);
-}
 
-.ProfileDetail .Camerabutton {
-  background-color: var(--form-background-color);
-  border-radius: 23px;
-  padding: 4px;
-  margin: -40px -130px 0 0;
-}
-
-.ProfileDetail .Camerabutton:hover {
-  background-color: var(--highlight-color);
-  cursor: pointer;
-}
-
-.ProfileDetail .changePictureLabel:hover {
-  cursor: pointer;
-}
-
-.ProfileDetail button {
+.ProfileDetail a {
   font-size: 1em;
   border-radius: 20px;
+  padding: 0;
   height: 35px;
-  padding: 0 10px;
-  border: none;
+  line-height: 35px;
   width: 280px;
+  text-align: center;
+  color: var(--text-color);
+  background-color: var(--form-background-color);
+  text-decoration: none;
+  margin-top: 10px;
 }
 
-.ProfileDetail button:hover {
+.ProfileDetail a:hover {
   color: var(--text-color);
   background-color: var(--highlight-color);
   cursor: pointer;
-}
-
-.ProfileDetail form {
-  align-items: center;
-  padding: 0;
-}
-
-.ProfileDetail .formGroup:last-of-type {
-  margin-bottom: 20px;
-}
-
-.ProfileDetail .formGroup input {
-  width: 260px;
-}
-
-.ProfileDetail form .errorMessage {
-    color: var(--error-color);
 }

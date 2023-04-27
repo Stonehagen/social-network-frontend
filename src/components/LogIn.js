@@ -19,7 +19,6 @@ const LogIn = ({ user, login }) => {
   const saveJWTinCookie = (token) => {
     setCookie('jwt_token', token, {
       maxAge: 60 * 24 * 60 * 60 * 1000,
-      path: '/',
     });
   };
 

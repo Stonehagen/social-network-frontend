@@ -5,6 +5,7 @@
   .MainContainer {
     min-height: calc(100vh - 125px);
   }
+
 }
 
 @media (min-width: 800px) and (max-width: 1199px) {
@@ -18,6 +19,7 @@
   .rightDiv {
     display: hidden;
   }
+
 }
 
 @media (max-width: 799px) {
@@ -43,7 +45,10 @@
 
 .MainContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
 }
 
 form {

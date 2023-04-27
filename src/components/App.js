@@ -11,6 +11,7 @@ import Home from './Home';
 import Header from './Header';
 import Impress from './Impress';
 import ProfileDetail from './ProfileDetail';
+import ProfileEdit from './ProfileEdit';
 
 const App = () => {
   const [profilePicture, setProfilePicture] = useState(null);
@@ -71,16 +72,18 @@ const App = () => {
 
   return (
     <BrowserRouter basename="/">
-      <Header user={user} logout={logout} profilePicture={profilePicture} />
+      <Header
+        user={user}
+        logout={logout}
+        setProfilePicture={setProfilePicture}
+        profilePicture={profilePicture}
+      />
       <div className="Main">
         <Routes>
-          <Route
-            path="/"
-            element={<Home user={user} setProfilePicture={setProfilePicture} />}
-          />
+          <Route path="/" element={<Home user={user} />} />
           <Route path="/profile" element={<ProfileDetail user={user} />} />
-          { //<Route path="/profile/:id" element={<ProfilePage user={user} />} /> 
-          }
+          <Route path="/profile/edit" element={<ProfileEdit user={user} />} />
+          <Route path="/profile/:id" element={<ProfileDetail user={user} />} />
           <Route path="/signup" element={<SignUp user={user} />} />
           <Route path="/login" element={<LogIn user={user} login={login} />} />
         </Routes>

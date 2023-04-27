@@ -13,6 +13,10 @@
   .leftDiv {
     display: flex;
   }
+
+  .MainContainer {
+    padding: 0 20px;
+  }
 }
 
 
@@ -31,6 +35,10 @@
   .leftDiv {
     display: flex;
   }
+
+  .MainContainer {
+    padding: 0 20px;
+  }
 }
 
 @media (min-width: 600px) and (max-width: 799px) {
@@ -44,6 +52,9 @@
     align-items: center;
     gap: 20px;
     box-sizing: border-box;
+    padding: 0 20px;
+  }
+  .MainContainer {
     padding: 0 20px;
   }
 

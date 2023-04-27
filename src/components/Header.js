@@ -1,9 +1,10 @@
 import '../styles/Header.css';
 import CornLogo from '../img/corn.svg';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const Header = ({ user, logout, profilePicture }) => {
+const Header = ({ user, logout, setProfilePicture, profilePicture }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
 
@@ -20,6 +21,26 @@ const Header = ({ user, logout, profilePicture }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`${process.env.REACT_APP_BACKENDSERVER}/profile`, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((res) => {
+          if (res.data.error) {
+            return res.data.error;
+          } else {
+            setProfilePicture(res.data.profile.photo);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <div className="Header">

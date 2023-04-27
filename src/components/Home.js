@@ -7,7 +7,7 @@ import CreatePost from './CreatePost';
 import PostFeed from './PostFeed';
 import NewUsers from './NewUsers';
 
-const Home = ({ user, setProfilePicture }) => {
+const Home = ({ user }) => {
   const [userProfile, setUserProfile] = useState(null);
   const navigate = useNavigate();
 
@@ -26,7 +26,6 @@ const Home = ({ user, setProfilePicture }) => {
           return res.data.error;
         } else {
           setUserProfile(res.data.profile);
-          setProfilePicture(res.data.profile.photo);
         }
       })
       .catch((err) => console.log(err));
