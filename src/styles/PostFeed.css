@@ -1,3 +1,24 @@
+@media (min-width: 600px) {
+  .Post .PostTop img {
+    width: 50px;
+    border-radius: 25px;
+  }
+  .Post .PostTop {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 599px) {
+  .Post .PostTop img {
+    width: 34px;
+    border-radius: 17px;
+  }
+  .Post .PostTop {
+    gap: 10px;
+  }
+}
+
+
 .PostFeed {
   display: flex;
   flex-direction: column;
@@ -13,31 +34,14 @@
 .Post form {
   flex-direction: row;
   justify-content: flex-end;
-  gap: 20px;
+  gap: 30px;
   padding: 0;
-}
-
-.Post form button {
-  width: 100px;
-  background-color: var(--form-background-color);
-  color: var(--text-color);
-}
-
-.Post form button:hover {
-  width: 100px;
-  background-color: var(--highlight-color);
 }
 
 .Post .PostTop {
   display: flex;
   flex-direction: row;
-  gap: 20px;
   align-items: flex-start;
-}
-
-.Post .PostTop img {
-  width: 50px;
-  border-radius: 25px;
 }
 
 .Post .PostTop h4 {
@@ -54,4 +58,42 @@
 
 .Post .postText {
   font-weight: 200;
+}
+
+.Post form button {
+  background-color: transparent;
+  color: var(--darker-text-color);
+  font-size: 0.9em;
+  height: 20px;
+  padding: 0;
+}
+
+.Post .likeBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: var(--darker-text-color);
+}
+
+.Post form button:hover {
+  color: var(--text-color);
+}
+
+.Post .likeBtn img {
+  width: 16px;
+}
+
+
+.Post .commentBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: var(--darker-text-color);
+}
+
+.Post .commentBtn img {
+  width: 16px;
+  margin-top: 2px;
 }

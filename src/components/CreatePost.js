@@ -2,6 +2,12 @@ import { useState } from 'react';
 import '../styles/CreatePost.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import world from '../img/world.svg';
+import worldFill from '../img/worldFill.svg';
+import worldFillWhite from '../img/worldFillWhite.svg';
+import friends from '../img/friends.svg';
+import friendsFill from '../img/friendsFill.svg';
+import friendsFillWhite from '../img/friendsFillWhite.svg';
 
 const CreatePost = ({ profilePicture }) => {
   const [text, setText] = useState();
@@ -67,22 +73,44 @@ const CreatePost = ({ profilePicture }) => {
           })}
         </div>
         <div>
-          <label className="privateToggle">
+          <div className="privateToggle">
             <button
               type="button"
               className={publicPost ? 'inactive' : 'active'}
               onClick={() => setPublicPost(false)}
+              onMouseOver={
+                publicPost
+                  ? (e) => (e.currentTarget.children[0].src = friendsFill)
+                  : null
+              }
+              onMouseOut={
+                publicPost
+                  ? (e) => (e.currentTarget.children[0].src = friends)
+                  : null
+              }
             >
-              Private
+              <img src={publicPost ? friends : friendsFillWhite} alt="" />
+              <span>Friends</span>
             </button>
             <button
               type="button"
               className={publicPost ? 'active' : 'inactive'}
               onClick={() => setPublicPost(true)}
+              onMouseOver={
+                publicPost
+                  ? null
+                  : (e) => (e.currentTarget.children[0].src = worldFill)
+              }
+              onMouseOut={
+                publicPost
+                  ? null
+                  : (e) => (e.currentTarget.children[0].src = world)
+              }
             >
-              Public
+              <img src={publicPost ? worldFillWhite : world} alt="" />
+              <span>Public</span>
             </button>
-          </label>
+          </div>
           <button type="submit">Send</button>
         </div>
       </form>

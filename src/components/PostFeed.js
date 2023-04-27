@@ -1,20 +1,24 @@
-import { useEffect, useState } from 'react';
-import '../styles/PostFeed.css';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/PostFeed.css';
+import heart from '../img/heart.svg';
+import heartFill from '../img/heartFill.svg';
+import comment from '../img/comment.svg';
+import commentFill from '../img/commentFill.svg';
 
 const PostFeed = ({ userProfile }) => {
   const [postFeed, setPostFeed] = useState([]);
 
   const timeFormat = (timest) => {
     return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(new Date(timest))
-}
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    }).format(new Date(timest));
+  };
 
   useEffect(() => {
     axios
@@ -48,12 +52,32 @@ const PostFeed = ({ userProfile }) => {
               <div className="postContent">
                 <h4>{`${post.author.firstName} ${post.author.lastName}`}</h4>
                 <p className="timestamp">{`${postTime}`}</p>
-                <p className='postText'>{post.text}</p>
+                <p className="postText">{post.text}</p>
               </div>
             </div>
             <form>
-              <button type="button">Like</button>
-              <button type="button">Comment</button>
+              <button
+                type="button"
+                className="likeBtn"
+                onMouseOver={(e) =>
+                  (e.currentTarget.children[0].src = heartFill)
+                }
+                onMouseOut={(e) => (e.currentTarget.children[0].src = heart)}
+              >
+                <img src={heart} alt="" />
+                Like Post
+              </button>
+              <button
+                type="button"
+                className="commentBtn"
+                onMouseOver={(e) =>
+                  (e.currentTarget.children[0].src = commentFill)
+                }
+                onMouseOut={(e) => (e.currentTarget.children[0].src = comment)}
+              >
+                <img src={comment} alt="" />
+                Comment
+              </button>
             </form>
           </div>
         );
