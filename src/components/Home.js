@@ -5,6 +5,7 @@ import Profile from './Profile';
 import axios from 'axios';
 import CreatePost from './CreatePost';
 import PostFeed from './PostFeed';
+import NewUsers from './NewUsers';
 
 const Home = ({ user, setProfilePicture }) => {
   const [userProfile, setUserProfile] = useState(null);
@@ -35,7 +36,12 @@ const Home = ({ user, setProfilePicture }) => {
   return (
     <div className="Home">
       <div className="leftDiv">
-        {userProfile ? <Profile userProfile={userProfile} /> : null}
+        {userProfile ? (
+          <>
+            <Profile userProfile={userProfile} />
+            <NewUsers />
+          </>
+        ) : null}
       </div>
       <div className="middleDiv">
         {userProfile ? (

@@ -79,6 +79,8 @@ const App = () => {
             element={<Home user={user} setProfilePicture={setProfilePicture} />}
           />
           <Route path="/profile" element={<ProfileDetail user={user} />} />
+          { //<Route path="/profile/:id" element={<ProfilePage user={user} />} /> 
+          }
           <Route path="/signup" element={<SignUp user={user} />} />
           <Route path="/login" element={<LogIn user={user} login={login} />} />
         </Routes>

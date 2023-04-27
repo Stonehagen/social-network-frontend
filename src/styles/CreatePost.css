@@ -158,6 +158,7 @@
 .CreatePost .privateToggle .inactive:hover {
   background-color: var(--form-background-color);
   color: var(--background-color);
+  box-shadow: none;
 }
 
 .CreatePost .privateToggle .active {
