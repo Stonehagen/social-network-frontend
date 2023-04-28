@@ -81,7 +81,6 @@ const App = () => {
       <div className="Main">
         <Routes>
           <Route path="/" element={<Home user={user} />} />
-          <Route path="/profile" element={<ProfileDetail user={user} />} />
           <Route path="/profile/edit" element={<ProfileEdit user={user} />} />
           <Route path="/profile/:id" element={<ProfileDetail user={user} />} />
           <Route path="/signup" element={<SignUp user={user} />} />

@@ -1,15 +1,31 @@
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import '../styles/Header.css';
 import CornLogo from '../img/corn.svg';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import Close from '../img/close.svg';
+import CloseFill from '../img/closeFill.svg';
+import Logout from '../img/logout.svg';
+import LogoutFill from '../img/logoutFill.svg';
 
 const Header = ({ user, logout, setProfilePicture, profilePicture }) => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false);
+  const [search, setSearch] = useState('');
+  const [profiles, setProfiles] = useState(null);
   const navigate = useNavigate();
 
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
+  };
+
+  const handleOpenSearch = () => {
+    setOpenSearch(true);
+  };
+
+  const handleCloseSearch = () => {
+    setOpenSearch(false);
+    setProfiles(null);
   };
 
   const loggingOut = () => {
@@ -20,6 +36,27 @@ const Header = ({ user, logout, setProfilePicture, profilePicture }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (search) {
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKENDSERVER}/profile/search/${search}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then((res) => {
+          if (res.data.error) {
+            return res.data.error;
+          } else {
+            setProfiles(res.data.profiles);
+            handleOpenSearch();
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   useEffect(() => {
@@ -45,14 +82,58 @@ const Header = ({ user, logout, setProfilePicture, profilePicture }) => {
   return (
     <div className="Header">
       <div>
-        <img onClick={() => navigate('/')} src={CornLogo} alt="Corn Logo" />
+        <img
+          className="CornIcon"
+          onClick={() => navigate('/')}
+          src={CornLogo}
+          alt="Corn Logo"
+        />
         <h3 onClick={() => navigate('/')}>CORNECT.ME</h3>
       </div>
       {user ? (
         <div className="headerRight">
           <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="search..."></input>
+            <input
+              type="text"
+              placeholder="search..."
+              id="search"
+              name="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
           </form>
+          {profiles && openSearch ? (
+            <div className="SearchMenu">
+              <ul onClick={() => handleCloseSearch()}>
+                {profiles.map((profile, index) => {
+                  return (
+                    <li className="searchPreview" key={index}>
+                      <img
+                        onClick={() => navigate(`/profile/${profile._id}`)}
+                        src={`${process.env.REACT_APP_BACKENDSERVER}/images/${profile.photo}`}
+                        alt=""
+                      />
+                      <div className="searchPreviewText">
+                        <h4
+                          onClick={() => navigate(`/profile/${profile._id}`)}
+                        >{`${profile.firstName} ${profile.lastName}`}</h4>
+                      </div>
+                    </li>
+                  );
+                })}
+                <li
+                  className="CloseButton"
+                  onClick={() => handleCloseSearch()}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.children[0].src = CloseFill)
+                  }
+                  onMouseOut={(e) => (e.currentTarget.children[0].src = Close)}
+                >
+                  <img src={Close} alt="" /> CLOSE
+                </li>
+              </ul>
+            </div>
+          ) : null}
           <img
             onClick={handleOpenMenu}
             className="profilePicture"
@@ -66,7 +147,16 @@ const Header = ({ user, logout, setProfilePicture, profilePicture }) => {
           <div className="HeaderMenu">
             {openMenu ? (
               <ul>
-                <li onClick={loggingOut}>LOGOUT</li>
+                <li
+                  className="LogoutButton"
+                  onClick={loggingOut}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.children[0].src = LogoutFill)
+                  }
+                  onMouseOut={(e) => (e.currentTarget.children[0].src = Logout)}
+                >
+                  <img src={Logout} alt="" /> LOGOUT
+                </li>
               </ul>
             ) : null}
           </div>

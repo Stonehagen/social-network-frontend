@@ -1,6 +1,16 @@
+@media (min-width: 581px) {
+  .SearchMenu ul {
+    right: 5px;
+  }
+}
+
 @media (max-width: 580px) {
   .Header h3 {
     display: none;
+  }
+
+  .SearchMenu ul {
+    right: -55px;
   }
 }
 
@@ -21,17 +31,13 @@
   align-items: center;
 }
 
-.Header div:first-of-type {
-  gap: 10px;
-}
-
-.Header img {
+.CornIcon {
   height: 24px;
 }
 
 .Header h3 {
-  margin: 0;
-  padding: 0 ;
+  margin: 0 0 0 10px;
+  padding: 0;
   font-size: 1.2em;
 }
 
@@ -55,11 +61,13 @@
   border: 2px solid var(--highlight-color);
 }
 
+.SearchMenu,
 .HeaderMenu {
   position: relative;
   display: inline-block;
 }
 
+.SearchMenu ul,
 .HeaderMenu ul {
   border-radius: 20px;
   background-color: var(--form-background-color);
@@ -68,18 +76,30 @@
   margin: 0;
   position: absolute;
   z-index: 1;
-  right: -20px;
   top: 50px;
   width: 280px;
   text-align: center;
   box-shadow: 5px 5px 10px -2px rgba(0, 0, 0, 0.398);
+  display: flex;
+  flex-direction: column;
 }
 
+.SearchMenu ul {
+  gap: 10px;
+}
+
+.HeaderMenu ul {
+  right: -20px;
+}
+
+.SearchMenu li,
 .HeaderMenu li {
   border-radius: 20px;
   margin: -5px -20px;
+  padding: 0 20px;
 }
 
+.SearchMenu li:hover,
 .HeaderMenu li:hover {
   background-color: var(--highlight-color);
   cursor: pointer;
@@ -110,4 +130,58 @@
 .Header .headerRight {
   flex-grow: 1;
   max-width: 350px;
+}
+
+.searchPreview p {
+  margin: 0;
+  padding: 0;
+  font-weight: 200;
+  color: var(--form-background-color);
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+
+.searchPreview h4 {
+  color: var(--text-color);
+  margin: 0 0 5px 0;
+  white-space: nowrap;
+}
+
+.searchPreview h4:hover {
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.searchPreview img {
+  height: 40px;
+  border-radius: 20px;
+}
+
+.searchPreview img:hover {
+  cursor: pointer;
+}
+
+.searchPreview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.searchPreviewText {
+  width: 150px;
+  overflow: hidden;
+}
+.HeaderMenu .LogoutButton,
+.SearchMenu .CloseButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.HeaderMenu .LogoutButton img,
+.SearchMenu .CloseButton img {
+  height: 24px;
 }

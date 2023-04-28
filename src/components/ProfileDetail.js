@@ -13,6 +13,10 @@ const ProfileDetail = ({ user }) => {
 
   const navigate = useNavigate();
 
+  const handleFriendSubmit = (e) => {
+    e.preventDefault();
+  }
+
   useEffect(() => {
     if (!user) {
       navigate('/login');
@@ -61,8 +65,9 @@ const ProfileDetail = ({ user }) => {
       </div>
       {userProfile.user === user.id ? null : (
         <div className="ProfileMenu">
-          <form>
+          <form onSubmit={handleFriendSubmit}>
             <button
+            type='submit'
               onMouseOver={(e) => (e.currentTarget.children[0].src = friendFill)}
               onMouseOut={(e) => (e.currentTarget.children[0].src = friend)}
             >
@@ -70,6 +75,7 @@ const ProfileDetail = ({ user }) => {
               Add Friend
             </button>
             <button
+            type='button'
               onMouseOver={(e) => (e.currentTarget.children[0].src = messageFill)}
               onMouseOut={(e) => (e.currentTarget.children[0].src = message)}
             >

@@ -30,7 +30,7 @@
   margin: 0;
 }
 
-.NewUsers .profilePreview p {
+.profilePreview p {
   margin: 0;
   padding: 0;
   font-weight: 200;
@@ -39,45 +39,45 @@
   white-space: nowrap;
 }
 
-.NewUsers .profilePreview h4 {
+.profilePreview h4 {
   color: var(--darker-text-color);
   margin: 0 0 5px 0;
   white-space: nowrap;
 }
 
-.NewUsers .profilePreview h4:hover {
+.profilePreview h4:hover {
   color: var(--text-color);
   cursor: pointer;
 }
 
-.NewUsers .profilePreview img {
+.profilePreview img {
   opacity: 0.7;
   width: 40px;
   border-radius: 20px;
 }
 
-.NewUsers .profilePreview img:hover {
+.profilePreview img:hover {
   cursor: pointer;
   opacity: 1;
 }
 
-.NewUsers .profilePreview {
+.profilePreview {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 }
 
-.NewUsers .profilePreview h4 {
+.profilePreview h4 {
   font-size: 0.9em;
 }
 
-.NewUsers .profilePreviewText {
+.profilePreviewText {
   width: 150px;
   overflow: hidden;
 }
 
-.NewUsers .profilePreview a {
+.profilePreview a {
   line-height: 35px;
   text-decoration: none;
   font-size: 1em;
@@ -89,7 +89,7 @@
   border: none;
 }
 
-.NewUsers .profilePreview a:hover {
+.profilePreview a:hover {
   color: var(--text-color);
   background-color: var(--highlight-color);
   cursor: pointer;
