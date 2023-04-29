@@ -7,6 +7,8 @@
   --color4: #c2bcc8;
   --color5: #d0ad5c;
   --color6: #47445e;
+  --color7: #c86060;
+  --color8: #80bd8a;
 
   --text-color: var(--color3);
   --darker-text-color: var(--color4);

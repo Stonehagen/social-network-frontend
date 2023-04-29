@@ -6,6 +6,7 @@ import message from '../img/message.svg';
 import messageFill from '../img/messageFill.svg';
 import friend from '../img/friend.svg';
 import friendFill from '../img/friendFill.svg';
+import Friends from './Friends';
 
 const ProfileDetail = ({ user }) => {
   const [userProfile, setUserProfile] = useState(null);
@@ -36,7 +37,7 @@ const ProfileDetail = ({ user }) => {
       })
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   if (!userProfile) {
     return <></>;
@@ -83,6 +84,7 @@ const ProfileDetail = ({ user }) => {
           </form>
         </div>
       )}
+      <Friends userProfile={userProfile}/>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import Header from './Header';
 import Impress from './Impress';
 import ProfileDetail from './ProfileDetail';
 import ProfileEdit from './ProfileEdit';
+import AllFriends from './AllFriends';
 
 const App = () => {
   const [profilePicture, setProfilePicture] = useState(null);
@@ -82,6 +83,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home user={user} />} />
           <Route path="/profile/edit" element={<ProfileEdit user={user} />} />
+          <Route path="/profile/:id/friends" element={<AllFriends user={user} />} />
           <Route path="/profile/:id" element={<ProfileDetail user={user} />} />
           <Route path="/signup" element={<SignUp user={user} />} />
           <Route path="/login" element={<LogIn user={user} login={login} />} />
