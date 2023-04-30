@@ -53,6 +53,9 @@
 .profilePreview img {
   opacity: 0.7;
   width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center top;
   border-radius: 20px;
 }
 

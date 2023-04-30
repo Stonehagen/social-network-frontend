@@ -154,6 +154,9 @@
 
 .searchPreview img {
   height: 40px;
+  width: 40px;
+  object-fit: cover;
+  object-position: center top;
   border-radius: 20px;
 }
 

@@ -1,6 +1,7 @@
 @media (min-width: 1200px) {
   .ProfileDetail img {
     width: 200px;
+    height: 200px;
     border-radius: 100px;
   }
   .ProfileDetail {
@@ -19,6 +20,7 @@
 @media (min-width: 800px) and (max-width: 1199px) {
   .ProfileDetail img {
     width: 200px;
+    height: 200px;
     border-radius: 100px;
   }
   .ProfileDetail {
@@ -36,6 +38,7 @@
 @media (min-width: 600px) and (max-width: 799px) {
   .ProfileDetail img {
     width: 120px;
+    height: 120px;
     border-radius: 60px;
   }
   .ProfileDetail {
@@ -57,6 +60,7 @@
   }
   .ProfileDetail img {
     width: 120px;
+    height: 120px;
     border-radius: 60px;
   }
 
@@ -78,6 +82,11 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
+}
+
+.ProfileDetail img {
+  object-fit: cover;
+  object-position: center top;
 }
 
 
