@@ -89,7 +89,6 @@
   object-position: center top;
 }
 
-
 .ProfileDetailTextDiv {
   display: flex;
   flex-direction: column;
@@ -107,7 +106,6 @@
   font-style: italic;
   color: var(--darker-text-color);
 }
-
 
 .ProfileDetail a {
   font-size: 1em;
@@ -143,7 +141,7 @@
   gap: 20px;
 }
 
-.ProfileMenu form button {
+.ProfileMenu .menuBtn {
   width: 130px;
   background-color: var(--form-background-color);
   color: var(--darker-text-color);
@@ -154,7 +152,7 @@
   justify-content: center;
 }
 
-.ProfileMenu form button:hover {
+.ProfileMenu .menuBtn:hover {
   background-color: var(--highlight-color);
   color: var(--text-color);
 }
@@ -165,4 +163,20 @@
 
 .ProfileMenu form button:last-of-type img {
   width: 18px;
+}
+
+.ProfileMenu .cancelRequest {
+  width: 180px;
+  background-color: var(--form-background-color);
+  color: var(--darker-text-color);
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ProfileMenu .cancelRequest:hover {
+  background-color: var(--reject-color);
+  color: var(--text-color);
 }

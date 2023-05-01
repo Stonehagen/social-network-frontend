@@ -5,7 +5,7 @@ import '../styles/Friends.css';
 import People from '../img/people.svg';
 import PeopleFill from '../img/peopleFill.svg';
 
-const Friends = ({ userProfile }) => {
+const Friends = ({ profile }) => {
   const [friends, setFriends] = useState([]);
 
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Friends = ({ userProfile }) => {
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_BACKENDSERVER}/profile/friends/${userProfile._id}`,
+        `${process.env.REACT_APP_BACKENDSERVER}/profile/friends/${profile._id}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -29,16 +29,16 @@ const Friends = ({ userProfile }) => {
       })
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile]);
+  }, [profile]);
 
   return (
     <div className="Friends">
       <div className="FriendsPreviewHeader">
-        <h2 onClick={() => navigate(`/profile/${userProfile._id}/friends`)}>
+        <h2 onClick={() => navigate(`/profile/${profile._id}/friends`)}>
           Friends
         </h2>
         <button
-          onClick={() => navigate(`/profile/${userProfile._id}/friends`)}
+          onClick={() => navigate(`/profile/${profile._id}/friends`)}
           type="button"
           onMouseOver={(e) => (e.currentTarget.children[0].src = PeopleFill)}
           onMouseOut={(e) => (e.currentTarget.children[0].src = People)}

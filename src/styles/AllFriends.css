@@ -162,7 +162,7 @@
   color: var(--darker-text-color);
 }
 
-.Friend:hover {
+.AllFriends .Friend:hover {
   background-color: var(--highlight-color);
 }
 

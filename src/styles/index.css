@@ -9,6 +9,7 @@
   --color6: #47445e;
   --color7: #c86060;
   --color8: #80bd8a;
+  --color9: #88b7d3;
 
   --text-color: var(--color3);
   --darker-text-color: var(--color4);
@@ -17,6 +18,8 @@
   --background-color: var(--color1);
   --highlight-color: var(--color5);
   --error-color: rgb(214, 126, 96);
+  --accept-color: var(--color8);
+  --reject-color: var(--color7);
 
   font-family: 'Ubuntu', sans-serif;
 
