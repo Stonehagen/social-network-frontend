@@ -52,6 +52,9 @@
 
 .Header .profilePicture {
   height: 32px;
+  width: 32px;
+  object-fit: cover;
+  object-position: center top;
   border-radius: 18px;
   border: 2px solid var(--form-background-color);
 }
