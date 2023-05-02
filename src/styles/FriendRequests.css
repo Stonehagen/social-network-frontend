@@ -180,10 +180,12 @@ cursor: pointer;
 .FriendRequests .friendText button:first-of-type:hover {
   background-color: var(--accept-color);
   color: var(--form-background-color);
+  cursor: pointer;
 }
 
 .FriendRequests .friendText button:last-of-type:hover {
   background-color: var(--reject-color);
   color: var(--form-background-color);
+  cursor: pointer;
 }
 

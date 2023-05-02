@@ -33,9 +33,9 @@ const App = () => {
   };
 
   const logout = () => {
-    setUser(null);
-    setAuthToken();
     removeCookie('jwt_token');
+    setAuthToken(null);
+    setUser(null);
   };
 
   useEffect(() => {
