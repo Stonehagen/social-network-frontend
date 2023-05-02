@@ -16,6 +16,28 @@ const ProfileDetail = ({ user }) => {
 
   const navigate = useNavigate();
 
+  const cancelRequest = () => {
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequest/cancel`,
+        {
+          requestedFriend: profile._id,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then((res) => {
+        if (res.data.error) {
+          console.log(res.data.error);
+        }
+        navigate(0);
+      })
+      .catch((err) => console.log(err));
+  }
+
   const handleFriendSubmit = (e) => {
     e.preventDefault();
 
@@ -108,6 +130,7 @@ const ProfileDetail = ({ user }) => {
               <button
                 className="cancelRequest"
                 type="button"
+                onClick={() => cancelRequest()}
                 onMouseOver={(e) =>
                   (e.currentTarget.children[0].src = friendFill)
                 }

@@ -1,6 +1,7 @@
 @media (min-width: 1200px) {
   .CreatePost img {
-    width: 50px;
+    max-width: 50px;
+    height: 50px;
     border-radius: 25px;
   }
   .CreatePost form>div:first-of-type {
@@ -20,7 +21,8 @@
     width: 100%;
   }
   .CreatePost img {
-    width: 50px;
+    max-width: 50px;
+    height: 50px;
     border-radius: 25px;
   }
   .CreatePost form>div:first-of-type {
@@ -40,7 +42,8 @@
     width: 100%;
   }
   .CreatePost img {
-    width: 80px;
+    max-width: 80px;
+    height: 80px;
     border-radius: 40px;
   }
   .CreatePost form>div:first-of-type {
@@ -60,7 +63,8 @@
     width: 100%;
   }
   .CreatePost img {
-    width: 40px;
+    max-width: 40px;
+    height: 40px;
     border-radius: 20px;
   }
 
@@ -181,4 +185,10 @@
 
 .CreatePost .privateToggle button img {
   width: 24px;
+}
+
+.CreatePost img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
 }

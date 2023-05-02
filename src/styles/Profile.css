@@ -5,6 +5,7 @@
   }
   .Profile img {
     width: 80px;
+    height: 80px;
     border-radius: 40px;
   }
 }
@@ -15,6 +16,7 @@
   }
   .Profile img {
     width: 120px;
+    height: 120px;
     border-radius: 60px;
   }
 }
@@ -22,6 +24,7 @@
 @media (max-width: 499px) {
   .Profile img {
     width: 80px;
+    height: 80px;
     border-radius: 40px;
   }
   .Profile {
@@ -78,4 +81,9 @@
   color: var(--text-color);
   background-color: var(--highlight-color);
   cursor: pointer;
+}
+
+.Profile img {
+  object-fit: cover;
+  object-position: center top;
 }
