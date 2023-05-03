@@ -9,31 +9,25 @@ import friendFill from '../img/friendFill.svg';
 import Friends from './Friends';
 import FriendRequests from './FriendRequests';
 
-const ProfileDetail = ({ user }) => {
-  const [profile, setProfile] = useState(null);
-  const [userProfile, setUserProfile] = useState(null);
+const ProfileDetail = ({ user, profile }) => {
+  const [pageProfile, setPageProfile] = useState(null);
   const { id } = useParams();
 
   const navigate = useNavigate();
 
-  const cancelRequest = () => {
-    axios
-      .put(
-        `${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequest/cancel`,
-        {
-          requestedFriend: profile._id,
+  const getPageProfile = async () => {
+    await axios
+      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
         },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )
+      })
       .then((res) => {
         if (res.data.error) {
-          console.log(res.data.error);
+          return res.data.error;
+        } else {
+          setPageProfile(res.data.profile);
         }
-        navigate(0);
       })
       .catch((err) => console.log(err));
   }
@@ -62,43 +56,37 @@ const ProfileDetail = ({ user }) => {
       .catch((err) => console.log(err));
   };
 
+  const cancelFriendRequest = () => {
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequest/cancel`,
+        {
+          requestedFriend: profile._id,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then((res) => {
+        if (res.data.error) {
+          console.log(res.data.error);
+        }
+        navigate(0);
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     if (!user) {
       navigate('/login');
     }
-    axios
-      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/${id}`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((res) => {
-        if (res.data.error) {
-          return res.data.error;
-        } else {
-          setProfile(res.data.profile);
-        }
-      })
-      .catch((err) => console.log(err));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    axios
-      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((res) => {
-        if (res.data.error) {
-          return res.data.error;
-        } else {
-          setUserProfile(res.data.profile);
-        }
-      })
-      .catch((err) => console.log(err));
+    getPageProfile()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  if (!profile || !userProfile) {
+  if (!profile || !pageProfile) {
     return <></>;
   }
 
@@ -107,30 +95,30 @@ const ProfileDetail = ({ user }) => {
       <div className="ProfileDetail">
         <div className="ProfileDetailImageDiv">
           <img
-            src={`${process.env.REACT_APP_BACKENDSERVER}/images/${profile.photo}`}
+            src={`${process.env.REACT_APP_BACKENDSERVER}/images/${pageProfile.photo}`}
             alt=""
           />
         </div>
         <div className="ProfileDetailTextDiv">
           <div>
-            <h4>{`${profile.firstName} ${profile.lastName}`}</h4>
+            <h4>{`${pageProfile.firstName} ${pageProfile.lastName}`}</h4>
           </div>
           <div>
-            <p>{`${profile.status}`}</p>
+            <p>{`${pageProfile.status}`}</p>
           </div>
-          {profile.user === user.id ? (
+          {pageProfile.user === user.id ? (
             <Link to="/profile/edit">Edit Profile</Link>
           ) : null}
         </div>
       </div>
-      {profile.user === user.id ? null : (
+      {pageProfile.user === user.id ? null : (
         <div className="ProfileMenu">
           <form onSubmit={handleFriendSubmit}>
-            {profile.friendRequestIn.includes(userProfile._id) ? (
+            {profile.friendRequestIn.includes(pageProfile._id) ? (
               <button
                 className="cancelRequest"
                 type="button"
-                onClick={() => cancelRequest()}
+                onClick={() => cancelFriendRequest()}
                 onMouseOver={(e) =>
                   (e.currentTarget.children[0].src = friendFill)
                 }
@@ -167,10 +155,10 @@ const ProfileDetail = ({ user }) => {
           </form>
         </div>
       )}
-      {profile.user === user.id && profile.friendRequestIn.length > 0 ? (
+      {pageProfile.user === user.id && profile.friendRequestIn.length > 0 ? (
         <FriendRequests profile={profile} />
       ) : null}
-      <Friends profile={profile} />
+      <Friends pageProfile={pageProfile} />
     </div>
   );
 };

@@ -9,7 +9,7 @@ import friends from '../img/friends.svg';
 import friendsFill from '../img/friendsFill.svg';
 import friendsFillWhite from '../img/friendsFillWhite.svg';
 
-const CreatePost = ({ profilePicture }) => {
+const CreatePost = ({ profile }) => {
   const [text, setText] = useState();
   const [publicPost, setPublicPost] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -54,7 +54,7 @@ const CreatePost = ({ profilePicture }) => {
       <form onSubmit={handleSubmit}>
         <div className="ImageContainer">
           <img
-            src={`${process.env.REACT_APP_BACKENDSERVER}/images/${profilePicture}`}
+            src={`${process.env.REACT_APP_BACKENDSERVER}/images/${profile.photo}`}
             alt=""
           />
           <textarea

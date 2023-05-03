@@ -8,7 +8,7 @@ import comment from '../img/comment.svg';
 import commentFill from '../img/commentFill.svg';
 import clock from '../img/clock.svg';
 
-const PostFeed = ({ userProfile }) => {
+const PostFeed = ({ profile }) => {
   const [postFeed, setPostFeed] = useState([]);
 
   const navigate = useNavigate();

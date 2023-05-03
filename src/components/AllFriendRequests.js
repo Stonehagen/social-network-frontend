@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/FriendRequests.css';
+import '../styles/AllFriendRequests.css';
 import People from '../img/people.svg';
 import PeopleFill from '../img/peopleFill.svg';
 import axios from 'axios';
 
-const FriendRequests = ({ profile }) => {
+const AllFriendRequests = ({ user, profile }) => {
   const [friendRequests, setFriendRequests] = useState([]);
 
   const navigate = useNavigate();
@@ -35,12 +35,21 @@ const FriendRequests = ({ profile }) => {
   };
 
   useEffect(() => {
-    getFriendRequests();
+    if (!user) {
+      navigate('/login');
+    }
+    if (profile) {
+      getFriendRequests();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile]);
 
+  if (!profile) {
+    return <></>;
+  }
+
   return (
-    <div className="FriendRequests">
+    <div className="AllFriendRequests">
       <div className="FriendsPreviewHeader">
         <h2 onClick={() => navigate(`/profile/${profile._id}/friendRequests`)}>
           Friend Requests
@@ -92,4 +101,4 @@ const FriendRequests = ({ profile }) => {
   );
 };
 
-export default FriendRequests;
+export default AllFriendRequests;

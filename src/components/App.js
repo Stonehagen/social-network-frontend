@@ -13,9 +13,10 @@ import Impress from './Impress';
 import ProfileDetail from './ProfileDetail';
 import ProfileEdit from './ProfileEdit';
 import AllFriends from './AllFriends';
+import AllFriendRequests from './AllFriendRequests';
 
 const App = () => {
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
   const [cookies, removeCookie] = useCookies(['jwt_token']);
@@ -38,6 +39,24 @@ const App = () => {
     setUser(null);
   };
 
+  const setUserProfile = async (profile) => {
+    await axios
+      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => {
+        if (res.data.error) {
+          return res.data.error;
+        } else {
+          setProfile(res.data.profile);
+        }
+      })
+      .catch((err) => console.log(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  };
+
   useEffect(() => {
     if (!user && token) {
       axios
@@ -55,6 +74,7 @@ const App = () => {
               email: res.data.email,
               id: res.data._id,
             });
+
             setLoading(false);
           }
         })
@@ -76,15 +96,25 @@ const App = () => {
       <Header
         user={user}
         logout={logout}
-        setProfilePicture={setProfilePicture}
-        profilePicture={profilePicture}
+        setUserProfile={setUserProfile}
+        profile={profile}
       />
       <div className="Main">
         <Routes>
-          <Route path="/" element={<Home user={user} />} />
+          <Route path="/" element={<Home user={user} profile={profile} />} />
           <Route path="/profile/edit" element={<ProfileEdit user={user} />} />
-          <Route path="/profile/:id/friends" element={<AllFriends user={user} />} />
-          <Route path="/profile/:id" element={<ProfileDetail user={user} />} />
+          <Route
+            path="/profile/:id/friendRequests"
+            element={<AllFriendRequests user={user} profile={profile} />}
+          />
+          <Route
+            path="/profile/:id/friends"
+            element={<AllFriends user={user} />}
+          />
+          <Route
+            path="/profile/:id"
+            element={<ProfileDetail user={user} profile={profile} />}
+          />
           <Route path="/signup" element={<SignUp user={user} />} />
           <Route path="/login" element={<LogIn user={user} login={login} />} />
         </Routes>

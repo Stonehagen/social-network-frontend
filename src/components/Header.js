@@ -8,7 +8,7 @@ import CloseFill from '../img/closeFill.svg';
 import Logout from '../img/logout.svg';
 import LogoutFill from '../img/logoutFill.svg';
 
-const Header = ({ user, logout, setProfilePicture, profilePicture }) => {
+const Header = ({ user, logout, setUserProfile, profile }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [search, setSearch] = useState('');
@@ -61,20 +61,7 @@ const Header = ({ user, logout, setProfilePicture, profilePicture }) => {
 
   useEffect(() => {
     if (user) {
-      axios
-        .get(`${process.env.REACT_APP_BACKENDSERVER}/profile`, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((res) => {
-          if (res.data.error) {
-            return res.data.error;
-          } else {
-            setProfilePicture(res.data.profile.photo);
-          }
-        })
-        .catch((err) => console.log(err));
+      setUserProfile();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -105,18 +92,18 @@ const Header = ({ user, logout, setProfilePicture, profilePicture }) => {
           {profiles && openSearch ? (
             <div className="SearchMenu">
               <ul onClick={() => handleCloseSearch()}>
-                {profiles.map((profile, index) => {
+                {profiles.map((foundProfile, index) => {
                   return (
                     <li className="searchPreview" key={index}>
                       <img
-                        onClick={() => navigate(`/profile/${profile._id}`)}
-                        src={`${process.env.REACT_APP_BACKENDSERVER}/images/${profile.photo}`}
+                        onClick={() => navigate(`/profile/${foundProfile._id}`)}
+                        src={`${process.env.REACT_APP_BACKENDSERVER}/images/${foundProfile.photo}`}
                         alt=""
                       />
                       <div className="searchPreviewText">
                         <h4
-                          onClick={() => navigate(`/profile/${profile._id}`)}
-                        >{`${profile.firstName} ${profile.lastName}`}</h4>
+                          onClick={() => navigate(`/profile/${foundProfile._id}`)}
+                        >{`${foundProfile.firstName} ${foundProfile.lastName}`}</h4>
                       </div>
                     </li>
                   );
@@ -138,8 +125,8 @@ const Header = ({ user, logout, setProfilePicture, profilePicture }) => {
             onClick={handleOpenMenu}
             className="profilePicture"
             src={
-              profilePicture
-                ? `${process.env.REACT_APP_BACKENDSERVER}/images/${profilePicture}`
+              profile
+                ? `${process.env.REACT_APP_BACKENDSERVER}/images/${profile.photo}`
                 : null
             }
             alt=""

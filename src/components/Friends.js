@@ -1,44 +1,48 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Friends.css';
 import People from '../img/people.svg';
 import PeopleFill from '../img/peopleFill.svg';
 
-const Friends = ({ profile }) => {
+const Friends = ({ pageProfile }) => {
   const [friends, setFriends] = useState([]);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    axios
-      .get(
-        `${process.env.REACT_APP_BACKENDSERVER}/profile/friends/${profile._id}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
+  const getFriends = async () => {
+    await axios
+    .get(
+      `${process.env.REACT_APP_BACKENDSERVER}/profile/friends/${pageProfile._id}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
         },
-      )
-      .then((res) => {
-        if (res.data.error) {
-          return res.data.error;
-        } else {
-          setFriends(res.data.friends);
-        }
-      })
-      .catch((err) => console.log(err));
+      },
+    )
+    .then((res) => {
+      if (res.data.error) {
+        return res.data.error;
+      } else {
+        setFriends(res.data.friends);
+      }
+    })
+    .catch((err) => console.log(err));
+  }
+
+  useEffect(() => {
+    getFriends();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profile]);
+  }, [pageProfile]);
 
   return (
     <div className="Friends">
       <div className="FriendsPreviewHeader">
-        <h2 onClick={() => navigate(`/profile/${profile._id}/friends`)}>
+        <h2 onClick={() => navigate(`/profile/${pageProfile._id}/friends`)}>
           Friends
         </h2>
         <button
-          onClick={() => navigate(`/profile/${profile._id}/friends`)}
+          onClick={() => navigate(`/profile/${pageProfile._id}/friends`)}
           type="button"
           onMouseOver={(e) => (e.currentTarget.children[0].src = PeopleFill)}
           onMouseOut={(e) => (e.currentTarget.children[0].src = People)}

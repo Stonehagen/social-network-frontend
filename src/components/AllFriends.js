@@ -6,17 +6,14 @@ import ProfilePic from '../img/profile.svg';
 import ProfilePicFill from '../img/profileFill.svg';
 
 const AllFriends = ({ user }) => {
-  const [userProfile, setUserProfile] = useState(null);
+  const [pageProfile, setPageProfile] = useState(null);
   const [friends, setFriends] = useState([]);
   const { id } = useParams();
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!user) {
-      navigate('/login');
-    }
-    axios
+  const getPageProfile = async () => {
+    await axios
       .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/${id}`, {
         headers: {
           'Content-Type': 'application/json',
@@ -26,16 +23,21 @@ const AllFriends = ({ user }) => {
         if (res.data.error) {
           return res.data.error;
         }
-        setUserProfile(res.data.profile);
-        return axios.get(
-          `${process.env.REACT_APP_BACKENDSERVER}/profile/friends/${res.data.profile._id}`,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          },
-        );
+        setPageProfile(res.data.profile);
       })
+      .catch((err) => console.log(err));
+  };
+
+  const getFriends = async () => {
+    await axios
+      .get(
+        `${process.env.REACT_APP_BACKENDSERVER}/profile/friends/${pageProfile._id}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
       .then((res) => {
         if (res.data.error) {
           return res.data.error;
@@ -44,10 +46,20 @@ const AllFriends = ({ user }) => {
         }
       })
       .catch((err) => console.log(err));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  };
 
-  if (!userProfile) {
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+    getPageProfile();
+    if (pageProfile) {
+      getFriends();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, pageProfile]);
+
+  if (!pageProfile) {
     return <></>;
   }
 
@@ -57,13 +69,15 @@ const AllFriends = ({ user }) => {
         <h2>
           Friends of{' '}
           <Link
-            to={`/profile/${userProfile._id}`}
-          >{`${userProfile.firstName} ${userProfile.lastName}`}</Link>
+            to={`/profile/${pageProfile._id}`}
+          >{`${pageProfile.firstName} ${pageProfile.lastName}`}</Link>
         </h2>
         <button
-          onClick={() => navigate(`/profile/${userProfile._id}`)}
+          onClick={() => navigate(`/profile/${pageProfile._id}`)}
           type="button"
-          onMouseOver={(e) => (e.currentTarget.children[0].src = ProfilePicFill)}
+          onMouseOver={(e) =>
+            (e.currentTarget.children[0].src = ProfilePicFill)
+          }
           onMouseOut={(e) => (e.currentTarget.children[0].src = ProfilePic)}
         >
           <img src={ProfilePic} alt="" />

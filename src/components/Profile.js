@@ -1,23 +1,23 @@
 import '../styles/Profile.css';
 import { Link } from 'react-router-dom';
 
-const Profile = ({ userProfile }) => {
+const Profile = ({ profile }) => {
   return (
     <div className="Profile">
       <div className='ProfileImageDiv'>
         <img
-          src={`${process.env.REACT_APP_BACKENDSERVER}/images/${userProfile.photo}`}
+          src={`${process.env.REACT_APP_BACKENDSERVER}/images/${profile.photo}`}
           alt=""
         />
       </div>
       <div className='ProfileTextDiv'>
         <div>
-          <h4>{`${userProfile.firstName} ${userProfile.lastName}`}</h4>
+          <h4>{`${profile.firstName} ${profile.lastName}`}</h4>
         </div>
         <div>
-          <p>{`${userProfile.status}`}</p>
+          <p>{`${profile.status}`}</p>
         </div>
-        <Link to={`/profile/${userProfile._id}`}>My Profile</Link>
+        <Link to={`/profile/${profile._id}`}>My Profile</Link>
       </div>
     </div>
   );
