@@ -93,7 +93,7 @@ const AllFriendRequests = ({ user, profile }) => {
                     Accept
                   </button>
                   <button
-                    onClick={() => rejectRequest(friendRequest)}
+                    onClick={() => rejectRequest(friendRequest._id)}
                     type="button"
                   >
                     Reject

@@ -28,7 +28,7 @@ const App = () => {
   if (token) {
     setAuthToken(token);
   }
-  
+
   setAxiosHeader();
 
   const login = (email, id) => {
@@ -88,7 +88,12 @@ const App = () => {
       <div className="Main">
         <Routes>
           <Route path="/" element={<Home user={user} profile={profile} />} />
-          <Route path="/profile/edit" element={<ProfileEdit user={user} />} />
+          <Route
+            path="/profile/edit"
+            element={
+              <ProfileEdit user={user} setUserProfile={setUserProfile} />
+            }
+          />
           <Route
             path="/profile/friendRequests"
             element={<AllFriendRequests user={user} profile={profile} />}

@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import '../styles/ProfileEdit.css';
 import CameraIcon from '../img/camera.svg';
 
-const ProfileEdit = ({ user }) => {
+const ProfileEdit = ({ user, setUserProfile }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [status, setStatus] = useState(null);
-  const [userProfile, setUserProfile] = useState(null);
+  const [profile, setProfile] = useState(null);
   const [photo, setPhoto] = useState('');
   const [preview, setPreview] = useState(null);
   const [errors, setErrors] = useState([]);
@@ -42,7 +42,10 @@ const ProfileEdit = ({ user }) => {
       })
       .then((res) => setErrors(res.data.error ? res.data.error : []))
       .catch((err) => console.log(err))
-      .finally(() => navigate('/'));
+      .finally(() => {
+        setUserProfile();
+        navigate('/');
+      });
   };
 
   const getProfile = async () => {
@@ -53,7 +56,7 @@ const ProfileEdit = ({ user }) => {
           setErrors(res.data.error);
         } else {
           setErrors([]);
-          setUserProfile(res.data.profile);
+          setProfile(res.data.profile);
           setStatus(res.data.profile.status);
           setFirstName(res.data.profile.firstName);
           setLastName(res.data.profile.lastName);
@@ -69,7 +72,7 @@ const ProfileEdit = ({ user }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  if (!userProfile) {
+  if (!profile) {
     return <></>;
   }
 
@@ -83,8 +86,8 @@ const ProfileEdit = ({ user }) => {
               src={
                 preview
                   ? preview
-                  : userProfile.photo
-                  ? `${process.env.REACT_APP_BACKENDSERVER}/images/${userProfile.photo}`
+                  : profile.photo
+                  ? `${process.env.REACT_APP_BACKENDSERVER}/images/${profile.photo}`
                   : `${process.env.REACT_APP_BACKENDSERVER}/img/profile.jpg`
               }
               alt=""
@@ -145,7 +148,7 @@ const ProfileEdit = ({ user }) => {
           <button
             type="button"
             className="secondoryBtn"
-            onClick={() => navigate(`/profile/${userProfile._id}`)}
+            onClick={() => navigate(`/profile/${profile._id}`)}
           >
             Cancel
           </button>
