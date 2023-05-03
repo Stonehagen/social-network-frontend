@@ -15,6 +15,7 @@ import ProfileDetail from './ProfileDetail';
 import ProfileEdit from './ProfileEdit';
 import AllFriends from './AllFriends';
 import AllFriendRequests from './AllFriendRequests';
+import AllFriendRequestsOut from './AllFriendRequestsOut';
 
 const App = () => {
   const [profile, setProfile] = useState(null);
@@ -89,8 +90,12 @@ const App = () => {
           <Route path="/" element={<Home user={user} profile={profile} />} />
           <Route path="/profile/edit" element={<ProfileEdit user={user} />} />
           <Route
-            path="/profile/:id/friendRequests"
+            path="/profile/friendRequests"
             element={<AllFriendRequests user={user} profile={profile} />}
+          />
+          <Route
+            path="/profile/friendRequestsOut"
+            element={<AllFriendRequestsOut user={user} profile={profile} />}
           />
           <Route
             path="/profile/:id/friends"

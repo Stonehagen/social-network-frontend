@@ -29,6 +29,7 @@
 }
 
 .AllFriendRequests {
+  align-self: stretch;
   max-width: 1200px;
   display: flex;
   flex-direction: column;

@@ -18,9 +18,8 @@ const AllFriendRequests = ({ user, profile }) => {
           acceptedFriend: id,
         },
       )
-      .then((res) => getFriendRequests())
+      .then(() => getFriendRequests())
       .catch((err) => console.log(err))
-      .finally(() => navigate(0));
   };
 
   const rejectRequest = (id) => {
@@ -31,9 +30,8 @@ const AllFriendRequests = ({ user, profile }) => {
         acceptedFriend: id,
       },
     )
-    .then((res) => getFriendRequests())
+    .then(() => getFriendRequests())
     .catch((err) => console.log(err))
-    .finally(() => navigate(0));
   };
 
   const getFriendRequests = async () => {
@@ -49,15 +47,11 @@ const AllFriendRequests = ({ user, profile }) => {
     if (!user) {
       navigate('/login');
     }
-    if (profile) {
+    if (profile && friendRequests.length === 0) {
       getFriendRequests();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profile]);
-
-  if (!profile) {
-    return <></>;
-  }
+  }, [profile, friendRequests]);
 
   return (
     <div className="AllFriendRequests">
@@ -78,7 +72,7 @@ const AllFriendRequests = ({ user, profile }) => {
         </button>
       </div>
       <div className="FriendRequestsContainer">
-        {[...friendRequests].slice(0, 8).map((friendRequest, index) => {
+        {friendRequests.map((friendRequest, index) => {
           return (
             <div className="Friend" key={index}>
               <img

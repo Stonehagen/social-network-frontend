@@ -14,6 +14,7 @@
 
   .ProfileMenu form {
     justify-content: flex-end;
+    flex-direction: row;
   }
 }
 
@@ -32,6 +33,7 @@
   }
   .ProfileMenu form {
     justify-content: flex-end;
+    flex-direction: row;
   }
 }
 
@@ -50,6 +52,7 @@
   }
   .ProfileMenu form {
     justify-content: flex-end;
+    flex-direction: row;
   }
 }
 
@@ -69,6 +72,12 @@
   }
   .ProfileMenu form {
     justify-content: center;
+    flex-direction: row;
+  }
+
+  .UserProfileMenu form {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -135,7 +144,6 @@
 
 .ProfileMenu form {
   display: flex;
-  flex-direction: row;
   background-color: transparent;
   padding: 0;
   gap: 20px;
@@ -157,11 +165,11 @@
   color: var(--text-color);
 }
 
-.ProfileMenu form button:first-of-type img {
+.ProfileMenu .cancelRequest img {
   width: 22px;
 }
 
-.ProfileMenu form button:last-of-type img {
+.ProfileMenu .menuBtn img {
   width: 18px;
 }
 
@@ -179,4 +187,24 @@
 .ProfileMenu .cancelRequest:hover {
   background-color: var(--reject-color);
   color: var(--text-color);
+}
+
+.ProfileMenu .userMenuBtn {
+  background-color: var(--form-background-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: var(--darker-text-color);
+  width: 200px;
+}
+
+.ProfileMenu .userMenuBtn:hover {
+  background-color: var(--highlight-color);
+  color: var(--text-color);
+}
+
+.ProfileMenu .userMenuBtn img{
+  width: 18px;
 }

@@ -2,12 +2,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import '../styles/ProfileDetail.css';
-import message from '../img/message.svg';
-import messageFill from '../img/messageFill.svg';
-import friend from '../img/friend.svg';
-import friendFill from '../img/friendFill.svg';
+
 import Friends from './Friends';
-import FriendRequests from './FriendRequests';
+import PageProfileMenu from './PageProfileMenu';
+import UserProfileMenu from './UserProfileMenu';
 
 const ProfileDetail = ({ user, profile }) => {
   const [pageProfile, setPageProfile] = useState(null);
@@ -20,30 +18,6 @@ const ProfileDetail = ({ user, profile }) => {
       .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/${id}`)
       .then((res) => setPageProfile(res.data.profile))
       .catch((err) => console.log(err));
-  };
-
-  const handleFriendSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .put(`${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequest`, {
-        requestedFriend: pageProfile._id,
-      })
-      .then()
-      .catch((err) => console.log(err))
-      .finally(() => navigate(0));
-  };
-
-  const cancelFriendRequest = () => {
-    axios
-      .put(
-        `${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequest/cancel`,
-        {
-          requestedFriend: pageProfile._id,
-        },
-      )
-      .then()
-      .catch((err) => console.log(err))
-      .finally(() => navigate(0));
   };
 
   useEffect(() => {
@@ -79,52 +53,15 @@ const ProfileDetail = ({ user, profile }) => {
           ) : null}
         </div>
       </div>
-      {pageProfile.user === user.id ? null : (
-        <div className="ProfileMenu">
-          <form onSubmit={handleFriendSubmit}>
-            {pageProfile.friendRequestIn.includes(profile._id) ? (
-              <button
-                className="cancelRequest"
-                type="button"
-                onClick={() => cancelFriendRequest()}
-                onMouseOver={(e) =>
-                  (e.currentTarget.children[0].src = friendFill)
-                }
-                onMouseOut={(e) => (e.currentTarget.children[0].src = friend)}
-              >
-                <img src={friend} alt="" />
-                Cancel Request
-              </button>
-            ) : pageProfile.friends.includes(profile._id) ? null : (
-              <button
-                className="menuBtn"
-                type="submit"
-                onMouseOver={(e) =>
-                  (e.currentTarget.children[0].src = friendFill)
-                }
-                onMouseOut={(e) => (e.currentTarget.children[0].src = friend)}
-              >
-                <img src={friend} alt="" />
-                Add Friend
-              </button>
-            )}
-            <button
-              className="menuBtn"
-              type="button"
-              onMouseOver={(e) =>
-                (e.currentTarget.children[0].src = messageFill)
-              }
-              onMouseOut={(e) => (e.currentTarget.children[0].src = message)}
-            >
-              <img src={message} alt="" />
-              Message
-            </button>
-          </form>
-        </div>
+      {pageProfile.user === user.id ? (
+        <UserProfileMenu profile={profile} />
+      ) : (
+        <PageProfileMenu
+          profile={profile}
+          pageProfile={pageProfile}
+          getPageProfile={getPageProfile}
+        />
       )}
-      {pageProfile.user === user.id && profile.friendRequestIn.length > 0 ? (
-        <FriendRequests profile={profile} />
-      ) : null}
       <Friends pageProfile={pageProfile} />
     </div>
   );
