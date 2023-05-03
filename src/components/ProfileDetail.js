@@ -16,44 +16,21 @@ const ProfileDetail = ({ user, profile }) => {
   const navigate = useNavigate();
 
   const getPageProfile = async () => {
-    await axios
-      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/${id}`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((res) => {
-        if (res.data.error) {
-          return res.data.error;
-        } else {
-          setPageProfile(res.data.profile);
-        }
-      })
+    axios
+      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/${id}`)
+      .then((res) => setPageProfile(res.data.profile))
       .catch((err) => console.log(err));
-  }
+  };
 
   const handleFriendSubmit = (e) => {
     e.preventDefault();
-
     axios
-      .put(
-        `${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequest`,
-        {
-          requestedFriend: pageProfile._id,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )
-      .then((res) => {
-        if (res.data.error) {
-          console.log(res.data.error);
-        }
-        navigate(0);
+      .put(`${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequest`, {
+        requestedFriend: pageProfile._id,
       })
-      .catch((err) => console.log(err));
+      .then()
+      .catch((err) => console.log(err))
+      .finally(() => navigate(0));
   };
 
   const cancelFriendRequest = () => {
@@ -63,26 +40,17 @@ const ProfileDetail = ({ user, profile }) => {
         {
           requestedFriend: pageProfile._id,
         },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
       )
-      .then((res) => {
-        if (res.data.error) {
-          console.log(res.data.error);
-        }
-        navigate(0);
-      })
-      .catch((err) => console.log(err));
+      .then()
+      .catch((err) => console.log(err))
+      .finally(() => navigate(0));
   };
 
   useEffect(() => {
     if (!user) {
       navigate('/login');
     }
-    getPageProfile()
+    getPageProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
@@ -127,7 +95,7 @@ const ProfileDetail = ({ user, profile }) => {
                 <img src={friend} alt="" />
                 Cancel Request
               </button>
-            ) : (
+            ) : pageProfile.friends.includes(profile._id) ? null : (
               <button
                 className="menuBtn"
                 type="submit"
@@ -140,7 +108,6 @@ const ProfileDetail = ({ user, profile }) => {
                 Add Friend
               </button>
             )}
-
             <button
               className="menuBtn"
               type="button"

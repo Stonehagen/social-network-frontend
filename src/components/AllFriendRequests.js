@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/AllFriendRequests.css';
-import People from '../img/people.svg';
-import PeopleFill from '../img/peopleFill.svg';
+import ProfilePic from '../img/profile.svg';
+import ProfilePicFill from '../img/profileFill.svg';
 import axios from 'axios';
 
 const AllFriendRequests = ({ user, profile }) => {
@@ -10,27 +10,38 @@ const AllFriendRequests = ({ user, profile }) => {
 
   const navigate = useNavigate();
 
-  const acceptRequest = (friend) => {};
+  const acceptRequest = (id) => {
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKENDSERVER}/profile/acceptFriendrequest`,
+        {
+          acceptedFriend: id,
+        },
+      )
+      .then((res) => getFriendRequests())
+      .catch((err) => console.log(err))
+      .finally(() => navigate(0));
+  };
 
-  const rejectRequest = (friend) => {};
+  const rejectRequest = (id) => {
+    axios
+    .put(
+      `${process.env.REACT_APP_BACKENDSERVER}/profile/rejectFriendrequest`,
+      {
+        acceptedFriend: id,
+      },
+    )
+    .then((res) => getFriendRequests())
+    .catch((err) => console.log(err))
+    .finally(() => navigate(0));
+  };
 
   const getFriendRequests = async () => {
     await axios
       .get(
         `${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequests/${profile._id}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
       )
-      .then((res) => {
-        if (res.data.error) {
-          return res.data.error;
-        } else {
-          setFriendRequests(res.data.friendRequests);
-        }
-      })
+      .then((res) => setFriendRequests(res.data.friendRequests))
       .catch((err) => console.log(err));
   };
 
@@ -55,13 +66,15 @@ const AllFriendRequests = ({ user, profile }) => {
           Friend Requests
         </h2>
         <button
-          onClick={() => navigate(`/profile/${profile._id}/friendRequests`)}
+          onClick={() => navigate(`/profile/${profile._id}`)}
           type="button"
-          onMouseOver={(e) => (e.currentTarget.children[0].src = PeopleFill)}
-          onMouseOut={(e) => (e.currentTarget.children[0].src = People)}
+          onMouseOver={(e) =>
+            (e.currentTarget.children[0].src = ProfilePicFill)
+          }
+          onMouseOut={(e) => (e.currentTarget.children[0].src = ProfilePic)}
         >
-          <img src={People} alt="" />
-          View all
+          <img src={ProfilePic} alt="" />
+          Go Back
         </button>
       </div>
       <div className="FriendRequestsContainer">
@@ -80,7 +93,7 @@ const AllFriendRequests = ({ user, profile }) => {
                 >{`${friendRequest.firstName} ${friendRequest.lastName}`}</p>
                 <div>
                   <button
-                    onClick={() => acceptRequest(friendRequest)}
+                    onClick={() => acceptRequest(friendRequest._id)}
                     type="button"
                   >
                     Accept

@@ -12,23 +12,12 @@ const Friends = ({ pageProfile }) => {
 
   const getFriends = async () => {
     await axios
-    .get(
-      `${process.env.REACT_APP_BACKENDSERVER}/profile/friends/${pageProfile._id}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
-    )
-    .then((res) => {
-      if (res.data.error) {
-        return res.data.error;
-      } else {
-        setFriends(res.data.friends);
-      }
-    })
-    .catch((err) => console.log(err));
-  }
+      .get(
+        `${process.env.REACT_APP_BACKENDSERVER}/profile/friends/${pageProfile._id}`,
+      )
+      .then((res) => setFriends(res.data.friends))
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     getFriends();

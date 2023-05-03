@@ -2,9 +2,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import { setAuthToken } from '../methods/authToken';
 import '../styles/LogIn.css';
-
-import { setAuthToken } from '../methods/setAuthToken';
 
 const LogIn = ({ user, login }) => {
   const [email, setEmail] = useState('');
@@ -17,26 +16,16 @@ const LogIn = ({ user, login }) => {
   const navigate = useNavigate();
 
   const saveJWTinCookie = (token) => {
-    setCookie('jwt_token', token, {
-      maxAge: 60 * 24 * 60 * 60 * 1000,
-    });
+    setCookie('jwt_token', token, { maxAge: 60 * 24 * 60 * 60 * 1000 });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(
-        `${process.env.REACT_APP_BACKENDSERVER}/user/log-in`,
-        {
-          email,
-          password,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )
+      .post(`${process.env.REACT_APP_BACKENDSERVER}/user/log-in`, {
+        email,
+        password,
+      })
       .then((res) => {
         if (res.data.error) {
           setErrors(res.data.error);
@@ -46,14 +35,10 @@ const LogIn = ({ user, login }) => {
           login(res.data.user.email, res.data.user._id);
         }
       })
-      .then(() => navigate('/'))
-      .catch((err) => {
-        if (err.response.data.error) {
-          setErrors(err.response.data.error);
-        } else {
-          console.log(err);
-        }
-      });
+      .catch((err) =>
+        setErrors(err.response.data.error ? err.response.data.error : []),
+      )
+      .finally(() => navigate('/'));
   };
 
   useEffect(() => {

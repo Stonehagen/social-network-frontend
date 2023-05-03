@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import '../styles/ProfileEdit.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import '../styles/ProfileEdit.css';
 import CameraIcon from '../img/camera.svg';
 
 const ProfileEdit = ({ user }) => {
@@ -31,60 +31,23 @@ const ProfileEdit = ({ user }) => {
           `${process.env.REACT_APP_BACKENDSERVER}/profile/picture`,
           formData,
         )
-        .then((res) => {
-          if (res.data.error) {
-            setErrors(res.data.error);
-          } else {
-            setErrors([]);
-          }
-        })
-        .catch((err) => {
-          if (err.response.data.error) {
-            setErrors(err.response.data.error);
-          } else {
-            console.log(err);
-          }
-        });
+        .then((res) => setErrors(res.data.error ? res.data.error : []))
+        .catch((err) => console.log(err));
     }
     axios
-      .put(
-        `${process.env.REACT_APP_BACKENDSERVER}/profile`,
-        {
-          firstName,
-          lastName,
-          status,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )
-      .then((res) => {
-        if (res.data.error) {
-          setErrors(res.data.error);
-        } else {
-          setErrors([]);
-        }
-        navigate('/');
+      .put(`${process.env.REACT_APP_BACKENDSERVER}/profile`, {
+        firstName,
+        lastName,
+        status,
       })
-      .catch((err) => {
-        if (err.response.data.error) {
-          setErrors(err.response.data.error);
-        } else {
-          console.log(err);
-        }
-      });
+      .then((res) => setErrors(res.data.error ? res.data.error : []))
+      .catch((err) => console.log(err))
+      .finally(() => navigate('/'));
   };
 
-  useEffect(() => {
-    if (user) {
-      axios
-      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+  const getProfile = async () => {
+    axios
+      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile`)
       .then((res) => {
         if (res.data.error) {
           setErrors(res.data.error);
@@ -96,24 +59,19 @@ const ProfileEdit = ({ user }) => {
           setLastName(res.data.profile.lastName);
         }
       })
-      .catch((err) => {
-        if (err.response.data.error) {
-          setErrors(err.response.data.error);
-        } else {
-          console.log(err);
-        }
-      });
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    if (user) {
+      getProfile();
     }
-    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-
 
   if (!userProfile) {
     return <></>;
   }
-
-
 
   return (
     <div className="MainContainer">

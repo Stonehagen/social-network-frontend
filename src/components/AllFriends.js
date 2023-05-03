@@ -14,17 +14,8 @@ const AllFriends = ({ user }) => {
 
   const getPageProfile = async () => {
     await axios
-      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/${id}`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((res) => {
-        if (res.data.error) {
-          return res.data.error;
-        }
-        setPageProfile(res.data.profile);
-      })
+      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/${id}`)
+      .then((res) => setPageProfile(res.data.profile))
       .catch((err) => console.log(err));
   };
 
@@ -32,19 +23,8 @@ const AllFriends = ({ user }) => {
     await axios
       .get(
         `${process.env.REACT_APP_BACKENDSERVER}/profile/friends/${pageProfile._id}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
       )
-      .then((res) => {
-        if (res.data.error) {
-          return res.data.error;
-        } else {
-          setFriends(res.data.friends);
-        }
-      })
+      .then((res) => setFriends(res.data.friends))
       .catch((err) => console.log(err));
   };
 

@@ -54,12 +54,13 @@
   max-width: 1200px;
   display: flex;
   flex-direction: column;
+  align-self: stretch;
   gap: 0px;
   background-color: var(--lighter-background-color);
   border-radius: 20px;
   box-sizing: border-box;
-  width: 100%;
   padding: 0;
+  margin: 0 20px;
 }
 
 .AllFriends .Friend img {

@@ -1,28 +1,22 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import '../styles/NewUsers.css';
 import { Link, useNavigate } from 'react-router-dom';
+import '../styles/NewUsers.css';
 
 const NewUsers = () => {
   const [profiles, setProfiles] = useState([]);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const getProfiles = async () => {
     axios
-      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/latest`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((res) => {
-        if (res.data.error) {
-          return res.data.error;
-        } else {
-          setProfiles(res.data.profiles);
-        }
-      })
+      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/latest`)
+      .then((res) => setProfiles(res.data.profiles))
       .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getProfiles();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -29,31 +29,19 @@ const Header = ({ user, logout, setUserProfile, profile }) => {
   };
 
   const loggingOut = () => {
-    logout();
     setOpenMenu(false);
+    logout();
     navigate('/login');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (search) {
       axios
-        .get(
-          `${process.env.REACT_APP_BACKENDSERVER}/profile/search/${search}`,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          },
-        )
+        .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/search/${search}`)
         .then((res) => {
-          if (res.data.error) {
-            return res.data.error;
-          } else {
             setProfiles(res.data.profiles);
             handleOpenSearch();
-          }
         })
         .catch((err) => console.log(err));
     }
@@ -102,7 +90,9 @@ const Header = ({ user, logout, setUserProfile, profile }) => {
                       />
                       <div className="searchPreviewText">
                         <h4
-                          onClick={() => navigate(`/profile/${foundProfile._id}`)}
+                          onClick={() =>
+                            navigate(`/profile/${foundProfile._id}`)
+                          }
                         >{`${foundProfile.firstName} ${foundProfile.lastName}`}</h4>
                       </div>
                     </li>
@@ -136,7 +126,7 @@ const Header = ({ user, logout, setUserProfile, profile }) => {
               <ul>
                 <li
                   className="LogoutButton"
-                  onClick={loggingOut}
+                  onClick={() => loggingOut()}
                   onMouseOver={(e) =>
                     (e.currentTarget.children[0].src = LogoutFill)
                   }

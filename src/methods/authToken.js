@@ -7,3 +7,7 @@ export const setAuthToken = (token) => {
     delete axios.defaults.headers.common['Authorization'];
   }
 };
+
+export const getAuthToken = (cookies) => {
+  return cookies.jwt_token === 'undefined' ? undefined : cookies.jwt_token;
+};

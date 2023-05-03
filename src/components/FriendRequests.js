@@ -1,36 +1,47 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/FriendRequests.css';
 import People from '../img/people.svg';
 import PeopleFill from '../img/peopleFill.svg';
-import axios from 'axios';
 
 const FriendRequests = ({ profile }) => {
   const [friendRequests, setFriendRequests] = useState([]);
 
   const navigate = useNavigate();
 
-  const acceptRequest = (friend) => {};
+  const acceptRequest = (id) => {
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKENDSERVER}/profile/acceptFriendrequest`,
+        {
+          acceptedFriend: id,
+        },
+      )
+      .then((res) => getFriendRequests())
+      .catch((err) => console.log(err))
+      .finally(() => navigate(0));
+  };
 
-  const rejectRequest = (friend) => {};
+  const rejectRequest = (id) => {
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKENDSERVER}/profile/rejectFriendrequest`,
+        {
+          acceptedFriend: id,
+        },
+      )
+      .then((res) => getFriendRequests())
+      .catch((err) => console.log(err))
+      .finally(() => navigate(0));
+  };
 
   const getFriendRequests = async () => {
     await axios
       .get(
         `${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequests/${profile._id}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
       )
-      .then((res) => {
-        if (res.data.error) {
-          return res.data.error;
-        } else {
-          setFriendRequests(res.data.friendRequests);
-        }
-      })
+      .then((res) => setFriendRequests(res.data.friendRequests))
       .catch((err) => console.log(err));
   };
 

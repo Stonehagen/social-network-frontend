@@ -1,5 +1,7 @@
 @media (min-width: 1200px) {
   .Home,
+  .AllFriendRequests,
+  .AllFriends,
   .LogIn,
   .SignUp,
   .MainContainer {
@@ -10,6 +12,8 @@
 
 @media (min-width: 800px) and (max-width: 1199px) {
   .Home,
+  .AllFriendRequests,
+  .AllFriends,
   .LogIn,
   .SignUp,
   .MainContainer {
@@ -24,6 +28,8 @@
 
 @media (max-width: 799px) {
   .Home,
+  .AllFriendRequests,
+  .AllFriends,
   .LogIn,
   .SignUp,
   .MainContainer {

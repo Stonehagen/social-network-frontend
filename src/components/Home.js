@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import '../styles/Home.css';
 import { useNavigate } from 'react-router-dom';
+import '../styles/Home.css';
 import Profile from './Profile';
 import CreatePost from './CreatePost';
 import PostFeed from './PostFeed';

@@ -1,0 +1,183 @@
+@media (min-width: 600px) {
+  .AllFriendRequests .Friend img {
+    max-width: 100px;
+    height: 100px;
+    border-radius: 50px;
+  }
+
+  .AllFriendRequests .Friend  {
+    border-radius: 50px 20px 20px 50px;
+    height: 100px;
+    width: 300px;
+  }
+
+}
+
+@media (max-width: 599px) {
+  .AllFriendRequests .Friend img {
+    max-width: 80px;
+    height: 80px;
+    border-radius: 40px;
+  }
+
+  .AllFriendRequests .Friend  {
+    border-radius: 40px 20px 20px 40px;
+    height: 80px;
+    width: 300px;
+  }
+
+}
+
+.AllFriendRequests {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  background-color: var(--lighter-background-color);
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0 20px;
+}
+
+.AllFriendRequests .Friend img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.AllFriendRequests .FriendsPreviewHeader {
+  padding: 20px 20px 0 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.AllFriendRequests .FriendsPreviewHeader button {
+  width: 100px;
+  background-color: transparent;
+  color: var(--darker-text-color);
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  border: none;
+  border-radius: 18px;
+}
+
+.AllFriendRequests .FriendsPreviewHeader button img {
+  width: 20px;
+}
+
+.AllFriendRequests .FriendsPreviewHeader button:hover {
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.AllFriendRequests .FriendsPreviewHeader h2 {
+  color: var(--darker-text-color);
+  font-weight: 100;
+  margin: 0;
+}
+
+.AllFriendRequests .FriendsPreviewHeader h2:hover {
+  color: var(--text-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.AllFriendRequests .FriendRequestsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: var(--lighter-background-color);
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.AllFriendRequests .Friend {
+  display: flex;
+  padding: 0 10px 0 0 ;
+  flex-direction: row;
+  background-color: var(--form-background-color);
+
+}
+
+.AllFriendRequests .Friend img:hover {
+cursor: pointer;
+}
+
+.AllFriendRequests .Friend p:hover {
+  color: var(--text-color);
+  cursor: pointer;
+  }
+
+.AllFriendRequests .friendImage {
+  width: 100%;
+}
+
+.AllFriendRequests .friendText {
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 0;
+  align-items: center;
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  gap: 10px;
+}
+
+
+.AllFriendRequests .friendText p {
+  white-space: nowrap;
+  font-weight: 100;
+  margin: 0;
+  color: var(--darker-text-color);
+}
+
+.AllFriendRequests .friendText div {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.AllFriendRequests .friendText button {
+  background-color: transparent;
+  width: 70px;
+  color: var(--form-background-color);
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  border-radius: 18px;
+}
+
+.AllFriendRequests .friendText button:first-of-type {
+  border: 1px solid var(--accept-color);
+  color: var(--accept-color);
+}
+
+.AllFriendRequests .friendText button:last-of-type {
+  border: 1px solid var(  --reject-color);
+  color: var(--reject-color);
+}
+
+.AllFriendRequests .friendText button:first-of-type:hover {
+  background-color: var(--accept-color);
+  color: var(--form-background-color);
+  cursor: pointer;
+}
+
+.AllFriendRequests .friendText button:last-of-type:hover {
+  background-color: var(--reject-color);
+  color: var(--form-background-color);
+  cursor: pointer;
+}
+

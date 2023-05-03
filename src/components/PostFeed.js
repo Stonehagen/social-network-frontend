@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { formatTime } from '../methods/formatTime';
 import '../styles/PostFeed.css';
 import heart from '../img/heart.svg';
 import heartFill from '../img/heartFill.svg';
@@ -12,16 +13,6 @@ const PostFeed = ({ profile }) => {
   const [postFeed, setPostFeed] = useState([]);
 
   const navigate = useNavigate();
-
-  const timeFormat = (timest) => {
-    return new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-    }).format(new Date(timest));
-  };
 
   useEffect(() => {
     axios
@@ -44,7 +35,7 @@ const PostFeed = ({ profile }) => {
   return (
     <div className="PostFeed">
       {postFeed.map((post, index) => {
-        const postTime = timeFormat(post.timestamp);
+        const postTime = formatTime(post.timestamp);
         return (
           <div className="Post" key={index}>
             <div className="PostTop">

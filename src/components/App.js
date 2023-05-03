@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { useCookies } from 'react-cookie';
-import { setAuthToken } from '../methods/setAuthToken';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
+import { setAuthToken, getAuthToken } from '../methods/authToken';
+import { setAxiosHeader } from '../methods/setAxiosHeader';
 import '../styles/App.css';
 
 import LogIn from './LogIn';
@@ -19,12 +20,15 @@ const App = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
+
   const [cookies, removeCookie] = useCookies(['jwt_token']);
-  const token =
-    cookies.jwt_token === 'undefined' ? undefined : cookies.jwt_token;
+  const token = getAuthToken(cookies);
+
   if (token) {
     setAuthToken(token);
   }
+  
+  setAxiosHeader();
 
   const login = (email, id) => {
     setUser({
@@ -35,60 +39,41 @@ const App = () => {
 
   const logout = () => {
     removeCookie('jwt_token');
-    setAuthToken(null);
+    setAuthToken();
     setUser(null);
+    setProfile(null);
   };
 
   const setUserProfile = async (profile) => {
     await axios
-      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((res) => {
-        if (res.data.error) {
-          return res.data.error;
-        } else {
-          setProfile(res.data.profile);
-        }
-      })
+      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile`)
+      .then((res) => setProfile(res.data.profile))
       .catch((err) => console.log(err));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  };
+
+  const getUser = async () => {
+    axios
+      .get(`${process.env.REACT_APP_BACKENDSERVER}/session`)
+      .then((res) =>
+        setUser({
+          email: res.data.email,
+          id: res.data._id,
+        }),
+      )
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
     if (!user && token) {
-      axios
-        .get(`${process.env.REACT_APP_BACKENDSERVER}/session`, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((res) => {
-          if (res.data.error) {
-            setLoading(false);
-            return res.data.error;
-          } else {
-            setUser({
-              email: res.data.email,
-              id: res.data._id,
-            });
-
-            setLoading(false);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false);
-        });
+      getUser();
     } else {
       setLoading(false);
     }
   }, [user, token]);
 
   if (loading) {
-    return <div className="App">Loading...</div>;
+    return <></>;
   }
 
   return (

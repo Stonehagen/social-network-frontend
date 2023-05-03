@@ -16,36 +16,15 @@ const SignUp = ({ user }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(
-        `${process.env.REACT_APP_BACKENDSERVER}/user/sign-up`,
-        {
-          firstName,
-          lastName,
-          email,
-          password,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )
-      .then((res) => {
-        if (res.data.error) {
-          setErrors(res.data.error);
-          console.log(res.data.error);
-        } else {
-          setErrors([]);
-        }
+      .post(`${process.env.REACT_APP_BACKENDSERVER}/user/sign-up`, {
+        firstName,
+        lastName,
+        email,
+        password,
       })
-      .then(() => navigate('/login'))
-      .catch((err) => {
-        if (err.response.data.error) {
-          setErrors(err.response.data.error);
-        } else {
-          console.log(err);
-        }
-      });
+      .then((res) => setErrors(res.data.error ? res.data.error : []))
+      .catch((err) => console.log(err))
+      .finally(() => navigate('/login'));
   };
 
   useEffect(() => {
