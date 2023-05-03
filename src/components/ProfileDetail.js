@@ -39,7 +39,7 @@ const ProfileDetail = ({ user, profile }) => {
       .put(
         `${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequest`,
         {
-          requestedFriend: profile._id,
+          requestedFriend: pageProfile._id,
         },
         {
           headers: {
@@ -61,7 +61,7 @@ const ProfileDetail = ({ user, profile }) => {
       .put(
         `${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequest/cancel`,
         {
-          requestedFriend: profile._id,
+          requestedFriend: pageProfile._id,
         },
         {
           headers: {
@@ -114,7 +114,7 @@ const ProfileDetail = ({ user, profile }) => {
       {pageProfile.user === user.id ? null : (
         <div className="ProfileMenu">
           <form onSubmit={handleFriendSubmit}>
-            {profile.friendRequestIn.includes(pageProfile._id) ? (
+            {pageProfile.friendRequestIn.includes(profile._id) ? (
               <button
                 className="cancelRequest"
                 type="button"
