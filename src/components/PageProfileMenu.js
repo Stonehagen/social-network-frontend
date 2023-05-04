@@ -4,7 +4,7 @@ import messageFill from '../img/messageFill.svg';
 import friend from '../img/friend.svg';
 import friendFill from '../img/friendFill.svg';
 
-const PageProfileMenu = ({ profile, pageProfile, getPageProfile }) => {
+const PageProfileMenu = ({ profile, pageProfile, getPageProfile, checkIfFriends }) => {
 
   const makeFriendRequest = () => {
     axios
@@ -43,7 +43,7 @@ const PageProfileMenu = ({ profile, pageProfile, getPageProfile }) => {
             <img src={friend} alt="" />
             Cancel Request
           </button>
-        ) : pageProfile.friends.includes(profile._id) ? null : (
+        ) : checkIfFriends() ? null : (
           <button
             className="menuBtn"
             type="button"

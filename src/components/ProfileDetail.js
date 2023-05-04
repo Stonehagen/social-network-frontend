@@ -6,12 +6,16 @@ import '../styles/ProfileDetail.css';
 import Friends from './Friends';
 import PageProfileMenu from './PageProfileMenu';
 import UserProfileMenu from './UserProfileMenu';
+import ProfilePostFeed from './ProflePostFeed';
 
 const ProfileDetail = ({ user, profile }) => {
   const [pageProfile, setPageProfile] = useState(null);
   const { id } = useParams();
 
   const navigate = useNavigate();
+
+  const checkIfFriends = () => pageProfile.friends.includes(profile._id);
+  const checkIfUserProfile = () => pageProfile.user === user.id;
 
   const getPageProfile = async () => {
     axios
@@ -48,21 +52,27 @@ const ProfileDetail = ({ user, profile }) => {
           <div>
             <p>{`${pageProfile.status}`}</p>
           </div>
-          {pageProfile.user === user.id ? (
+          {checkIfUserProfile() ? (
             <Link to="/profile/edit">Edit Profile</Link>
           ) : null}
         </div>
       </div>
-      {pageProfile.user === user.id ? (
+      {checkIfUserProfile() ? (
         <UserProfileMenu profile={profile} />
       ) : (
         <PageProfileMenu
           profile={profile}
           pageProfile={pageProfile}
           getPageProfile={getPageProfile}
+          checkIfFriends={checkIfFriends}
         />
       )}
       <Friends pageProfile={pageProfile} />
+      <ProfilePostFeed
+        pageProfile={pageProfile}
+        checkIfFriends={checkIfFriends}
+        checkIfUserProfile={checkIfUserProfile}
+      />
     </div>
   );
 };
