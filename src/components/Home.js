@@ -13,7 +13,7 @@ const Home = ({ user, profile }) => {
     if (!user) {
       navigate('/login');
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!profile) {
@@ -28,7 +28,7 @@ const Home = ({ user, profile }) => {
       </div>
       <div className="middleDiv">
         <CreatePost profile={profile} />
-        <PostFeed profile={profile} />
+        <PostFeed />
       </div>
       <div className="rightDiv"></div>
     </div>
