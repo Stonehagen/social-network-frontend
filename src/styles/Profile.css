@@ -87,3 +87,12 @@
   object-fit: cover;
   object-position: center top;
 }
+
+.Profile img:hover {
+  cursor: pointer;
+}
+
+.Profile h4:hover {
+  cursor: pointer;
+  color: var(--highlight-color);
+}
