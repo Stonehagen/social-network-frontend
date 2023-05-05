@@ -1,6 +1,7 @@
 @media (min-width: 600px) {
   .Post .PostTop img {
-    width: 50px;
+    max-width: 50px;
+    height: 50px;
     border-radius: 25px;
   }
   .Post .PostTop {
@@ -10,7 +11,8 @@
 
 @media (max-width: 599px) {
   .Post .PostTop img {
-    width: 34px;
+    max-width: 34px;
+    height: 34px;
     border-radius: 17px;
   }
   .Post .PostTop {
@@ -114,4 +116,10 @@
 
 .Post .PostTop .PostImage:hover {
   cursor: pointer;
+}
+
+.Post .PostImage {
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
