@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import '../styles/PostFeed.css';
 import Post from './Post';
 
-const PostFeed = () => {
+const PostFeed = ({ profile }) => {
   const [postFeed, setPostFeed] = useState([]);
 
   const getPostFeed = async () => {

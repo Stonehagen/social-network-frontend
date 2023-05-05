@@ -5,7 +5,8 @@ import heart from '../img/heart.svg';
 import heartFill from '../img/heartFill.svg';
 import comment from '../img/comment.svg';
 import commentFill from '../img/commentFill.svg';
-import clock from '../img/clock.svg';
+import worldFillWhite from '../img/worldFillWhite.svg';
+import friendsFillWhite from '../img/friendsFillWhite.svg';
 
 const Post = ({ post }) => {
   const postTime = formatTime(post.timestamp);
@@ -26,7 +27,7 @@ const Post = ({ post }) => {
             onClick={() => navigate(`/profile/${post.author._id}`)}
           >{`${post.author.firstName} ${post.author.lastName}`}</h4>
           <p className="timestamp">
-            <img src={clock} alt="" />
+            <img src={post.public ? worldFillWhite : friendsFillWhite} alt="" />
             {` ${postTime}`}
           </p>
           <p className="postText">{post.text}</p>

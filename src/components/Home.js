@@ -28,7 +28,7 @@ const Home = ({ user, profile }) => {
       </div>
       <div className="middleDiv">
         <CreatePost profile={profile} />
-        <PostFeed />
+        <PostFeed profile={profile} />
       </div>
       <div className="rightDiv"></div>
     </div>
