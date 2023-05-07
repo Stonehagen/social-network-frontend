@@ -1,0 +1,59 @@
+.LikePopup {
+  border-radius: 20px;
+  background-color: var(--form-background-color);
+  padding: 20px 0 20px 20px;
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  margin-left: -140px;
+  margin-top: -225px;
+  left: 50%;
+  width: 260px;
+  height: 450px;
+  box-shadow: 5px 5px 10px -2px rgba(0, 0, 0, 0.398);
+  display: flex;
+  flex-direction: column;
+}
+
+.LikePopup ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  gap: 10px;
+}
+
+.LikePopup li {
+  border-radius: 20px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin: 0 20px 0 0;
+  text-overflow: clip;
+}
+
+.LikePopup li:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
+}
+
+.LikePopup ul .LikeImage {
+  max-width: 40px;
+  width: 40px;
+  height: 100%;
+  min-height: 40px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.LikePopup ul::-webkit-scrollbar-track {
+  background: var(--form-background-color);
+}
+
+.LikePopup ul::-webkit-scrollbar-thumb {
+  background: var(--background-color);
+}

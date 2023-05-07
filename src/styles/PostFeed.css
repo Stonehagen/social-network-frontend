@@ -126,20 +126,3 @@
 .Post .stats .shorts button:hover {
   cursor: pointer;
 }
-
-.Post .stats .likes {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.Post .stats .likes li:hover {
-  color: var(--text-color);
-  cursor: pointer;
-}
-
-.Post .stats .likes li {
-  color: var(--darker-text-color);
-}

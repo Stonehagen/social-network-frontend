@@ -9,6 +9,7 @@ import commentFill from '../img/commentFill.svg';
 import worldFillWhite from '../img/worldFillWhite.svg';
 import friendsFillWhite from '../img/friendsFillWhite.svg';
 import { useState } from 'react';
+import Likes from './Likes';
 
 const Post = ({ post, profile, getPostFeed }) => {
   const postTime = formatTime(post.timestamp);
@@ -75,16 +76,7 @@ const Post = ({ post, profile, getPostFeed }) => {
               </button>
             </div>
             {displayLikes ? (
-              <ul className="likes">
-                {likes.map((like, index) => {
-                  return (
-                    <li
-                      onClick={() => navigate(`/profile/${like._id}`)}
-                      key={index}
-                    >{`${like.firstName} ${like.lastName}`}</li>
-                  );
-                })}
-              </ul>
+              <Likes likes={likes} setDisplayLikes={setDisplayLikes} />
             ) : null}
           </div>
         </div>

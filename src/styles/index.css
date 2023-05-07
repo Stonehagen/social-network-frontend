@@ -41,3 +41,16 @@ h3,
 h4 {
   color: var(--text-color);
 }
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--form-background-color);
+  border-radius: 10px;
+}
