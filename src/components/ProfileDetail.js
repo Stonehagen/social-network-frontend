@@ -72,6 +72,7 @@ const ProfileDetail = ({ user, profile }) => {
         pageProfile={pageProfile}
         checkIfFriends={checkIfFriends}
         checkIfUserProfile={checkIfUserProfile}
+        profile={profile}
       />
     </div>
   );

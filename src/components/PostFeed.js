@@ -16,12 +16,19 @@ const PostFeed = ({ profile }) => {
   useEffect(() => {
     getPostFeed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [postFeed]);
 
   return (
     <div className="PostFeed">
       {postFeed.map((post, index) => {
-        return <Post post={post} key={index} />;
+        return (
+          <Post
+            post={post}
+            profile={profile}
+            getPostFeed={getPostFeed}
+            key={index}
+          />
+        );
       })}
     </div>
   );

@@ -3,13 +3,29 @@ import message from '../img/message.svg';
 import messageFill from '../img/messageFill.svg';
 import friend from '../img/friend.svg';
 import friendFill from '../img/friendFill.svg';
+import friendRemove from '../img/friendRemove.svg';
+import friendRemoveFill from '../img/friendRemoveFill.svg';
 
-const PageProfileMenu = ({ profile, pageProfile, getPageProfile, checkIfFriends }) => {
-
+const PageProfileMenu = ({
+  profile,
+  pageProfile,
+  getPageProfile,
+  checkIfFriends,
+}) => {
   const makeFriendRequest = () => {
     axios
       .put(`${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequest`, {
         requestedFriend: pageProfile._id,
+      })
+      .then()
+      .catch((err) => console.log(err))
+      .finally(() => getPageProfile());
+  };
+
+  const removeFriend = () => {
+    axios
+      .put(`${process.env.REACT_APP_BACKENDSERVER}/profile/friendRemove`, {
+        friend: pageProfile._id,
       })
       .then()
       .catch((err) => console.log(err))
@@ -34,16 +50,27 @@ const PageProfileMenu = ({ profile, pageProfile, getPageProfile, checkIfFriends 
       <form>
         {pageProfile.friendRequestIn.includes(profile._id) ? (
           <button
-            className="cancelRequest"
+            className="removeBtn"
             type="button"
             onClick={() => cancelFriendRequest()}
-            onMouseOver={(e) => (e.currentTarget.children[0].src = friendFill)}
-            onMouseOut={(e) => (e.currentTarget.children[0].src = friend)}
+            onMouseOver={(e) => (e.currentTarget.children[0].src = friendRemoveFill)}
+            onMouseOut={(e) => (e.currentTarget.children[0].src = friendRemove)}
           >
-            <img src={friend} alt="" />
+            <img src={friendRemove} alt="" />
             Cancel Request
           </button>
-        ) : checkIfFriends() ? null : (
+        ) : checkIfFriends() ? (
+          <button
+            className="removeBtn"
+            type="button"
+            onClick={() => removeFriend()}
+            onMouseOver={(e) => (e.currentTarget.children[0].src = friendRemoveFill)}
+            onMouseOut={(e) => (e.currentTarget.children[0].src = friendRemove)}
+          >
+            <img src={friendRemove} alt="" />
+            Remove Friend
+          </button>
+        ) : (
           <button
             className="menuBtn"
             type="button"

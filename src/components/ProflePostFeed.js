@@ -7,11 +7,12 @@ const ProfilePostFeed = ({
   pageProfile,
   checkIfFriends,
   checkIfUserProfile,
+  profile,
 }) => {
   const [postFeed, setPostFeed] = useState([]);
 
   const filterPostFeed = (feed) =>
-    checkIfFriends || checkIfUserProfile
+    checkIfFriends() || checkIfUserProfile()
       ? feed
       : feed.filter((post) => post.public);
 
@@ -25,6 +26,7 @@ const ProfilePostFeed = ({
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getPostFeed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageProfile]);
@@ -32,7 +34,14 @@ const ProfilePostFeed = ({
   return (
     <div className="PostFeed">
       {postFeed.map((post, index) => {
-        return <Post post={post} key={index} />;
+        return (
+          <Post
+            post={post}
+            profile={profile}
+            getPostFeed={getPostFeed}
+            key={`${pageProfile._id}-${index}`}
+          />
+        );
       })}
     </div>
   );

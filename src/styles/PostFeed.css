@@ -20,7 +20,6 @@
   }
 }
 
-
 .PostFeed {
   display: flex;
   flex-direction: column;
@@ -71,7 +70,8 @@
   font-weight: 200;
 }
 
-.Post form button {
+.Post button {
+  border: none;
   background-color: transparent;
   color: var(--darker-text-color);
   font-size: 0.9em;
@@ -87,14 +87,14 @@
   color: var(--darker-text-color);
 }
 
-.Post form button:hover {
+.Post button:hover {
+  background-color: transparent;
   color: var(--text-color);
 }
 
 .Post .likeBtn img {
   width: 16px;
 }
-
 
 .Post .commentBtn {
   display: flex;
@@ -113,7 +113,6 @@
   cursor: pointer;
 }
 
-
 .Post .PostTop .PostImage:hover {
   cursor: pointer;
 }
@@ -122,4 +121,25 @@
   width: 100%;
   object-fit: cover;
   object-position: center top;
+}
+
+.Post .stats .shorts button:hover {
+  cursor: pointer;
+}
+
+.Post .stats .likes {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.Post .stats .likes li:hover {
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.Post .stats .likes li {
+  color: var(--darker-text-color);
 }
