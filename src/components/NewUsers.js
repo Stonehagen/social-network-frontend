@@ -23,10 +23,10 @@ const NewUsers = () => {
   return (
     <div className="NewUsers">
       <h3>Do you know them?</h3>
-      <div>
+      <ul>
         {profiles.map((profile, index) => {
           return (
-            <div className="profilePreview" key={index}>
+            <li className="profilePreview" key={index}>
               <img
                 onClick={() => navigate(`/profile/${profile._id}`)}
                 src={`${process.env.REACT_APP_BACKENDSERVER}/images/${profile.photo}`}
@@ -38,11 +38,10 @@ const NewUsers = () => {
                 >{`${profile.firstName} ${profile.lastName}`}</h4>
                 <p>{profile.status}</p>
               </div>
-              <Link to={`/profile/${profile._id}`}>Profile</Link>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const Search = ({ profiles, handleCloseSearch, setOpenSearch}) => {
   return (
     <div ref={wrapperRef} className="SearchMenu">
       <ul onClick={() => handleCloseSearch()}>
-        {profiles.map((foundProfile, index) => {
+        {profiles.slice(0,10).map((foundProfile, index) => {
           return (
             <li className="searchPreview" key={index}>
               <img

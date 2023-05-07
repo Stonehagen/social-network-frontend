@@ -75,8 +75,8 @@ const Post = ({ post, profile, getPostFeed }) => {
                 {`${post.likes.length}`}
               </button>
             </div>
-            {displayLikes ? (
-              <Likes likes={likes} setDisplayLikes={setDisplayLikes} />
+            {displayLikes && post.likes.length > 0 ? (
+              <Likes likes={likes} setDisplayLikes={setDisplayLikes}/>
             ) : null}
           </div>
         </div>
