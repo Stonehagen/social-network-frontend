@@ -16,6 +16,7 @@ import ProfileEdit from './ProfileEdit';
 import AllFriends from './AllFriends';
 import AllFriendRequests from './AllFriendRequests';
 import AllFriendRequestsOut from './AllFriendRequestsOut';
+import Messenger from './Messenger';
 
 const App = () => {
   const [profile, setProfile] = useState(null);
@@ -109,6 +110,10 @@ const App = () => {
           <Route
             path="/profile/:id"
             element={<ProfileDetail user={user} profile={profile} />}
+          />
+          <Route
+            path="/messenger"
+            element={<Messenger user={user} profile={profile} />}
           />
           <Route path="/signup" element={<SignUp user={user} />} />
           <Route path="/login" element={<LogIn user={user} login={login} />} />

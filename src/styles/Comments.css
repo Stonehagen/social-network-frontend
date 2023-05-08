@@ -102,9 +102,9 @@
   border-radius: 10px;
 }
 
-.Comments li:hover {
+.Comments h4:hover {
   cursor: pointer;
-  background-color: var(--highlight-color);
+  color: var(--highlight-color);
 }
 
 .Comments .commentHeader {
@@ -139,6 +139,11 @@
   object-fit: cover;
   object-position: center top;
 }
+
+.Comments .CommentsImage:hover {
+  cursor: pointer;
+}
+
 .Comments .commentText {
   width: 100%;
   margin: 0;

@@ -57,18 +57,18 @@ const Comments = ({ comments, getComments, postId, profile }) => {
         {comments.map((comment, index) => {
           const commentTime = formatTime(comment.timestamp);
           return (
-            <li
-              onClick={() => navigate(`/profile/${comment.author}`)}
-              key={index}
-            >
+            <li key={index}>
               <div className="commentHeader">
                 <img
+                  onClick={() => navigate(`/profile/${comment.author}`)}
                   className="CommentsImage"
                   src={`${process.env.REACT_APP_BACKENDSERVER}/images/${comment.author.photo}`}
                   alt=""
                 />
                 <div className="commentHeaderAuthor">
-                  <h4>{`${comment.author.firstName} ${comment.author.lastName}`}</h4>
+                  <h4
+                    onClick={() => navigate(`/profile/${comment.author._id}`)}
+                  >{`${comment.author.firstName} ${comment.author.lastName}`}</h4>
                   <p>{commentTime}</p>
                 </div>
               </div>
