@@ -7,7 +7,6 @@
   .MainContainer {
     min-height: calc(100vh - 125px);
   }
-
 }
 
 @media (min-width: 800px) and (max-width: 1199px) {
@@ -23,7 +22,6 @@
   .rightDiv {
     display: hidden;
   }
-
 }
 
 @media (max-width: 799px) {
@@ -42,11 +40,9 @@
 }
 
 .Main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: auto;
-  overflow-x: hidden;
+  display: block;
+  overflow-y: scroll;
+  height: calc(100vh - 50px);
 }
 
 .MainContainer {

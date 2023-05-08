@@ -1,20 +1,24 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { formatTime } from '../methods/formatTime';
+import { useState } from 'react';
 import '../styles/PostFeed.css';
+import Likes from './Likes';
+import Comments from './Comments';
 import heart from '../img/heart.svg';
 import heartFill from '../img/heartFill.svg';
 import comment from '../img/comment.svg';
 import commentFill from '../img/commentFill.svg';
 import worldFillWhite from '../img/worldFillWhite.svg';
 import friendsFillWhite from '../img/friendsFillWhite.svg';
-import { useState } from 'react';
-import Likes from './Likes';
+
 
 const Post = ({ post, profile, getPostFeed }) => {
   const postTime = formatTime(post.timestamp);
   const [likes, setLikes] = useState([]);
+  const [comments, setComments] = useState([]);
   const [displayLikes, setDisplayLikes] = useState(false);
+  const [displayComments, setDisplayComments] = useState(false);
 
   const navigate = useNavigate();
 
@@ -37,6 +41,13 @@ const Post = ({ post, profile, getPostFeed }) => {
     await axios
       .get(`${process.env.REACT_APP_BACKENDSERVER}/post/likes/${post._id}`)
       .then((res) => setLikes(res.data.likes))
+      .catch((err) => console.log(err));
+  };
+
+  const getComments = async () => {
+    await axios
+      .get(`${process.env.REACT_APP_BACKENDSERVER}/post/comments/${post._id}`)
+      .then((res) => setComments(res.data.comments))
       .catch((err) => console.log(err));
   };
 
@@ -74,14 +85,24 @@ const Post = ({ post, profile, getPostFeed }) => {
                 />
                 {`${post.likes.length}`}
               </button>
+              <button
+                onClick={() => {
+                  getComments();
+                  setDisplayComments(!displayComments);
+                }}
+                type="button"
+                className="commentBtn"
+              >
+                <img src={comment} alt="" />
+                {`${post.comments.length}`}
+              </button>
             </div>
             {displayLikes && post.likes.length > 0 ? (
-              <Likes likes={likes} setDisplayLikes={setDisplayLikes}/>
+              <Likes likes={likes} setDisplayLikes={setDisplayLikes} />
             ) : null}
           </div>
         </div>
       </div>
-
       <form>
         {post.likes.includes(profile._id) ? (
           <button
@@ -107,6 +128,10 @@ const Post = ({ post, profile, getPostFeed }) => {
           </button>
         )}
         <button
+          onClick={() => {
+            getComments();
+            setDisplayComments(!displayComments);
+          }}
           type="button"
           className="likeBtn"
           onMouseOver={(e) => (e.currentTarget.children[0].src = commentFill)}
@@ -116,6 +141,14 @@ const Post = ({ post, profile, getPostFeed }) => {
           Comment
         </button>
       </form>
+      {displayComments ? (
+        <Comments
+          comments={comments}
+          getComments={getComments}
+          postId={post._id}
+          profile={profile}
+        />
+      ) : null}
     </div>
   );
 };

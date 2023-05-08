@@ -34,10 +34,13 @@ body {
   margin: 0;
   padding: 0;
 }
+body>div {
+  max-height: 100vh;
+}
 
 h1,
 h2,
-h3, 
+h3,
 h4 {
   color: var(--text-color);
 }
