@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { io } from 'socket.io-client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
@@ -17,6 +18,8 @@ import AllFriends from './AllFriends';
 import AllFriendRequests from './AllFriendRequests';
 import AllFriendRequestsOut from './AllFriendRequestsOut';
 import Messenger from './Messenger';
+
+const socket = io(process.env.REACT_APP_BACKENDSERVER);
 
 const App = () => {
   const [profile, setProfile] = useState(null);
@@ -85,6 +88,7 @@ const App = () => {
         logout={logout}
         setUserProfile={setUserProfile}
         profile={profile}
+        socket={socket} 
       />
       <div className="Main">
         <Routes>
@@ -113,7 +117,9 @@ const App = () => {
           />
           <Route
             path="/messenger"
-            element={<Messenger user={user} profile={profile} />}
+            element={
+              <Messenger user={user} profile={profile} socket={socket} />
+            }
           />
           <Route path="/signup" element={<SignUp user={user} />} />
           <Route path="/login" element={<LogIn user={user} login={login} />} />

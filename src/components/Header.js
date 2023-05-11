@@ -7,7 +7,7 @@ import CornLogo from '../img/corn.svg';
 import HeaderMenu from './HeaderMenu';
 import Search from './Search';
 
-const Header = ({ user, logout, setUserProfile, profile }) => {
+const Header = ({ user, logout, setUserProfile, profile, socket }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [search, setSearch] = useState('');
@@ -76,6 +76,7 @@ const Header = ({ user, logout, setUserProfile, profile }) => {
               onChange={(e) => setSearch(e.target.value)}
             />
           </form>
+
           {profiles && openSearch ? (
             <Search
               profiles={profiles}

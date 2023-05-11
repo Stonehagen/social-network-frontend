@@ -30,8 +30,9 @@
   .AllFriends,
   .LogIn,
   .SignUp,
-  .MainContainer {
-    min-height: calc(100vh - 125px);
+  .MainContainer,
+  .Messenger {
+    min-height: calc(100vh - 126px);
   }
 
   .rightDiv {
@@ -41,7 +42,8 @@
 
 .Main {
   display: block;
-  overflow-y: overlay;
+  overflow-y: auto;
+  overflow-x: hidden;
   height: calc(100vh - 50px);
 }
 
