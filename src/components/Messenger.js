@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Messenger.css';
 import MessageNew from '../img/messageNew.svg';
 import MessageNewFill from '../img/messageNewFill.svg';
 import NewRoom from './NewRoom';
 
-
 const Messenger = ({ user, profile, socket }) => {
   const [displayNewRoom, setDisplayNewRoom] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="Messenger">
@@ -25,8 +34,8 @@ const Messenger = ({ user, profile, socket }) => {
           <img src={MessageNew} alt="" />
         </button>
         {displayNewRoom ? (
-              <NewRoom setDisplayNewRoom={setDisplayNewRoom} />
-            ) : null}
+          <NewRoom setDisplayNewRoom={setDisplayNewRoom} profile={profile} />
+        ) : null}
       </div>
       <div>
         <ul>

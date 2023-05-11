@@ -1,6 +1,6 @@
 @media (min-width: 1200px) {
   .NewRoom {
-    margin-left: -190px;
+    margin-left: -180px;
     margin-top: -225px;
     width: 360px;
     height: 450px;
@@ -9,10 +9,9 @@
   }
 }
 
-
 @media (min-width: 800px) and (max-width: 1199px) {
   .NewRoom {
-    margin-left: -190px;
+    margin-left: -180px;
     margin-top: -225px;
     width: 360px;
     height: 450px;
@@ -23,7 +22,7 @@
 
 @media (min-width: 600px) and (max-width: 799px) {
   .NewRoom {
-    margin-left: -190px;
+    margin-left: -180px;
     margin-top: -225px;
     width: 360px;
     height: 450px;
@@ -34,28 +33,28 @@
 
 @media (max-width: 599px) {
   .NewRoom {
-    width: calc(100% - 40px);
+    width: calc(100% - 60px);
     height: calc(100% - 150px);
     top: 50px;
     left: 10px;
   }
 }
 
-
 .NewRoom {
   border-radius: 20px;
   background-color: var(--lighter-background-color);
-  padding: 20px 0 20px 20px;
+  padding: 20px;
   position: fixed;
   z-index: 1;
   box-shadow: 5px 5px 25px 2px rgba(0, 0, 0, 0.75);
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
-.NewRoom .closeNewRoom img {
-  height: 24px;
-  margin: -20px -10px 0 0;
+.NewRoom .newRoomHeader button img {
+  height: 32px;
+  margin: 0;
 }
 
 .NewRoom .newRoomHeader button {
@@ -63,15 +62,79 @@
 }
 
 .NewRoom .newRoomHeader {
+  margin: 0 0 0 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 100%;
   max-height: 30px;
-  margin-right: 15px;
 }
 
 .NewRoom button:hover {
   cursor: pointer;
+}
+
+.NewRoom form {
+  padding: 0;
+}
+
+.NewRoom form input {
+  font-size: 1em;
+  color-scheme: dark;
+  border-radius: 15px;
+  height: 30px;
+  padding: 0 10px;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  border: none;
+}
+
+.NewRoom .friendList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: var(--form-background-color);
+  border-radius: 10px;
+}
+
+.NewRoom .friendList::-webkit-scrollbar-thumb {
+  background: var(--background-color);
+}
+
+.NewRoom .friendList li {
+  height: 40px;
+  min-height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 0 0 10px;
+  border-bottom: 1px solid var(--lighter-background-color);
+  border-radius: 10px 10px 0 0;
+  gap: 10px;
+}
+
+.NewRoom .friendList li:hover {
+  background-color: var(--highlight-color);
+  cursor: pointer;
+}
+
+.NewRoom .friendList .FriendImage {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.NewRoom .friendList h4 {
+  margin: 0;
+  color: var(--darker-text-color);
+}
+
+.NewRoom .friendList h4 span {
+  margin: 0;
+  color: var(--text-color);
 }

@@ -4,8 +4,9 @@
   .AllFriends,
   .LogIn,
   .SignUp,
-  .MainContainer {
-    min-height: calc(100vh - 125px);
+  .MainContainer,
+  .Messenger  {
+    min-height: calc(100vh - 126px);
   }
 }
 
@@ -15,8 +16,9 @@
   .AllFriends,
   .LogIn,
   .SignUp,
-  .MainContainer {
-    min-height: calc(100vh - 125px);
+  .MainContainer,
+  .Messenger  {
+    min-height: calc(100vh - 126px);
   }
 
   .rightDiv {
