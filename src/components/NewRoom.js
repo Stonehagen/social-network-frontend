@@ -5,7 +5,7 @@ import '../styles/NewRoom.css';
 import CloseRed from '../img/closeRed.svg';
 import CloseFillRed from '../img/closeFillRed.svg';
 
-const NewRoom = ({ setDisplayNewRoom, profile }) => {
+const NewRoom = ({ setDisplayNewRoom, profile, getRooms }) => {
   const [friends, setFriends] = useState([]);
   const wrapperRef = useRef(null);
   OutsideClick(wrapperRef, setDisplayNewRoom);
@@ -25,9 +25,10 @@ const NewRoom = ({ setDisplayNewRoom, profile }) => {
         chatPartner,
       })
       .then((res) => {
-        console.log(res);
+        getRooms();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setDisplayNewRoom(false));
   };
 
   useEffect(() => {

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Messenger.css';
@@ -6,14 +7,23 @@ import MessageNewFill from '../img/messageNewFill.svg';
 import NewRoom from './NewRoom';
 
 const Messenger = ({ user, profile, socket }) => {
+  const [rooms, setRooms] = useState([]);
   const [displayNewRoom, setDisplayNewRoom] = useState(false);
 
   const navigate = useNavigate();
+
+  const getRooms = async () => {
+    await axios
+      .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/rooms`)
+      .then((res) => setRooms(res.data.rooms))
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     if (!user) {
       navigate('/login');
     }
+    getRooms();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -34,15 +44,32 @@ const Messenger = ({ user, profile, socket }) => {
           <img src={MessageNew} alt="" />
         </button>
         {displayNewRoom ? (
-          <NewRoom setDisplayNewRoom={setDisplayNewRoom} profile={profile} />
+          <NewRoom
+            setDisplayNewRoom={setDisplayNewRoom}
+            profile={profile}
+            getRooms={getRooms}
+          />
         ) : null}
       </div>
-      <div>
+      <div className='chats'>
         <ul>
-          <li>chat mockup 1</li>
-          <li>chat mockup 2</li>
-          <li>chat mockup 3</li>
-          <li>chat mockup 4</li>
+          {rooms.map((room, index) => {
+            const chatPartner =
+              room.users[0]._id === profile._id ? room.users[1] : room.users[0];
+            return (
+              <li key={index}>
+                <img
+                  className="FriendImage"
+                  src={`${process.env.REACT_APP_BACKENDSERVER}/images/${chatPartner.photo}`}
+                  alt=""
+                />
+                <div>
+                  <h4>{`${chatPartner.firstName} ${chatPartner.lastName}`}</h4>
+                  <p>{room.messages[0]}</p>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

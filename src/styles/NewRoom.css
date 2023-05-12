@@ -54,7 +54,7 @@
 
 .NewRoom .newRoomHeader button img {
   height: 32px;
-  margin: 0;
+  margin: 0 -8px 0 0;
 }
 
 .NewRoom .newRoomHeader button {
