@@ -5,10 +5,13 @@ import '../styles/Messenger.css';
 import MessageNew from '../img/messageNew.svg';
 import MessageNewFill from '../img/messageNewFill.svg';
 import NewRoom from './NewRoom';
+import Chat from './Chat';
 
 const Messenger = ({ user, profile, socket }) => {
   const [rooms, setRooms] = useState([]);
   const [displayNewRoom, setDisplayNewRoom] = useState(false);
+  const [displayChat, setDisplayChat] = useState(false);
+  const [activeRoom, setActiveRoom] = useState(null);
 
   const navigate = useNavigate();
 
@@ -50,14 +53,28 @@ const Messenger = ({ user, profile, socket }) => {
             getRooms={getRooms}
           />
         ) : null}
+        {displayChat ? (
+          <Chat
+            profile={profile}
+            setDisplayChat={setDisplayChat}
+            activeRoom={activeRoom}
+            socket={socket}
+          />
+        ) : null}
       </div>
-      <div className='chats'>
+      <div className="chats">
         <ul>
           {rooms.map((room, index) => {
             const chatPartner =
               room.users[0]._id === profile._id ? room.users[1] : room.users[0];
             return (
-              <li key={index}>
+              <li
+                key={index}
+                onClick={() => {
+                  setActiveRoom(room);
+                  setDisplayChat(true);
+                }}
+              >
                 <img
                   className="FriendImage"
                   src={`${process.env.REACT_APP_BACKENDSERVER}/images/${chatPartner.photo}`}

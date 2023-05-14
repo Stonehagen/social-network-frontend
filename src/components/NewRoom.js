@@ -7,6 +7,7 @@ import CloseFillRed from '../img/closeFillRed.svg';
 
 const NewRoom = ({ setDisplayNewRoom, profile, getRooms }) => {
   const [friends, setFriends] = useState([]);
+  const [searchText, setSearchText] = useState();
   const wrapperRef = useRef(null);
   OutsideClick(wrapperRef, setDisplayNewRoom);
 
@@ -57,8 +58,8 @@ const NewRoom = ({ setDisplayNewRoom, profile, getRooms }) => {
           placeholder="TO:"
           id="search"
           name="search"
-          value={null}
-          onChange={(e) => null}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
         />
       </form>
       <ul className="friendList">

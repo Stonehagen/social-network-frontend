@@ -29,8 +29,6 @@
   flex-direction: column;
   list-style: none;
   padding: 0;
-  gap: 10px;
-
 }
 
 .Messenger .chats ul li{
@@ -50,6 +48,7 @@
 .Messenger .chats ul li div{
   width: 100%;
   border-bottom: 1px solid var(--form-background-color);
+  padding: 10px 0;
 }
 
 .Messenger .chats ul li:last-of-type div{

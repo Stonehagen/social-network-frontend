@@ -1,5 +1,5 @@
 @media (min-width: 1200px) {
-  .NewRoom {
+  .Chat {
     margin-left: -180px;
     margin-top: -225px;
     width: 360px;
@@ -10,7 +10,7 @@
 }
 
 @media (min-width: 800px) and (max-width: 1199px) {
-  .NewRoom {
+  .Chat {
     margin-left: -180px;
     margin-top: -225px;
     width: 360px;
@@ -21,7 +21,7 @@
 }
 
 @media (min-width: 600px) and (max-width: 799px) {
-  .NewRoom {
+  .Chat {
     margin-left: -180px;
     margin-top: -225px;
     width: 360px;
@@ -32,7 +32,7 @@
 }
 
 @media (max-width: 599px) {
-  .NewRoom {
+  .Chat {
     width: calc(100% - 60px);
     height: calc(100% - 150px);
     top: 50px;
@@ -40,7 +40,7 @@
   }
 }
 
-.NewRoom {
+.Chat {
   border-radius: 20px;
   background-color: var(--lighter-background-color);
   padding: 20px;
@@ -52,34 +52,79 @@
   gap: 20px;
 }
 
-.NewRoom .newRoomHeader button img {
+.Chat .ChatHeader button img {
   height: 35px;
   margin: 0 -8px 0 0;
 }
 
-.NewRoom .newRoomHeader button {
+.Chat .ChatHeader button {
   background-color: var(--lighter-background-color);
 }
 
-.NewRoom .newRoomHeader {
-  margin: 0 0 0 10px;
+.Chat .ChatHeader button:hover {
+  cursor: pointer;
+}
+
+
+.Chat .ChatHeader {
+  margin: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  max-height: 30px;
+  max-height: 35px;
 }
 
-.NewRoom button:hover {
+.Chat .ChatHeader div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+
+
+.Chat .ChatHeader .FriendImage {
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  min-height: 35px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 20px;
+}
+
+.Chat .ChatHeader .FriendImage:hover {
   cursor: pointer;
 }
 
-.NewRoom form {
-  padding: 0;
+.Chat .ChatHeader h3 {
+  font-size: 1.4em;
+  margin: 0;
 }
 
-.NewRoom form input {
+
+.Chat .ChatHeader h3:hover {
+  cursor: pointer;
+  color: var(--highlight-color);
+}
+
+.Chat .ChatWindow {
+  flex: 1;
+  background-color: var(--form-background-color);
+  border-radius: 20px;
+}
+
+.Chat .ChatControlls {}
+
+.Chat .ChatControlls form {
+  flex-direction: row;
+  padding: 0;
+  gap: 20px;
+}
+
+.Chat .ChatControlls form input {
   font-size: 1em;
   color-scheme: dark;
   border-radius: 15px;
@@ -88,53 +133,25 @@
   background-color: var(--text-color);
   color: var(--background-color);
   border: none;
+  width: 100%;
 }
 
-.NewRoom .friendList {
-  list-style: none;
-  margin: 0;
+.Chat .ChatControlls form button {
   padding: 0;
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
   display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  background-color: var(--form-background-color);
-  border-radius: 10px;
-}
-
-.NewRoom .friendList::-webkit-scrollbar-thumb {
-  background: var(--background-color);
-}
-
-.NewRoom .friendList li {
-  height: 40px;
-  min-height: 40px;
-  display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  padding: 0 0 0 10px;
-  border-bottom: 1px solid var(--lighter-background-color);
-  border-radius: 10px 10px 0 0;
-  gap: 10px;
+  background-color: var(--text-color);
 }
 
-.NewRoom .friendList li:hover {
-  background-color: var(--highlight-color);
+.Chat .ChatControlls form button:hover {
   cursor: pointer;
 }
 
-.NewRoom .friendList .FriendImage {
-  width: 32px;
-  height: 32px;
-  object-fit: cover;
-  border-radius: 16px;
-}
-
-.NewRoom .friendList h4 {
-  margin: 0;
-  color: var(--darker-text-color);
-}
-
-.NewRoom .friendList h4 span {
-  margin: 0;
-  color: var(--text-color);
+.Chat .ChatControlls form button img {
+  margin: 2px 2px 0 0;
+  height: 30px;
 }
