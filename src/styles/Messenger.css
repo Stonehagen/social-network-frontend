@@ -35,9 +35,8 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
-  padding: 0 20px;
+  padding: 10px 20px;
   align-items: center;
-  width: 100%;
 }
 
 .Messenger .chats ul li:hover{
@@ -46,9 +45,27 @@
 }
 
 .Messenger .chats ul li div{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   width: 100%;
   border-bottom: 1px solid var(--form-background-color);
-  padding: 10px 0;
+  width: calc(100% - 70px);
+}
+
+.Messenger .chats ul li div h4{
+  margin: 0;
+}
+
+.Messenger .chats ul li div p{
+  font-size: 0.9em;
+  color: var(--darker-text-color);
+  overflow: hidden;
+  padding: 0 10px 0 0;
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .Messenger .chats ul li:last-of-type div{

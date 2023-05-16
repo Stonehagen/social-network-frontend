@@ -1,42 +1,19 @@
-@media (min-width: 1200px) {
+@media (min-width: 600px) {
   .Chat {
-    margin-left: -180px;
-    margin-top: -225px;
-    width: 360px;
-    height: 450px;
-    top: 50%;
-    left: 50%;
-  }
-}
-
-@media (min-width: 800px) and (max-width: 1199px) {
-  .Chat {
-    margin-left: -180px;
-    margin-top: -225px;
-    width: 360px;
-    height: 450px;
-    top: 50%;
-    left: 50%;
-  }
-}
-
-@media (min-width: 600px) and (max-width: 799px) {
-  .Chat {
-    margin-left: -180px;
-    margin-top: -225px;
-    width: 360px;
-    height: 450px;
-    top: 50%;
+    margin-left: -270px;
+    width: 500px;
+    height: calc(100% - 150px);
+    top: 50px;
     left: 50%;
   }
 }
 
 @media (max-width: 599px) {
   .Chat {
-    width: calc(100% - 60px);
+    width: calc(100% - 40px);
     height: calc(100% - 150px);
     top: 50px;
-    left: 10px;
+    left: 0px;
   }
 }
 
@@ -65,7 +42,6 @@
   cursor: pointer;
 }
 
-
 .Chat .ChatHeader {
   margin: 0;
   display: flex;
@@ -80,10 +56,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+  width: calc(100% - 50px);
 }
-
-
 
 .Chat .ChatHeader .FriendImage {
   width: 35px;
@@ -100,10 +75,12 @@
 }
 
 .Chat .ChatHeader h3 {
-  font-size: 1.4em;
+  font-size: 1.2em;
   margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
-
 
 .Chat .ChatHeader h3:hover {
   cursor: pointer;
@@ -111,6 +88,8 @@
 }
 
 .Chat .ChatWindow {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   background-color: var(--form-background-color);
   border-radius: 20px 10px 10px 20px;
@@ -126,19 +105,48 @@
   flex-direction: column;
   gap: 10px;
   list-style: none;
+  padding: 5px;
+}
+
+.Chat .ChatWindow ul li {
+  width: 80%;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.Chat .ChatWindow ul li p {
+  margin: 0;
+}
+
+.Chat .ChatWindow ul li .messageTimestamp {
+  color: var(--darker-text-color);
+  font-size: 0.8em;
+  text-align: end;
+  margin-top: 10px;
+}
+
+.Chat .ChatWindow ul li .messageTimestamp span {
+  opacity: 0.2;
 }
 
 .Chat .ChatWindow ul .out {
+  background-color: var(--highlight-color);
+  align-self: flex-end;
+}
+
+.Chat .ChatWindow ul .out .messageTimestamp {
+  color: var(--form-background-color);
+}
+
+
+.Chat .ChatWindow ul .in {
+  align-self: flex-start;
   background-color: var(--lighter-background-color);
 }
 
-.Chat .ChatWindow ul .in {
-  background-color: var(--background-color);
+.Chat .ChatWindow ul .out p {
+  color: var(--background-color);
 }
-
-
-
-.Chat .ChatControlls {}
 
 .Chat .ChatControlls form {
   flex-direction: row;

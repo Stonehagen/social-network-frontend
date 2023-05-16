@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OutsideClick } from '../methods/outsideClick';
+import { formatTime } from '../methods/formatTime';
 import '../styles/Chat.css';
 import CloseRed from '../img/closeRed.svg';
 import CloseFillRed from '../img/closeFillRed.svg';
@@ -40,7 +41,10 @@ const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
         },
       )
       .then(() => {
-        socket.emit('chat message', { profileId: profile._id, message });
+        socket.emit('chat message', {
+          sender: profile._id,
+          receiver: chatPartner._id,
+        });
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -50,15 +54,15 @@ const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
             text: message,
             timestamp: Date.now(),
             room: activeRoom._id,
-            author: profile._id,
+            author: { _id: profile._id },
           },
         ]);
         setMessage('');
       });
   };
 
-  socket.on('chat message', (msg) => {
-    console.log(msg);
+  socket.on('private message', () => {
+    getMessages();
   });
 
   useEffect(() => {
@@ -99,7 +103,10 @@ const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
                 className={message.author._id === profile._id ? 'out' : 'in'}
               >
                 <p className="messageText">{message.text}</p>
-                <p className="messageTimestamp">{message.timestamp}</p>
+                <p className="messageTimestamp">
+                  <span>{formatTime(message.timestamp).split(',')[0]}</span>
+                  {formatTime(message.timestamp).split(',')[1]}
+                </p>
               </li>
             );
           })}

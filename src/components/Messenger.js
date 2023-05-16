@@ -82,7 +82,11 @@ const Messenger = ({ user, profile, socket }) => {
                 />
                 <div>
                   <h4>{`${chatPartner.firstName} ${chatPartner.lastName}`}</h4>
-                  <p>{room.messages[0].text}</p>
+                  <p>{`${
+                    room.messages[0].author === profile._id
+                      ? 'You: '
+                      : `${chatPartner.firstName}: `
+                  } ${room.messages[0].text}`}</p>
                 </div>
               </li>
             );

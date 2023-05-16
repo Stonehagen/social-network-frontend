@@ -25,6 +25,7 @@ const App = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
+  let socketIdSend = false;
 
   const [cookies, removeCookie] = useCookies(['jwt_token']);
   const token = getAuthToken(cookies);
@@ -36,7 +37,10 @@ const App = () => {
   setAxiosHeader();
 
   const sendSocketId = (profileId) => {
-    socket.emit('setSocketId', { profileId: profileId, socketId: socket.id });
+    if (!socketIdSend) {
+      socket.emit('setSocketId', { profileId: profileId, socketId: socket.id });
+      socketIdSend = true;
+    }
   };
 
   const login = (email, id) => {
