@@ -113,8 +113,30 @@
 .Chat .ChatWindow {
   flex: 1;
   background-color: var(--form-background-color);
-  border-radius: 20px;
+  border-radius: 20px 10px 10px 20px;
+  overflow-y: auto;
 }
+
+.Chat .ChatWindow::-webkit-scrollbar-thumb {
+  background: var(--background-color);
+}
+
+.Chat .ChatWindow ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+
+.Chat .ChatWindow ul .out {
+  background-color: var(--lighter-background-color);
+}
+
+.Chat .ChatWindow ul .in {
+  background-color: var(--background-color);
+}
+
+
 
 .Chat .ChatControlls {}
 

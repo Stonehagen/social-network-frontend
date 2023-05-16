@@ -28,7 +28,7 @@ const Messenger = ({ user, profile, socket }) => {
     }
     getRooms();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [displayChat]);
 
   return (
     <div className="Messenger">
@@ -82,7 +82,7 @@ const Messenger = ({ user, profile, socket }) => {
                 />
                 <div>
                   <h4>{`${chatPartner.firstName} ${chatPartner.lastName}`}</h4>
-                  <p>{room.messages[0]}</p>
+                  <p>{room.messages[0].text}</p>
                 </div>
               </li>
             );

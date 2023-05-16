@@ -9,8 +9,8 @@ import sendDark from '../img/sendDark.svg';
 import sendFillDark from '../img/sendFillDark.svg';
 
 const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
-  const [messages, setMessages] = useState(activeRoom.messages);
-  const [message, setMessage] = useState();
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState('');
   const wrapperRef = useRef(null);
   const chatPartner =
     activeRoom.users[0]._id === profile._id
@@ -21,11 +21,48 @@ const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
 
   const navigate = useNavigate();
 
-  const sendMessage = (e) => {
-    e.preventDefault();
+  const getMessages = async () => {
+    await axios
+      .get(
+        `${process.env.REACT_APP_BACKENDSERVER}/room/getmessages/${activeRoom._id}`,
+      )
+      .then((res) => setMessages(res.data.messages))
+      .catch((err) => console.log(err));
   };
 
+  const sendMessage = (e) => {
+    e.preventDefault();
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKENDSERVER}/room/addmessage/${activeRoom._id}`,
+        {
+          text: message,
+        },
+      )
+      .then(() => {
+        socket.emit('chat message', { profileId: profile._id, message });
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setMessages((messages) => [
+          ...messages,
+          {
+            text: message,
+            timestamp: Date.now(),
+            room: activeRoom._id,
+            author: profile._id,
+          },
+        ]);
+        setMessage('');
+      });
+  };
+
+  socket.on('chat message', (msg) => {
+    console.log(msg);
+  });
+
   useEffect(() => {
+    getMessages();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -53,7 +90,21 @@ const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
           <img src={CloseRed} alt="" />
         </button>
       </div>
-      <div className="ChatWindow"></div>
+      <div className="ChatWindow">
+        <ul>
+          {messages.map((message, index) => {
+            return (
+              <li
+                key={index}
+                className={message.author._id === profile._id ? 'out' : 'in'}
+              >
+                <p className="messageText">{message.text}</p>
+                <p className="messageTimestamp">{message.timestamp}</p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
       <div className="ChatControlls">
         <form onSubmit={(e) => sendMessage(e)}>
           <input

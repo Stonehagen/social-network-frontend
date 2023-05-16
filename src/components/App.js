@@ -35,6 +35,10 @@ const App = () => {
 
   setAxiosHeader();
 
+  const sendSocketId = (profileId) => {
+    socket.emit('setSocketId', { profileId: profileId, socketId: socket.id });
+  };
+
   const login = (email, id) => {
     setUser({
       email,
@@ -52,7 +56,10 @@ const App = () => {
   const setUserProfile = async (profile) => {
     await axios
       .get(`${process.env.REACT_APP_BACKENDSERVER}/profile`)
-      .then((res) => setProfile(res.data.profile))
+      .then((res) => {
+        setProfile(res.data.profile);
+        sendSocketId(res.data.profile._id);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -66,7 +73,9 @@ const App = () => {
         }),
       )
       .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -88,7 +97,7 @@ const App = () => {
         logout={logout}
         setUserProfile={setUserProfile}
         profile={profile}
-        socket={socket} 
+        socket={socket}
       />
       <div className="Main">
         <Routes>
