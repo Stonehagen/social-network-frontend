@@ -109,7 +109,8 @@
 }
 
 .Chat .ChatWindow ul li {
-  width: 80%;
+  max-width: 80%;
+  min-width: 50%;
   border-radius: 20px;
   padding: 10px;
 }

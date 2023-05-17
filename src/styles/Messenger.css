@@ -37,6 +37,11 @@
   gap: 20px;
   padding: 10px 20px;
   align-items: center;
+  border-bottom: 1px solid var(--form-background-color);
+}
+
+.Messenger .chats ul li:first-of-type{
+  border-top: 1px solid var(--form-background-color);
 }
 
 .Messenger .chats ul li:hover{
@@ -49,7 +54,6 @@
   flex-direction: column;
   gap: 5px;
   width: 100%;
-  border-bottom: 1px solid var(--form-background-color);
   width: calc(100% - 70px);
 }
 
@@ -66,10 +70,6 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-.Messenger .chats ul li:last-of-type div{
-  border-bottom: none;
 }
 
 

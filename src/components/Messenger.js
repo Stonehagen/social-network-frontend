@@ -22,6 +22,12 @@ const Messenger = ({ user, profile, socket }) => {
       .catch((err) => console.log(err));
   };
 
+  socket.on('private message', () => {
+    if (!displayChat || !displayNewRoom) {
+      getRooms();
+    }
+  });
+
   useEffect(() => {
     if (!user) {
       navigate('/login');
@@ -82,11 +88,15 @@ const Messenger = ({ user, profile, socket }) => {
                 />
                 <div>
                   <h4>{`${chatPartner.firstName} ${chatPartner.lastName}`}</h4>
-                  <p>{`${
-                    room.messages[0].author === profile._id
-                      ? 'You: '
-                      : `${chatPartner.firstName}: `
-                  } ${room.messages[0].text}`}</p>
+                  {room.messages[0] ? (
+                    <p>{`${
+                      room.messages[0].author === profile._id
+                        ? 'You: '
+                        : `${chatPartner.firstName}: `
+                    } ${room.messages[0].text}`}</p>
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
               </li>
             );

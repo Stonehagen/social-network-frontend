@@ -12,6 +12,7 @@ import sendFillDark from '../img/sendFillDark.svg';
 const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
+  const messagesEndRef = useRef(null);
   const wrapperRef = useRef(null);
   const chatPartner =
     activeRoom.users[0]._id === profile._id
@@ -21,6 +22,10 @@ const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
   OutsideClick(wrapperRef, setDisplayChat);
 
   const navigate = useNavigate();
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView();
+  };
 
   const getMessages = async () => {
     await axios
@@ -41,10 +46,7 @@ const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
         },
       )
       .then(() => {
-        socket.emit('chat message', {
-          sender: profile._id,
-          receiver: chatPartner._id,
-        });
+        socket.emit('chat message', chatPartner._id, activeRoom._id);
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -61,14 +63,21 @@ const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
       });
   };
 
-  socket.on('private message', () => {
-    getMessages();
+  socket.on('private message', (room) => {
+    if (room === activeRoom._id) {
+      getMessages();
+    }
   });
 
   useEffect(() => {
-    getMessages();
+    if (messages.length <= 0) {
+      getMessages();
+    } else {
+      scrollToBottom();
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [messages]);
 
   return (
     <div ref={wrapperRef} className="Chat">
@@ -110,6 +119,7 @@ const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
               </li>
             );
           })}
+          <div ref={messagesEndRef}></div>
         </ul>
       </div>
       <div className="ChatControlls">
