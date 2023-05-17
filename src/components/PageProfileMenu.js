@@ -5,6 +5,7 @@ import friend from '../img/friend.svg';
 import friendFill from '../img/friendFill.svg';
 import friendRemove from '../img/friendRemove.svg';
 import friendRemoveFill from '../img/friendRemoveFill.svg';
+import { useNavigate } from 'react-router-dom';
 
 const PageProfileMenu = ({
   profile,
@@ -12,6 +13,18 @@ const PageProfileMenu = ({
   getPageProfile,
   checkIfFriends,
 }) => {
+  const navigate = useNavigate();
+
+  const startRoom = async () => {
+    await axios
+      .post(`${process.env.REACT_APP_BACKENDSERVER}/room/new`, {
+        chatPartner: pageProfile._id,
+      })
+      .then()
+      .catch((err) => console.log(err))
+      .finally(() => navigate('/messenger'));
+  };
+
   const makeFriendRequest = () => {
     axios
       .put(`${process.env.REACT_APP_BACKENDSERVER}/profile/friendRequest`, {
@@ -53,7 +66,9 @@ const PageProfileMenu = ({
             className="removeBtn"
             type="button"
             onClick={() => cancelFriendRequest()}
-            onMouseOver={(e) => (e.currentTarget.children[0].src = friendRemoveFill)}
+            onMouseOver={(e) =>
+              (e.currentTarget.children[0].src = friendRemoveFill)
+            }
             onMouseOut={(e) => (e.currentTarget.children[0].src = friendRemove)}
           >
             <img src={friendRemove} alt="" />
@@ -64,7 +79,9 @@ const PageProfileMenu = ({
             className="removeBtn"
             type="button"
             onClick={() => removeFriend()}
-            onMouseOver={(e) => (e.currentTarget.children[0].src = friendRemoveFill)}
+            onMouseOver={(e) =>
+              (e.currentTarget.children[0].src = friendRemoveFill)
+            }
             onMouseOut={(e) => (e.currentTarget.children[0].src = friendRemove)}
           >
             <img src={friendRemove} alt="" />
@@ -83,6 +100,7 @@ const PageProfileMenu = ({
           </button>
         )}
         <button
+          onClick={() => startRoom()}
           className="menuBtn"
           type="button"
           onMouseOver={(e) => (e.currentTarget.children[0].src = messageFill)}

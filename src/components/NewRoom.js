@@ -32,6 +32,18 @@ const NewRoom = ({ setDisplayNewRoom, profile, getRooms }) => {
       .finally(() => setDisplayNewRoom(false));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchText) {
+      axios
+        .get(`${process.env.REACT_APP_BACKENDSERVER}/profile/search/${searchText}`)
+        .then((res) => {
+          setFriends(res.data.profiles);
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   useEffect(() => {
     getFriends();
 
@@ -52,7 +64,7 @@ const NewRoom = ({ setDisplayNewRoom, profile, getRooms }) => {
           <img src={CloseRed} alt="" />
         </button>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="TO:"

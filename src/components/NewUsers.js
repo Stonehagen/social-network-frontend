@@ -26,16 +26,17 @@ const NewUsers = () => {
       <ul>
         {profiles.map((profile, index) => {
           return (
-            <li className="profilePreview" key={index}>
+            <li
+              onClick={() => navigate(`/profile/${profile._id}`)}
+              className="profilePreview"
+              key={index}
+            >
               <img
-                onClick={() => navigate(`/profile/${profile._id}`)}
                 src={`${process.env.REACT_APP_BACKENDSERVER}/images/${profile.photo}`}
                 alt=""
               />
               <div className="profilePreviewText">
-                <h4
-                  onClick={() => navigate(`/profile/${profile._id}`)}
-                >{`${profile.firstName} ${profile.lastName}`}</h4>
+                <h4>{`${profile.firstName} ${profile.lastName}`}</h4>
                 <p>{profile.status}</p>
               </div>
             </li>

@@ -5,8 +5,9 @@ import Profile from './Profile';
 import CreatePost from './CreatePost';
 import PostFeed from './PostFeed';
 import NewUsers from './NewUsers';
+import Messenger from './Messenger';
 
-const Home = ({ user, profile }) => {
+const Home = ({ user, profile, socket }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +31,9 @@ const Home = ({ user, profile }) => {
         <CreatePost profile={profile} />
         <PostFeed profile={profile} />
       </div>
-      <div className="rightDiv"></div>
+      <div className="rightDiv">
+        <Messenger user={user} profile={profile} socket={socket} />
+      </div>
     </div>
   );
 };

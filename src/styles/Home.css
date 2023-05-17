@@ -19,8 +19,11 @@
   }
 }
 
-
 @media (min-width: 800px) and (max-width: 1199px) {
+  .rightDiv {
+    display: none;
+  }
+
   .Home {
     display: flex;
     flex-direction: row;
@@ -57,10 +60,13 @@
   .MainContainer {
     padding: 0 20px;
   }
-
 }
 
 @media (max-width: 599px) {
+  .rightDiv {
+    display: none;
+  }
+
   .leftDiv,
   .middleDiv {
     width: 100%;
@@ -79,11 +85,28 @@
 
 .leftDiv {
   flex-direction: column;
-  gap: 20px
+  gap: 20px;
 }
 
 .middleDiv {
   display: flex;
   flex-direction: column;
-  gap: 20px
+  gap: 20px;
+}
+
+.rightDiv {
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+}
+
+.rightDiv>div {
+  background-color: var(--lighter-background-color);
+  border-radius: 20px;
+  min-height: auto;
+  padding: 20px 0;
+}
+
+.rightDiv>div .MessengerHeader button {
+  background-color: transparent;
 }

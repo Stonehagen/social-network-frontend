@@ -105,7 +105,10 @@ const App = () => {
       />
       <div className="Main">
         <Routes>
-          <Route path="/" element={<Home user={user} profile={profile} />} />
+          <Route
+            path="/"
+            element={<Home user={user} profile={profile} socket={socket} />}
+          />
           <Route
             path="/profile/edit"
             element={
