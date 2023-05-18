@@ -90,6 +90,17 @@ const LogIn = ({ user, login }) => {
         >
           Sign Up
         </button>
+        <button
+          type="button"
+          className="tryBtn"
+          onClick={(e) => {
+            setEmail('testmail@gmail.com');
+            setPassword('password99');
+            handleSubmit(e)
+          }}
+        >
+          Try Out
+        </button>
       </form>
     </div>
   );

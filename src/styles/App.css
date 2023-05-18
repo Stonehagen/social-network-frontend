@@ -5,7 +5,7 @@
   .LogIn,
   .SignUp,
   .MainContainer,
-  .Messenger  {
+    .Messenger  {
     min-height: calc(100vh - 126px);
   }
 }
@@ -137,4 +137,14 @@ form .errorMessage {
 .secondoryBtn {
   color: var(--text-color);
   background-color: var(--form-background-color);
+}
+
+.tryBtn {
+  color: var(--text-color);
+  background-color: var(--highlight-color);
+}
+
+.tryBtn:hover {
+  cursor: pointer;
+  color: var(--background-color);
 }
