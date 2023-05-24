@@ -5,13 +5,14 @@ import { useState } from 'react';
 import '../styles/PostFeed.css';
 import Likes from './Likes';
 import Comments from './Comments';
-import heart from './../img/heart.svg';
+
 import heartFill from './../img/heartFill.svg';
 import comment from './../img/comment.svg';
 import commentFill from './../img/commentFill.svg';
 import worldFillWhite from './../img/worldFillWhite.svg';
 import friendsFillWhite from './../img/friendsFillWhite.svg';
 
+const heart = '../img/heart.svg';
 
 const Post = ({ post, profile, getPostFeed }) => {
   const postTime = formatTime(post.timestamp);
