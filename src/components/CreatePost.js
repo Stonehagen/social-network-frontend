@@ -2,12 +2,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import '../styles/CreatePost.css';
-import world from '../img/world.svg';
-import worldFill from '../img/worldFill.svg';
-import worldFillWhite from '../img/worldFillWhite.svg';
-import friends from '../img/friends.svg';
-import friendsFill from '../img/friendsFill.svg';
-import friendsFillWhite from '../img/friendsFillWhite.svg';
+
+const world = '../img/world.svg';
+const worldFill = '../img/worldFill.svg';
+const worldFillWhite = '../img/worldFillWhite.svg';
+const friends = '../img/friends.svg';
+const friendsFill = '../img/friendsFill.svg';
+const friendsFillWhite = '../img/friendsFillWhite.svg';
 
 const CreatePost = ({ profile }) => {
   const [text, setText] = useState();

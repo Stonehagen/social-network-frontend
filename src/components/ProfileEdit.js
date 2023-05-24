@@ -2,7 +2,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../styles/ProfileEdit.css';
-import CameraIcon from '../img/camera.svg';
+
+const CameraIcon = '../img/camera.svg';
 
 const ProfileEdit = ({ user, setUserProfile }) => {
   const [firstName, setFirstName] = useState('');

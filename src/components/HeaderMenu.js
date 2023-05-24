@@ -1,10 +1,11 @@
 import { useRef } from 'react';
-import Logout from '../img/logout.svg';
-import LogoutFill from '../img/logoutFill.svg';
-import Messenger from '../img/messenger.svg';
-import MessengerFill from '../img/messengerFill.svg';
 import { OutsideClick } from '../methods/outsideClick';
 import { useNavigate } from 'react-router-dom';
+
+const Logout = '../img/logout.svg';
+const LogoutFill = '../img/logoutFill.svg';
+const Messenger = '../img/messenger.svg';
+const MessengerFill = '../img/messengerFill.svg';
 
 const HeaderMenu = ({ loggingOut, setOpenMenu }) => {
   const wrapperRef = useRef(null);

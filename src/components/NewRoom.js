@@ -2,8 +2,9 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { OutsideClick } from '../methods/outsideClick';
 import '../styles/NewRoom.css';
-import CloseRed from '../img/closeRed.svg';
-import CloseFillRed from '../img/closeFillRed.svg';
+
+const CloseRed = '../img/closeRed.svg';
+const CloseFillRed = '../img/closeFillRed.svg';
 
 const NewRoom = ({ setDisplayNewRoom, profile, getRooms }) => {
   const [friends, setFriends] = useState([]);

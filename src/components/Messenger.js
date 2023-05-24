@@ -2,10 +2,11 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Messenger.css';
-import MessageNew from '../img/messageNew.svg';
-import MessageNewFill from '../img/messageNewFill.svg';
 import NewRoom from './NewRoom';
 import Chat from './Chat';
+
+const MessageNew = '../img/messageNew.svg';
+const MessageNewFill = '../img/messageNewFill.svg';
 
 const Messenger = ({ user, profile, socket }) => {
   const [rooms, setRooms] = useState([]);

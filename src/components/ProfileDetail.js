@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import '../styles/ProfileDetail.css';
-
 import Friends from './Friends';
 import PageProfileMenu from './PageProfileMenu';
 import UserProfileMenu from './UserProfileMenu';

@@ -2,8 +2,9 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OutsideClick } from '../methods/outsideClick';
 import '../styles/Likes.css';
-import CloseRed from '../img/closeRed.svg';
-import CloseFillRed from '../img/closeFillRed.svg';
+
+const CloseRed = '../img/closeRed.svg';
+const CloseFillRed = '../img/closeFillRed.svg';
 
 const Likes = ({ likes, setDisplayLikes }) => {
   const wrapperRef = useRef(null);

@@ -2,10 +2,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../styles/Header.css';
-import CornLogo from '../img/corn.svg';
-
 import HeaderMenu from './HeaderMenu';
 import Search from './Search';
+
+const CornLogo = '../img/corn.svg';
 
 const Header = ({ user, logout, setUserProfile, profile, socket }) => {
   const [openMenu, setOpenMenu] = useState(false);

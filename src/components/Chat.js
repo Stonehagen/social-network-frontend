@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { OutsideClick } from '../methods/outsideClick';
 import { formatTime } from '../methods/formatTime';
 import '../styles/Chat.css';
-import CloseRed from '../img/closeRed.svg';
-import CloseFillRed from '../img/closeFillRed.svg';
-import sendDark from '../img/sendDark.svg';
-import sendFillDark from '../img/sendFillDark.svg';
+
+const CloseRed = '../img/closeRed.svg';
+const CloseFillRed = '../img/closeFillRed.svg';
+const sendDark = '../img/sendDark.svg';
+const sendFillDark = '../img/sendFillDark.svg';
 
 const Chat = ({ profile, setDisplayChat, activeRoom, socket }) => {
   const [messages, setMessages] = useState([]);

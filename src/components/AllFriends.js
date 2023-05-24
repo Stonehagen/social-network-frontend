@@ -2,8 +2,9 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import '../styles/AllFriends.css';
-import ProfilePic from '../img/profile.svg';
-import ProfilePicFill from '../img/profileFill.svg';
+
+const ProfilePic = '../img/profile.svg';
+const ProfilePicFill = '../img/profileFill.svg';
 
 const AllFriends = ({ user }) => {
   const [pageProfile, setPageProfile] = useState(null);

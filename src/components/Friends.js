@@ -2,8 +2,9 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Friends.css';
-import People from '../img/people.svg';
-import PeopleFill from '../img/peopleFill.svg';
+
+const People = '../img/people.svg';
+const PeopleFill = '../img/peopleFill.svg';
 
 const Friends = ({ pageProfile }) => {
   const [friends, setFriends] = useState([]);

@@ -1,8 +1,9 @@
 import { useRef } from 'react';
 import { OutsideClick } from '../methods/outsideClick';
 import { useNavigate } from 'react-router-dom';
-import Close from '../img/close.svg';
-import CloseFill from '../img/closeFill.svg';
+
+const Close = '../img/close.svg';
+const CloseFill = '../img/closeFill.svg';
 
 const Search = ({ profiles, handleCloseSearch, setOpenSearch}) => {
   const wrapperRef = useRef(null);

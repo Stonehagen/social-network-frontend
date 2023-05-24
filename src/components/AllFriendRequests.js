@@ -1,9 +1,11 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/AllFriendRequests.css';
-import ProfilePic from '../img/profile.svg';
-import ProfilePicFill from '../img/profileFill.svg';
-import axios from 'axios';
+
+const ProfilePic = '../img/profile.svg';
+const ProfilePicFill = '../img/profileFill.svg';
+
 
 const AllFriendRequests = ({ user, profile }) => {
   const [friendRequests, setFriendRequests] = useState([]);
