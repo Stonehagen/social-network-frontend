@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
-:root {
+body {
   --color1: #211e27;
   --color2: #2b283d;
   --color3: #f4f2f7;
@@ -25,15 +25,24 @@
 
   background-color: var(--background-color);
   color: var(--text-color);
-}
 
-body {
   display: flex;
   flex-direction: column;
   height: 100vh;
   margin: 0;
   padding: 0;
 }
+
+.lightmode {
+  --color1: #f4f2f7;
+  --color2: #d8d2de;
+  --color3: #211e27;
+  --color4: #2b283d;
+  --color5: #d0ad5c;
+  --color6: #9485a3;
+}
+
+
 body>div {
   max-height: 100vh;
 }

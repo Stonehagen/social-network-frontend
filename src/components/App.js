@@ -25,6 +25,7 @@ const App = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
+  const [lightMode, setLightMode] = useState(false);
   let socketIdSend = false;
 
   const [cookies, removeCookie] = useCookies(['jwt_token']);
@@ -88,7 +89,8 @@ const App = () => {
     } else {
       setLoading(false);
     }
-  }, [user, token]);
+    document.body.classList.toggle('lightmode', lightMode);
+  }, [user, token, lightMode]);
 
   if (loading) {
     return <></>;
@@ -101,6 +103,8 @@ const App = () => {
         logout={logout}
         setUserProfile={setUserProfile}
         profile={profile}
+        lightMode={lightMode}
+        setLightMode={setLightMode}
         socket={socket}
       />
       <div className="Main">

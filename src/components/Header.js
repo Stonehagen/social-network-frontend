@@ -6,8 +6,20 @@ import HeaderMenu from './HeaderMenu';
 import Search from './Search';
 
 const CornLogo = '../img/corn.svg';
+const Moon = '../img/moon.svg';
+const MoonFill = '../img/moonFill.svg';
+const Sun = '../img/sun.svg';
+const SunFill = '../img/sunFill.svg';
 
-const Header = ({ user, logout, setUserProfile, profile, socket }) => {
+const Header = ({
+  user,
+  logout,
+  setUserProfile,
+  profile,
+  lightMode,
+  setLightMode,
+  socket,
+}) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [search, setSearch] = useState('');
@@ -96,11 +108,29 @@ const Header = ({ user, logout, setUserProfile, profile, socket }) => {
           />
           <div className="HeaderMenu">
             {openMenu ? (
-              <HeaderMenu loggingOut={loggingOut} setOpenMenu={setOpenMenu} />
+              <HeaderMenu
+                loggingOut={loggingOut}
+                setOpenMenu={setOpenMenu}
+                lightMode={lightMode}
+                setLightMode={setLightMode}
+              />
             ) : null}
           </div>
         </div>
-      ) : null}
+      ) : (
+        <img
+          onClick={() => setLightMode(!lightMode)}
+          className="profilePicture"
+          onMouseOver={(e) =>
+            (e.currentTarget.src = lightMode ? MoonFill : SunFill)
+          }
+          onMouseOut={(e) =>
+            (e.currentTarget.src = lightMode ? MoonFill : SunFill)
+          }
+          src={lightMode ? Moon : Sun}
+          alt={lightMode ? 'dark mode' : 'light mode'}
+        />
+      )}
     </div>
   );
 };
