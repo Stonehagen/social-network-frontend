@@ -6,12 +6,11 @@ import '../styles/PostFeed.css';
 import Likes from './Likes';
 import Comments from './Comments';
 
-import heartFill from './../img/heartFill.svg';
-import comment from './../img/comment.svg';
-import commentFill from './../img/commentFill.svg';
-import worldFillWhite from './../img/worldFillWhite.svg';
-import friendsFillWhite from './../img/friendsFillWhite.svg';
-
+const heartFill = './../img/heartFill.svg';
+const comment = './../img/comment.svg';
+const commentFill = './../img/commentFill.svg';
+const worldFillWhite = './../img/worldFillWhite.svg';
+const friendsFillWhite = './../img/friendsFillWhite.svg';
 const heart = '../img/heart.svg';
 
 const Post = ({ post, profile, getPostFeed }) => {

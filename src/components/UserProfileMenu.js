@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import send from '../img/send.svg';
-import sendFill from '../img/sendFill.svg';
-import received from '../img/received.svg';
-import receivedFill from '../img/receivedFill.svg';
+
+const send = '../img/send.svg';
+const sendFill = '../img/sendFill.svg';
+const received = '../img/received.svg';
+const receivedFill = '../img/receivedFill.svg';
 
 const UserProfileMenu = ({ profile }) => {
   const navigate = useNavigate();

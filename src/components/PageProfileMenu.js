@@ -1,11 +1,12 @@
 import axios from 'axios';
-import message from '../img/message.svg';
-import messageFill from '../img/messageFill.svg';
-import friend from '../img/friend.svg';
-import friendFill from '../img/friendFill.svg';
-import friendRemove from '../img/friendRemove.svg';
-import friendRemoveFill from '../img/friendRemoveFill.svg';
 import { useNavigate } from 'react-router-dom';
+
+const message = '../img/message.svg';
+const messageFill = '../img/messageFill.svg';
+const friend = '../img/friend.svg';
+const friendFill = '../img/friendFill.svg';
+const friendRemove = '../img/friendRemove.svg';
+const friendRemoveFill = '../img/friendRemoveFill.svg';
 
 const PageProfileMenu = ({
   profile,
