@@ -41,6 +41,28 @@ const LogIn = ({ user, login }) => {
       .finally(() => navigate('/'));
   };
 
+  const testLogin = (e) => {
+    e.preventDefault();
+    axios
+      .post(`${process.env.REACT_APP_BACKENDSERVER}/user/log-in`, {
+        email: 'testmail@gmail.com',
+        password: 'password99',
+      })
+      .then((res) => {
+        if (res.data.error) {
+          setErrors(res.data.error);
+        } else {
+          saveJWTinCookie(res.data.token);
+          setAuthToken(res.data.token);
+          login(res.data.user.email, res.data.user._id);
+        }
+      })
+      .catch((err) =>
+        setErrors(err.response.data.error ? err.response.data.error : []),
+      )
+      .finally(() => navigate('/'));
+  }
+
   useEffect(() => {
     if (user) {
       navigate('/');
@@ -94,9 +116,7 @@ const LogIn = ({ user, login }) => {
           type="button"
           className="tryBtn"
           onClick={(e) => {
-            setEmail('testmail@gmail.com');
-            setPassword('password99');
-            handleSubmit(e)
+            testLogin(e)
           }}
         >
           Try Out
