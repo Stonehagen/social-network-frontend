@@ -4,16 +4,12 @@ import { useEffect, useState } from 'react';
 import '../styles/Header.css';
 import HeaderMenu from './HeaderMenu';
 import Search from './Search';
-import Moon from '../img/moon.svg';
-import MoonFill from '../img/moonFill.svg';
-import Sun from '../img/sun.svg';
-import SunFill from '../img/sunFill.svg';
 
 const CornLogo = '../img/corn.svg';
-// const Moon = '../img/moon.svg';
-// const MoonFill = '../img/moonFill.svg';
-// const Sun = '../img/sun.svg';
-// const SunFill = '../img/sunFill.svg';
+const Moon = '../img/moon.svg';
+const MoonFill = '../img/moonFill.svg';
+const Sun = '../img/sun.svg';
+const SunFill = '../img/sunFill.svg';
 
 const Header = ({
   user,

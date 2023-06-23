@@ -1,15 +1,15 @@
 import { useRef } from 'react';
 import { OutsideClick } from '../methods/outsideClick';
 import { useNavigate } from 'react-router-dom';
+import Moon from '../img/moon.svg'
+import MoonFill from '../img/moonFill.svg';
+import Sun from '../img/sun.svg';
+import SunFill from '../img/sunFill.svg';
 
 const Logout = '../img/logout.svg';
 const LogoutFill = '../img/logoutFill.svg';
 const Messenger = '../img/messenger.svg';
 const MessengerFill = '../img/messengerFill.svg';
-const Moon = '../img/moon.svg';
-const MoonFill = '../img/moonFill.svg';
-const Sun = '../img/sun.svg';
-const SunFill = '../img/sunFill.svg';
 
 
 const HeaderMenu = ({ loggingOut, setOpenMenu, lightMode, setLightMode }) => {
@@ -36,8 +36,8 @@ const HeaderMenu = ({ loggingOut, setOpenMenu, lightMode, setLightMode }) => {
         onClick={() => {
           setLightMode(!lightMode);
         }}
-        onMouseOver={(e) => (e.currentTarget.children[0].src = lightMode ? MoonFill : SunFill)}
-        onMouseOut={(e) => (e.currentTarget.children[0].src = lightMode ? MoonFill : SunFill)}
+        onMouseOver={(e) => (e.currentTarget.children[0].src = lightMode ? MoonFill : Sun)}
+        onMouseOut={(e) => (e.currentTarget.children[0].src = lightMode ? Moon : SunFill)}
       >
         <img src={lightMode ? Moon : Sun} alt="" />
         {lightMode ? 'Dark Mode' : 'Light Mode' }
