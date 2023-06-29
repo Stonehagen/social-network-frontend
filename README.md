@@ -2,6 +2,9 @@
 
 Cornect.me is a Social Network developed with the MERN Stack. The frontend was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).I am using Socket.IO to power my messenger implementation. 
 
+### Live 
+[cornectme.stonehagen.com](https://cornectme.stonehagen.com)
+
 ## Install and Run
 
 ### Installation
